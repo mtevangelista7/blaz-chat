@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "blaz-chat", "blaz-chat\blaz-chat.csproj", "{2EEF88F1-F213-43EA-AA12-CA8DC016B771}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2EEF88F1-F213-43EA-AA12-CA8DC016B771}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EEF88F1-F213-43EA-AA12-CA8DC016B771}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EEF88F1-F213-43EA-AA12-CA8DC016B771}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EEF88F1-F213-43EA-AA12-CA8DC016B771}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A9740567-79FC-4606-871A-896BE3EEDA5D}
+	EndGlobalSection
+EndGlobal
