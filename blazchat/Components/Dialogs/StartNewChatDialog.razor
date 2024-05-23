@@ -1,0 +1,34 @@
+﻿@inherits StartNewChatDialogBase
+
+<MudDialog Style="max-height: 500px !important;">
+    <DialogContent>
+        <MudGrid Spacing="1">
+            <MudItem xs="12">
+                <MudTextField T="string" Margin="Margin.Dense" Placeholder="Search contact" Variant="Variant.Outlined" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search"/>
+            </MudItem>
+
+            <MudItem xs="12">
+                <MudGrid Spacing="1">
+                    @if (Contacts is { Count: > 0 })
+                    {
+                        @foreach (var contact in Contacts)
+                        {
+                            <MudItem xs="12">
+                                <MudPaper Elevation="6" Class="pa-3 rounded-lg">
+                                    <MudGrid>
+                                        <MudItem Class="d-flex align-center" xs="2">
+                                            <MudAvatar Color="Color.Primary">@contact[0]</MudAvatar>
+                                        </MudItem>
+                                        <MudItem Class="d-flex align-center" xs="10">
+                                            <MudText Typo="Typo.body2">@contact</MudText>
+                                        </MudItem>
+                                    </MudGrid>
+                                </MudPaper>
+                            </MudItem>
+                        }
+                    }
+                </MudGrid>
+            </MudItem>
+        </MudGrid>
+    </DialogContent>
+</MudDialog>

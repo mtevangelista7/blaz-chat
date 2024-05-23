@@ -1,4 +1,4 @@
-using blaz_chat;
+using blazchat;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using MudBlazor.Services;
