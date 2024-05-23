@@ -1,19 +1,25 @@
 ﻿@namespace blazchat.Pages
-@page "/messages"
-@page "/messages/{MessageId:Guid}"
 @using blazchat.Components
 @inherits blazchat.Pages.MessagesBase
+@page "/messages"
+@page "/messages/{Id:guid}"
 
 <PageTitle>Messages</PageTitle>
 
-<MudAppBar Elevation="0" Class="white" Fixed="true" Dense="true">
-    <MudTextField T="string" Margin="Margin.Dense" Placeholder="Search" Variant="Variant.Outlined" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search"/>
-</MudAppBar>
+@if (Id == Guid.Empty)
+{
+    <MudAppBar Elevation="0" Class="white" Fixed="true" Dense="true">
+        <MudTextField T="string" Margin="Margin.Dense" Placeholder="Search" Variant="Variant.Outlined" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search"/>
+    </MudAppBar>
 
-<MudPaper Elevation="0" Class="px-6 mt-15">
-    <MessagesHistory></MessagesHistory>
-</MudPaper>
+    <MudPaper Elevation="0" Class="px-6 mt-15">
+        <MessagesHistory></MessagesHistory>
+    </MudPaper>
 
-<NewMessage></NewMessage>
-
+    <NewMessage></NewMessage>
+}
+else
+{
+    <OnlineChat></OnlineChat> 
+}
 

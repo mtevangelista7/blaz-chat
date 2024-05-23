@@ -1,3 +1,21 @@
 ﻿@inherits OnlineChatBase
 
+<MudAppBar Elevation="0" Class="white" Fixed="false" Dense="true">
+    <MudStack AlignItems="AlignItems.Center" Justify="Justify.Center" Row="true">
+        <MudIcon Color="Color.Primary" Icon="@Icons.Material.Filled.ArrowBack" Size="Size.Medium" Class="mr-6"/>
+        
+        <MudAvatar Color="Color.Primary" Size="Size.Medium">
+            <MudIcon Icon="@Icons.Material.Filled.Person" Size="Size.Medium" />
+        </MudAvatar>
+        
+        <MudText Color="Color.Dark" Typo="Typo.h6">Matheus</MudText>
+    </MudStack>
+</MudAppBar>
 
+<MudPaper Height="calc(100dvh - 48px - 48px)">
+    aqui vai as msg
+</MudPaper>
+
+<MudAppBar Bottom=true Elevation="0" Class="white" Fixed="true" Dense="true">
+    <MudTextField T="string" Margin="Margin.Dense" Placeholder="Send" Variant="Variant.Outlined" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Send" />
+</MudAppBar>

@@ -5,5 +5,5 @@ namespace blazchat.Pages;
 public class MessagesBase : ComponentBase
 {
     [Parameter]
-    public Guid? MessageId { get; set; }
+    public Guid Id { get; set; }
 }
