@@ -2,6 +2,20 @@
 
 <PageTitle>Home</PageTitle>
 
-<h1>Hello, world!</h1>
+<MudAppBar Elevation="0" Class="white" Fixed="false" Dense="true">
+    <MudText Color="Color.Primary" Typo="Typo.h6">blaz-chat</MudText>
+    <MudSpacer/>
+    <MudButton Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.Send" Color="Color.Primary">sign-up</MudButton>
+</MudAppBar>
 
-Welcome to your new app.
+<MudContainer Class="mt-5 rounded-lg" MaxWidth="MaxWidth.Large">
+    <MudPaper Height="600px" Width="100%" Class="mud-theme-primary">
+        <MudGrid Spacing="0">
+            <MudItem xs="12">
+                <MudText Align="Align.Center">
+                    um texto legal
+                </MudText>
+            </MudItem>
+        </MudGrid>
+    </MudPaper>
+</MudContainer>
