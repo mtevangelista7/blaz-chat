@@ -1,8 +1,8 @@
-﻿using blazchat.Components.Dialogs;
+﻿using blazchat.Client.Components.Dialogs;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
 
-namespace blazchat.Components;
+namespace blazchat.Client.Components;
 
 public class NewMessageBase : ComponentBase
 {

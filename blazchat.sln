@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "blazchat", "..\blazchat\blazchat\blazchat\blazchat.csproj", "{03593545-6311-4777-8E96-F99FC0F780DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "blazchat", "blazchat\blazchat.csproj", "{9F446D4D-7884-470C-BE9B-5141B6C48682}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "blazchat.Client", "..\blazchat\blazchat\blazchat.Client\blazchat.Client.csproj", "{5C63944D-4442-45C7-BF39-77EE64FEE606}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "blazchat.Client", "blazchat.Client\blazchat.Client.csproj", "{FA950946-B1B5-42A9-9AA4-2051322E071E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{03593545-6311-4777-8E96-F99FC0F780DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{03593545-6311-4777-8E96-F99FC0F780DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{03593545-6311-4777-8E96-F99FC0F780DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{03593545-6311-4777-8E96-F99FC0F780DE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5C63944D-4442-45C7-BF39-77EE64FEE606}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5C63944D-4442-45C7-BF39-77EE64FEE606}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5C63944D-4442-45C7-BF39-77EE64FEE606}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5C63944D-4442-45C7-BF39-77EE64FEE606}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F446D4D-7884-470C-BE9B-5141B6C48682}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F446D4D-7884-470C-BE9B-5141B6C48682}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F446D4D-7884-470C-BE9B-5141B6C48682}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F446D4D-7884-470C-BE9B-5141B6C48682}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA950946-B1B5-42A9-9AA4-2051322E071E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA950946-B1B5-42A9-9AA4-2051322E071E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA950946-B1B5-42A9-9AA4-2051322E071E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA950946-B1B5-42A9-9AA4-2051322E071E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

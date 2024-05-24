@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace blazchat.Components;
+namespace blazchat.Client.Components;
 
 public class MessagesHistoryBase : ComponentBase
 {
