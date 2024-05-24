@@ -12,8 +12,23 @@
     </MudStack>
 </MudAppBar>
 
-<MudPaper Height="calc(100dvh - 48px - 48px)">
-    aqui vai as msg
+<MudPaper Width="100%" Height="calc(100dvh - 48px - 48px)">
+    <MudContainer MaxWidth="MaxWidth.Large">
+        <MudGrid Spacing="0">
+            
+            @*outside user*@
+            <MudItem xs="6">
+                <MudStack Row="false" Reverse="true">
+                </MudStack>
+            </MudItem>
+
+            @*user*@
+            <MudItem xs="6">
+
+            </MudItem>
+            
+        </MudGrid>
+    </MudContainer>
 </MudPaper>
 
 <MudAppBar Bottom=true Elevation="0" Class="white" Fixed="true" Dense="true">
