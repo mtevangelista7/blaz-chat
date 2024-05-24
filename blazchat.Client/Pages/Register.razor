@@ -1,8 +1,8 @@
-﻿@namespace blazchat.Pages
-@page "/login"
-@inherits blazchat.Pages.LoginBase
+﻿@page "/register"
+@inherits RegisterBase
+@rendermode InteractiveWebAssembly
 
-<PageTitle>Login</PageTitle>
+<PageTitle>Register</PageTitle>
 
 <MudGrid Spacing="0">
     <MudItem xs="12">
@@ -12,7 +12,7 @@
                     <MudGrid Spacing="1">
                         <MudItem xs="12">
                             <MudText Align="Align.Center" Typo="Typo.h6">blazchat</MudText>
-                            <MudText Align="Align.Center" Typo="Typo.body1">login</MudText>
+                            <MudText Align="Align.Center" Typo="Typo.body1">Register</MudText>
                         </MudItem>
                         <MudItem xs="12">
                             <MudStack Spacing="0" Row="false">
@@ -29,11 +29,11 @@
                         </MudItem>
                         <MudItem xs="12">
                             <div class="d-flex align-center justify-center">
-                                <MudButton FullWidth="true" Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.Send" Color="Color.Primary">login</MudButton>
+                                <MudButton FullWidth="true" Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.Send" Color="Color.Primary">register</MudButton>
                             </div>
                         </MudItem>
                         <MudItem xs="12">
-                            <MudText Align="Align.Center" Typo="Typo.body2">Don't have an account? <MudLink NavigateTo="/register">register</MudLink></MudText>
+                            <MudText Align="Align.Center" Typo="Typo.body2">Already have an account? <MudLink NavigateTo="/login">login</MudLink></MudText>
                         </MudItem>
                     </MudGrid>
                 </MudPaper>

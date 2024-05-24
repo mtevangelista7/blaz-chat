@@ -1,15 +1,15 @@
-﻿@namespace blazchat.Pages
-@using blazchat.Components
-@inherits blazchat.Pages.MessagesBase
+﻿@inherits MessagesBase
 @page "/messages"
 @page "/messages/{Id:guid}"
+@using blazchat.Client.Components
+@rendermode InteractiveWebAssembly
 
 <PageTitle>Messages</PageTitle>
 
 @if (Id == Guid.Empty)
 {
     <MudAppBar Elevation="0" Class="white" Fixed="true" Dense="true">
-        <MudTextField T="string" Margin="Margin.Dense" Placeholder="Search" Variant="Variant.Outlined" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search"/>
+        <MudTextField T="string" Margin="Margin.Dense" Placeholder="Search" Variant="Variant.Outlined" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" />
     </MudAppBar>
 
     <MudPaper Elevation="0" Class="px-6 mt-15">
@@ -20,6 +20,7 @@
 }
 else
 {
-    <OnlineChat></OnlineChat> 
+    <OnlineChat></OnlineChat>
 }
+
 

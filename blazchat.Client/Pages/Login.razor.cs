@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace blazchat.Pages;
+namespace blazchat.Client.Pages;
 
 public class LoginBase : ComponentBase
 {
