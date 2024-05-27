@@ -12,6 +12,7 @@ public class AplicationDbContext : DbContext
     public DbSet<Chat> Chats { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<Message> Messages { get; set; }
+    public DbSet<ChatUser> ChatUsers { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -81,6 +82,8 @@ public class AplicationDbContext : DbContext
         // Configuração da entidade ChatUser
         modelBuilder.Entity<ChatUser>(entity =>
         {
+            entity.ToTable("ChatUsers");
+
             entity.HasKey(cu => new { cu.ChatId, cu.UserId });
 
             entity.HasOne(cu => cu.Chat)

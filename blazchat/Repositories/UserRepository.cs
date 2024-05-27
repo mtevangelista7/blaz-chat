@@ -32,5 +32,10 @@ namespace blazchat.Repositories
         {
             return await _dbSet.FirstOrDefaultAsync(x => x.Id == userId);
         }
+
+        public Task<List<User>> GetUsers()
+        {
+            return _dbSet.ToListAsync();
+        }
     }
 }

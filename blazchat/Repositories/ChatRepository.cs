@@ -46,8 +46,24 @@ public class ChatRepository : IChatRepository
         };
 
         _context.Chats.Add(chat);
-        await _context.SaveChangesAsync();
+
+        try
+        {
+            await _context.SaveChangesAsync();
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("An error occurred while creating the chat.", ex);
+        }
 
         return chat;
+    }
+
+    public Task<List<Chat>> GetActiveChatsAsync(Guid userId)
+    {
+        return _context.ChatUsers
+            .Where(x => x.UserId == userId)
+            .Select(x => x.Chat)
+            .ToListAsync();
     }
 }

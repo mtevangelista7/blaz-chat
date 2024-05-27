@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using blazchat.Context;
 
@@ -11,9 +12,11 @@ using blazchat.Context;
 namespace blazchat.Migrations
 {
     [DbContext(typeof(AplicationDbContext))]
-    partial class AplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240527144124_changeNameTable")]
+    partial class changeNameTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

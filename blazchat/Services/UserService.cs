@@ -21,5 +21,10 @@ namespace blazchat.Services
         {
             return _userRepository.GetUser(userId);
         }
+
+        public Task<List<User>> GetUsers()
+        {
+            return _userRepository.GetUsers();
+        }
     }
 }

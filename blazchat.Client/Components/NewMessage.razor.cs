@@ -1,6 +1,7 @@
 ﻿using System.Net.Http.Json;
 using blazchat.Client.Components.Dialogs;
 using blazchat.Client.Dtos;
+using blazchat.Client.InterfaceApi;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
 
@@ -17,6 +18,9 @@ public class NewMessageBase : ComponentBase
     [Inject]
     NavigationManager Navigation { get; set; }
 
+    [Inject]
+    protected IChatEndpoints chatEndpoints { get; set; }
+
     protected async Task OnClickStartNewChat()
     {
         var options = new DialogOptions
@@ -30,14 +34,18 @@ public class NewMessageBase : ComponentBase
             return;
         }
 
-        await StartNewChat(result.Data as ContactDto);
+        await StartNewChat(result.Data as UserDto);
     }
 
-    private async Task StartNewChat(ContactDto? contact)
+    private async Task StartNewChat(UserDto? userDto)
     {
-        var response = await HttpClient.PostAsJsonAsync("https://localhost:7076/api/chat/create", new { user1Id = APAGAR.CurrentUserId, user2Id = contact?.Id });
-        response.EnsureSuccessStatusCode();
-        var newChatId = await response.Content.ReadFromJsonAsync<Guid>();
+        CreateChatDto createChatDto = new()
+        {
+            User1Id = APAGAR.CurrentUserId,
+            User2Id = userDto.Id
+        };
+
+        var newChatId = await chatEndpoints.CreateChat(createChatDto);
         Navigation.NavigateTo($"/messages/{newChatId}");
     }
 }

@@ -10,19 +10,19 @@
 
             <MudItem xs="12">
                 <MudGrid Spacing="1">
-                    @if (Contacts is { Count: > 0 })
+                    @if (Users is { Count: > 0 })
                     {
-                        @foreach (var contact in Contacts)
+                        @foreach (var user in Users)
                         {
                             <MudItem xs="12">
-                                <button @onclick="e=> StartChat(contact)">
+                                <button @onclick="e=> StartChat(user)">
                                     <MudPaper Elevation="6" Class="pa-3 rounded-lg">
                                         <MudGrid>
                                             <MudItem Class="d-flex align-center" xs="2">
-                                                <MudAvatar Color="Color.Primary">@contact.Name[0]</MudAvatar>
+                                                <MudAvatar Color="Color.Primary">@user.Name[0]</MudAvatar>
                                             </MudItem>
                                             <MudItem Class="d-flex align-center" xs="10">
-                                                <MudText Typo="Typo.body2">@contact.Name</MudText>
+                                                <MudText Typo="Typo.body2">@user.Name</MudText>
                                             </MudItem>
                                         </MudGrid>
                                     </MudPaper>

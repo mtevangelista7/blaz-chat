@@ -1,4 +1,5 @@
 ﻿using blazchat.Client.Dtos;
+using blazchat.Client.InterfaceApi;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
 
@@ -9,25 +10,24 @@ public class StartNewChatDialogBase : ComponentBase
     [CascadingParameter]
     MudDialogInstance MudDialog { get; set; }
 
-    protected List<ContactDto> Contacts { get; set; } = [];
+    [Inject]
+    protected IUserEndpoints userEndpoints { get; set; }
+
+    protected List<UserDto> Users { get; set; } = [];
 
     protected override async Task OnInitializedAsync()
     {
-        Contacts = await GetContactsAsync();
+        Users = await GetContactsAsync();
     }
     
-    private Task<List<ContactDto>> GetContactsAsync()
+    private async Task<List<UserDto>> GetContactsAsync()
     {
-        return Task.FromResult(new List<ContactDto>
-        {
-            new ContactDto { Id = Guid.Parse("CCE322A0-B0C0-4ACD-B9D5-0AD8B07C7E7F"), Name = "John Doe" },
-            new ContactDto { Id = Guid.Parse("871FF7BD-A98D-438A-8766-52831D1867FE"), Name = "Jane Smith" },
-            new ContactDto { Id = Guid.Parse("1FAEB3DB-7876-47B1-9709-AC288F603FA4"), Name = "Matheus" }
-        });
+        // get contacts from API
+        return await userEndpoints.GetUsers();
     }
     
-    protected void StartChat(ContactDto contact)
+    protected void StartChat(UserDto user)
     {
-        MudDialog.Close(DialogResult.Ok(contact));
+        MudDialog.Close(DialogResult.Ok(user));
     }
 }

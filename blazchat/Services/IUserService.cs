@@ -6,5 +6,6 @@ namespace blazchat.Services
     {
         Task<User> GetUser(Guid userId);
         Task<User> CreateUser(User user);
+        Task<List<User>> GetUsers();
     }
 }

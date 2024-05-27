@@ -30,4 +30,9 @@ public class ChatService : IChatService
     {
         return await _chatRepository.GetChatAsync(chatId);
     }
+
+    public async Task<List<Chat>> GetActiveChats(Guid userId)
+    {
+        return await _chatRepository.GetActiveChatsAsync(userId);
+    }
 }

@@ -35,5 +35,12 @@ namespace blazchat.Controllers
             return Ok(user);
         }
 
+        [HttpGet("getUsers")]
+        public async Task<IActionResult> GetUsers()
+        {
+            var users = await _userService.GetUsers();
+            return Ok(users);
+        }
+
     }
 }

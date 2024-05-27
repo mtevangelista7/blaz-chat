@@ -37,4 +37,11 @@ public class ChatController : ControllerBase
 
         return Ok();
     }
+
+    [HttpGet("getActiveChats/userId={userId:guid}")]
+    public async Task<IActionResult> GetActiveChats(Guid userId)
+    {
+        var activeChats = await _chatService.GetActiveChats(userId);
+        return Ok(activeChats);
+    }
 }

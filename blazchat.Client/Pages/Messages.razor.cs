@@ -14,18 +14,5 @@ namespace blazchat.Client.Pages
 
         [Inject]
         HttpClient HttpClient { get; set; }
-
-        protected override async Task OnInitializedAsync()
-        {
-            base.OnInitialized();
-
-            var userDto = new UserDto
-            {
-                Id = APAGAR.CurrentUserId,
-                Name = "Matheus current"
-            };
-
-            var response = await HttpClient.PostAsJsonAsync("https://localhost:7076/api/user/createUser", userDto);
-        }
     }
 }

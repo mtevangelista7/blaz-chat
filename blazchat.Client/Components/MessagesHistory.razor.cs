@@ -1,17 +1,40 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using blazchat.Client.Dtos;
+using blazchat.Client.InterfaceApi;
+using Microsoft.AspNetCore.Components;
 
 namespace blazchat.Client.Components;
 
 public class MessagesHistoryBase : ComponentBase
 {
-    protected List<string> Messages { get; set; } = new();
-    
-    protected override void OnInitialized()
+    [Parameter]
+    public Guid IdUser { get; set; } = Guid.Empty;
+
+    [Inject]
+    IChatEndpoints chatEndpoints { get; set; }
+
+    [Inject]
+    NavigationManager NavigationManager { get; set; }
+
+    protected List<ChatDto> activeChats = [];
+
+    protected override async Task OnInitializedAsync()
     {
-        Messages.Add("Hello, World!");
-        Messages.Add("Welcome to BlazChat!");
-        Messages.Add("This is a simple chat application.");
-        Messages.Add("You can send messages and they will be displayed here.");
-        Messages.Add("Have fun!");
+        activeChats = await GetMessageHistory();
+    }
+
+
+    private async Task<List<ChatDto>> GetMessageHistory()
+    {
+        return await chatEndpoints.GetActiveChats(IdUser);
+    }
+
+    protected void OnClickChat(Guid idChat)
+    {
+        if (idChat == Guid.Empty)
+        {
+            return;
+        }
+
+        NavigationManager.NavigateTo($"/messages/{idChat}");
     }
 }
