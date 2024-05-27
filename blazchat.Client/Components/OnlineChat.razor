@@ -1,37 +1,50 @@
 ﻿@inherits OnlineChatBase
-@rendermode InteractiveWebAssembly
+@rendermode @(new InteractiveWebAssemblyRenderMode(prerender:false))
 
 <MudAppBar Elevation="0" Class="white" Fixed="false" Dense="true">
     <MudStack AlignItems="AlignItems.Center" Justify="Justify.Center" Row="true">
         <MudIcon Color="Color.Primary" Icon="@Icons.Material.Filled.ArrowBack" Size="Size.Medium" Class="mr-6"/>
-        
+
         <MudAvatar Color="Color.Primary" Size="Size.Medium">
-            <MudIcon Icon="@Icons.Material.Filled.Person" Size="Size.Medium" />
+            <MudIcon Icon="@Icons.Material.Filled.Person" Size="Size.Medium"/>
         </MudAvatar>
-        
+
         <MudText Color="Color.Dark" Typo="Typo.h6">Matheus</MudText>
     </MudStack>
 </MudAppBar>
 
-<MudPaper Width="100%" Height="calc(100dvh - 48px - 48px)">
+<MudPaper Class="d-flex align-end" Style="overflow-x:hidden; overflow-y:auto" Width="100%" Height="calc(100dvh - 48px - 48px)">
     <MudContainer MaxWidth="MaxWidth.Large">
         <MudGrid Spacing="0">
-            
+
             @*outside user*@
             <MudItem xs="6">
-                <MudStack Row="false" Reverse="true">
+                <MudStack Justify="Justify.FlexStart" Row="false" Reverse="false">
+                    @foreach (var message in messages.Where(x => x.User.Id != currentUser.Id))
+                    {
+                        <MudPaper Elevation="0" Class="ml-4">
+                            <MudText Align="Align.Start" Typo="Typo.body2">@message.Text</MudText>
+                        </MudPaper>
+                    }
                 </MudStack>
             </MudItem>
 
             @*user*@
             <MudItem xs="6">
-
+                <MudStack Justify="Justify.FlexEnd" Row="false" Reverse="false">
+                    @foreach (var message in messages.Where(x => x.User.Id == currentUser.Id))
+                    {
+                        <MudPaper Elevation="0" Class="ml-4">
+                            <MudText Align="Align.End" Typo="Typo.body2">@message.Text</MudText>
+                        </MudPaper>
+                    }
+                </MudStack>
             </MudItem>
-            
+
         </MudGrid>
     </MudContainer>
 </MudPaper>
 
 <MudAppBar Bottom=true Elevation="0" Class="white" Fixed="true" Dense="true">
-    <MudTextField T="string" Margin="Margin.Dense" Placeholder="Send" Variant="Variant.Outlined" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Send" />
+    <MudTextField @bind-Value="messageInput" T="string" OnAdornmentClick="SendMessage" Margin="Margin.Dense" Placeholder="Send" Variant="Variant.Outlined" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Send"/>
 </MudAppBar>

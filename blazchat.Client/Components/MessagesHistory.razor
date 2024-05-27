@@ -1,25 +1,26 @@
 ﻿@inherits MessagesHistoryBase
-@rendermode InteractiveWebAssembly
+@rendermode @(new InteractiveWebAssemblyRenderMode(prerender:false))
 
 <MudGrid Spacing="1">
-    @if (Messages is { Count: > 0 })
+    @if (activeChats is { Count: > 0 })
     {
-        @foreach (var message in Messages)
+        @foreach (var chat in activeChats)
         {
             <MudItem xs="12">
-                <MudPaper Elevation="6" Class="pa-3 rounded-lg">
-                    <MudGrid>
-                        <MudItem Class="align-center justify-center" xs="2" sm="1" md="1">
-                            <MudAvatar Color="Color.Primary">@message[0]</MudAvatar>
-                        </MudItem>
-                        <MudItem xs="10" sm="11" md="11">
-                            <MudStack AlignItems="AlignItems.Start" Justify="Justify.Center" Spacing="1" Row="false">
-                                <MudText Typo="Typo.body1">Nome</MudText>
-                                <MudText Typo="Typo.body2">@message</MudText>
-                            </MudStack>
-                        </MudItem>
-                    </MudGrid>
-                </MudPaper>
+                <button @onclick="e => OnClickChat(chat.ChatId)">
+                    <MudPaper Elevation="6" Class="pa-3 rounded-lg">
+                        <MudGrid>
+                            <MudItem Class="align-center justify-center" xs="2" sm="1" md="1">
+                                <MudAvatar Color="Color.Primary">@chat.User.Name[0]</MudAvatar>
+                            </MudItem>
+                            <MudItem xs="10" sm="11" md="11">
+                                <MudStack AlignItems="AlignItems.Start" Justify="Justify.Center" Spacing="1" Row="false">
+                                    <MudText Typo="Typo.body1">@chat.User.Name</MudText>
+                                </MudStack>
+                            </MudItem>
+                        </MudGrid>
+                    </MudPaper>
+                </button>
             </MudItem>
         }
     }

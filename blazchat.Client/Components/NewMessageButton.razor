@@ -1,5 +1,5 @@
-﻿@inherits NewMessageBase
-@rendermode InteractiveWebAssembly
+﻿@inherits NewMessageButtonBase
+@rendermode @(new InteractiveWebAssemblyRenderMode(prerender:false))
 
 <MudFab Style="position: fixed; bottom: 24px; right: 24px; z-index: 1000"
         Color="Color.Primary"

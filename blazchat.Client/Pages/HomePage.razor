@@ -1,12 +1,13 @@
 ﻿@page "/"
-@rendermode InteractiveWebAssembly
+@rendermode @(new InteractiveWebAssemblyRenderMode(prerender: false))
+@inject NavigationManager NavigationManager
 
 <PageTitle>Home</PageTitle>
 
 <MudAppBar Elevation="0" Class="white" Fixed="false" Dense="true">
     <MudText Color="Color.Primary" Typo="Typo.h6">blazchat</MudText>
     <MudSpacer/>
-    <MudButton Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.Send" Color="Color.Primary">sign-up</MudButton>
+    <MudButton OnClick="OnClickSignUp" Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.Send" Color="Color.Primary">sign-up</MudButton>
 </MudAppBar>
 
 <MudContainer Class="mt-5 rounded-lg" MaxWidth="MaxWidth.Large">
@@ -20,3 +21,10 @@
         </MudGrid>
     </MudPaper>
 </MudContainer>
+
+@code {
+    private void OnClickSignUp()
+    {
+        NavigationManager.NavigateTo("/register");
+    }
+}
