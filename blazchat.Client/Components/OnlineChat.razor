@@ -1,5 +1,5 @@
 ﻿@inherits OnlineChatBase
-@rendermode InteractiveWebAssembly
+@rendermode @(new InteractiveWebAssemblyRenderMode(prerender:false))
 
 <MudAppBar Elevation="0" Class="white" Fixed="false" Dense="true">
     <MudStack AlignItems="AlignItems.Center" Justify="Justify.Center" Row="true">
@@ -20,10 +20,10 @@
             @*outside user*@
             <MudItem xs="6">
                 <MudStack Justify="Justify.FlexStart" Row="false" Reverse="false">
-                    @foreach (var message in messages.Select(x => x.User.Id != currentUser.Id))
+                    @foreach (var message in messages.Where(x => x.User.Id != currentUser.Id))
                     {
                         <MudPaper Elevation="0" Class="ml-4">
-                            <MudText Align="Align.Start" Typo="Typo.body2">@message</MudText>
+                            <MudText Align="Align.Start" Typo="Typo.body2">@message.Text</MudText>
                         </MudPaper>
                     }
                 </MudStack>
@@ -32,10 +32,10 @@
             @*user*@
             <MudItem xs="6">
                 <MudStack Justify="Justify.FlexEnd" Row="false" Reverse="false">
-                    @foreach (var message in messages.Select(x => x.User.Id == currentUser.Id))
+                    @foreach (var message in messages.Where(x => x.User.Id == currentUser.Id))
                     {
                         <MudPaper Elevation="0" Class="ml-4">
-                            <MudText Align="Align.End" Typo="Typo.body2">@message</MudText>
+                            <MudText Align="Align.End" Typo="Typo.body2">@message.Text</MudText>
                         </MudPaper>
                     }
                 </MudStack>
@@ -46,5 +46,5 @@
 </MudPaper>
 
 <MudAppBar Bottom=true Elevation="0" Class="white" Fixed="true" Dense="true">
-    <MudTextField @bind-Value="messageInput" T="string" OnAdornmentClick="Send" Margin="Margin.Dense" Placeholder="Send" Variant="Variant.Outlined" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Send"/>
+    <MudTextField @bind-Value="messageInput" T="string" OnAdornmentClick="SendMessage" Margin="Margin.Dense" Placeholder="Send" Variant="Variant.Outlined" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Send"/>
 </MudAppBar>

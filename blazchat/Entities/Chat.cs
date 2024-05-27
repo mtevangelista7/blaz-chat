@@ -2,7 +2,7 @@
 
 public class Chat
 {
-    public Guid ChatId { get; set; }
-    public Guid User1Id { get; set; }
-    public Guid User2Id { get; set; }
+    public Guid Id { get; set; } = Guid.NewGuid();
+    public ICollection<ChatUser> ChatUsers { get; set; }
+    public ICollection<Message> Messages { get; set; }
 }

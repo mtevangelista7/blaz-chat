@@ -2,7 +2,7 @@
 @page "/messages"
 @page "/messages/{Id:guid}"
 @using blazchat.Client.Components
-@rendermode InteractiveWebAssembly
+@rendermode @(new InteractiveWebAssemblyRenderMode(prerender:false))
 
 <PageTitle>Messages</PageTitle>
 
@@ -20,7 +20,7 @@
 }
 else
 {
-    <OnlineChat></OnlineChat>
+    <OnlineChat ChatId="Id"></OnlineChat>
 }
 
 

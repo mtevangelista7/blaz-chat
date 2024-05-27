@@ -2,32 +2,34 @@
 using blazchat.Services;
 using Microsoft.AspNetCore.SignalR;
 
-namespace blazchat.Hubs
+namespace blazchat.Hubs;
+
+public class ChatHub : Hub
 {
-    public class ChatHub : Hub
+    private readonly IChatService _chatService;
+
+    public ChatHub(IChatService chatService)
     {
-        private readonly ChatService _chatService;
+        _chatService = chatService;
+    }
 
-        public ChatHub(ChatService chatService)
-        {
-            _chatService = chatService;
-        }
+    public async Task JoinChat(string chatId, UserDto user)
+    {
+        var chatGuid = Guid.Parse(chatId);
+        var userGuid = user.Id;
 
-        public async Task JoinChat(Guid chatId, Guid userId)
+        if (await _chatService.ValidateChat(chatGuid, userGuid))
         {
-            if (_chatService.ValidateChat(chatId, userId))
-            {
-                await Groups.AddToGroupAsync(Context.ConnectionId, chatId.ToString());
-            }
-            else
-            {
-                throw new HubException("Unauthorized");
-            }
+            await Groups.AddToGroupAsync(Context.ConnectionId, chatId);
         }
+        else
+        {
+            throw new HubException("Unauthorized");
+        }
+    }
 
-        public async Task SendMessage(Guid chatId, User user, string message, DateTime timestamp)
-        {
-            await Clients.Group(chatId.ToString()).SendAsync("ReceiveMessage", user, message, timestamp);
-        }
+    public async Task SendMessage(string chatId, UserDto user, string message)
+    {
+        await Clients.Group(chatId).SendAsync("ReceiveMessage", user, message);
     }
 }

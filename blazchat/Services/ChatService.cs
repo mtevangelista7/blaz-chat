@@ -1,27 +1,33 @@
 ﻿using blazchat.Entities;
+using blazchat.Interfaces;
 
 namespace blazchat.Services;
 
-public class ChatService
+public class ChatService : IChatService
 {
-    private readonly List<Chat> chats = new();
+    private readonly IChatRepository _chatRepository;
+    private readonly IChatUsersRepository _chatUsersRepository;
 
-    public Guid CreateNewChat(Guid user1Id, Guid user2Id)
+    public ChatService(IChatRepository chatRepository, IChatUsersRepository chatUsersRepository)
     {
-        var chatId = Guid.NewGuid();
-        var chat = new Chat
-        {
-            ChatId = chatId,
-            User1Id = user1Id,
-            User2Id = user2Id
-        };
-        chats.Add(chat);
-        return chatId;
+        _chatRepository = chatRepository;
+        _chatUsersRepository = chatUsersRepository;
     }
 
-    public bool ValidateChat(Guid chatId, Guid userId)
+    public async Task<Guid> CreateNewChat(Guid user1Id, Guid user2Id)
     {
-        var chat = chats.FirstOrDefault(c => c.ChatId == chatId);
-        return chat != null && (chat.User1Id == userId || chat.User2Id == userId);
+        var createdChat = await _chatRepository.CreateChatAsync(user1Id, user2Id);
+        return createdChat.Id;
+    }
+
+
+    public async Task<bool> ValidateChat(Guid chatId, Guid userId)
+    {
+        return await _chatUsersRepository.ValidateChatAsync(chatId, userId);
+    }
+
+    public async Task<Chat> GetChat(Guid chatId)
+    {
+        return await _chatRepository.GetChatAsync(chatId);
     }
 }
