@@ -1,26 +1,17 @@
-﻿using blazchat.Entities;
-using blazchat.Services;
+﻿using blazchat.Client.Dtos;
+using blazchat.Entities;
+using blazchat.Services.Interfaces;
 using Microsoft.AspNetCore.SignalR;
 
 namespace blazchat.Hubs;
 
-public class ChatHub : Hub
+public class ChatHub(IChatService chatService, IMessageService messageService) : Hub
 {
-    private readonly IChatService _chatService;
-
-    public ChatHub(IChatService chatService)
+    public async Task JoinChat(Guid chatId, UserDto user)
     {
-        _chatService = chatService;
-    }
-
-    public async Task JoinChat(string chatId, UserDto user)
-    {
-        var chatGuid = Guid.Parse(chatId);
-        var userGuid = user.Id;
-
-        if (await _chatService.ValidateChat(chatGuid, userGuid))
+        if (await chatService.ValidateChat(chatId, user.Id))
         {
-            await Groups.AddToGroupAsync(Context.ConnectionId, chatId);
+            await Groups.AddToGroupAsync(Context.ConnectionId, chatId.ToString());
         }
         else
         {
@@ -28,8 +19,18 @@ public class ChatHub : Hub
         }
     }
 
-    public async Task SendMessage(string chatId, UserDto user, string message)
+    public async Task SendMessage(Guid chatId, UserDto user, string message)
     {
-        await Clients.Group(chatId).SendAsync("ReceiveMessage", user, message);
+        var msg = new Message
+        {
+            ChatId = chatId,
+            Timestamp = DateTime.UtcNow,
+            Text = message,
+            UserId = user.Id
+        };
+
+        await messageService.AddMessageAsync(msg);
+
+        await Clients.Group(chatId.ToString()).SendAsync("ReceiveMessage", user, message, msg.Timestamp);
     }
 }

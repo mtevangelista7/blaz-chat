@@ -1,5 +1,6 @@
 ﻿using blazchat.Entities;
-using blazchat.Interfaces;
+using blazchat.Infra.Interfaces;
+using blazchat.Services.Interfaces;
 
 namespace blazchat.Services
 {

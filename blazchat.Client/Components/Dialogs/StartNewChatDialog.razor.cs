@@ -1,5 +1,5 @@
 ﻿using blazchat.Client.Dtos;
-using blazchat.Client.InterfaceApi;
+using blazchat.Client.RefitInterfaceApi;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
 

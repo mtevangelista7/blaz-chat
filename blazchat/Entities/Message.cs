@@ -1,11 +1,17 @@
-﻿namespace blazchat.Entities;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+
+namespace blazchat.Entities;
 
 public class Message
 {
-    public Guid ChatId { get; set; }
-    public Chat Chat { get; set; }
-    public Guid UserId { get; set; }
-    public User User { get; set; }
-    public string Text { get; set; }
-    public DateTime Timestamp { get; set; }
+    [BsonId] public ObjectId Id { get; set; }
+
+    [BsonElement("ChatId")] public Guid ChatId { get; set; }
+
+    [BsonElement("UserId")] public Guid UserId { get; set; }
+
+    [BsonElement("Text")] public string Text { get; set; }
+
+    [BsonElement("Timestamp")] public DateTime Timestamp { get; set; }
 }

@@ -1,5 +1,5 @@
 using blazchat.Client;
-using blazchat.Client.InterfaceApi;
+using blazchat.Client.RefitInterfaceApi;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using MudBlazor.Services;
 using Refit;

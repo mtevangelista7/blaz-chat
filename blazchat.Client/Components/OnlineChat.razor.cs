@@ -1,17 +1,16 @@
 ﻿using blazchat.Client.Dtos;
-using blazchat.Client.InterfaceApi;
+using blazchat.Client.RefitInterfaceApi;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
 
 namespace blazchat.Client.Components;
 
-public class OnlineChatBase : ComponentBase
+public class OnlineChatBase : ComponentBase, IDisposable
 {
     [Inject] public NavigationManager NavigationManager { get; set; }
-    [Inject] public HttpClient HttpClient { get; set; }
     [Inject] public IChatEndpoints ChatEndpoints { get; set; }
-
+    [Inject] public IMessageEndpoints MessageEndpoints { get; set; }
     [Parameter] public Guid ChatId { get; set; }
 
     private HubConnection hubConnection;
@@ -30,32 +29,16 @@ public class OnlineChatBase : ComponentBase
             Name = "Matheus"
         };
 
-        // validate if the chat is valid
-        var isValid = await ChatEndpoints.ValidateChat(ChatId, currentUser.Id);
-
         // if the chat is not valid, redirect to the login page
-        if (!isValid)
+        if (!await ValidateChat())
         {
             NavigationManager.NavigateTo("/login");
+            return;
         }
 
-        // open connection with the chat hub
-        hubConnection = new HubConnectionBuilder()
-            .WithUrl(NavigationManager.ToAbsoluteUri("/chatHub"))
-            .Build();
+        await OpenConnection();
 
-        // receive messages from the hub
-        hubConnection.On<UserDto, string>("ReceiveMessage", (user, text) =>
-        {
-            messages.Add(new MessageDto { User = user, Text = text, Timestamp = DateTime.Now });
-            StateHasChanged();
-        });
-
-        // start the connection
-        await hubConnection.StartAsync();
-
-        // join the chat with the current user
-        await hubConnection.SendAsync("JoinChat", ChatId.ToString(), currentUser);
+        await LoadMessages();
     }
 
     protected async Task SendMessage()
@@ -63,8 +46,40 @@ public class OnlineChatBase : ComponentBase
         // send the message to the hub
         if (!string.IsNullOrEmpty(messageInput))
         {
-            await hubConnection.SendAsync("SendMessage", ChatId.ToString(), currentUser, messageInput);
+            await hubConnection.SendAsync("SendMessage", ChatId, currentUser, messageInput);
             messageInput = string.Empty;
         }
+    }
+
+    private async Task<bool> ValidateChat()
+    {
+        return await ChatEndpoints.ValidateChat(ChatId, currentUser.Id);
+    }
+
+    private async Task OpenConnection()
+    {
+        hubConnection = new HubConnectionBuilder()
+            .WithUrl(NavigationManager.ToAbsoluteUri("/chatHub"))
+            .Build();
+
+        hubConnection.On<UserDto, string, DateTime>("ReceiveMessage", (user, text, timestamp) =>
+        {
+            messages.Add(new MessageDto { User = user, Text = text, Timestamp = timestamp });
+            StateHasChanged();
+        });
+        
+        await hubConnection.StartAsync();
+        await hubConnection.SendAsync("JoinChat", ChatId, currentUser);
+    }
+
+    public async void Dispose()
+    {
+        await hubConnection.DisposeAsync();
+    }
+
+    private async Task LoadMessages()
+    {
+        messages = await MessageEndpoints.GetMessages(ChatId);
+        StateHasChanged();
     }
 }

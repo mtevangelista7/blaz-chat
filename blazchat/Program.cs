@@ -1,11 +1,13 @@
 using blazchat.Client.Pages;
 using blazchat.Components;
-using blazchat.Context;
 using blazchat.Hubs;
-using blazchat.Interfaces;
-using blazchat.Repositories;
+using blazchat.Infra.Context;
+using blazchat.Infra.Interfaces;
+using blazchat.Infra.Repositories;
 using blazchat.Services;
+using blazchat.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using MongoDB.Driver;
 using MudBlazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +22,7 @@ builder.Services.AddControllers();
 builder.Services.AddSignalR();
 builder.Services.AddMudServices();
 builder.Services.AddHttpClient();
+
 builder.Services.AddScoped<IChatService, ChatService>();
 builder.Services.AddScoped<IChatRepository, ChatRepository>();
 
@@ -29,9 +32,16 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 builder.Services.AddDbContext<AplicationDbContext>(options =>
-        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")),
-    ServiceLifetime.Scoped
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
+
+builder.Services.AddSingleton<IMongoClient, MongoClient>(sp =>
+{
+    const string connectionString = "";
+    return new MongoClient(connectionString);
+});
+
+builder.Services.AddScoped<IMessageRepository, MessageRepository>();
 
 var app = builder.Build();
 
