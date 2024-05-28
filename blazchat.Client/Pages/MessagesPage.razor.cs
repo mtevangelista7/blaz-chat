@@ -7,12 +7,7 @@ namespace blazchat.Client.Pages
 {
     public class MessagesPageBase : ComponentBase
     {
-        [Parameter] public Guid Id { get; set; }
-
-        [Inject] 
-        protected NavigationManager Navigation { get; set; }
-
-        [Inject]
-        HttpClient HttpClient { get; set; }
+        [Parameter] 
+        public Guid Id { get; set; } = Guid.Empty;
     }
 }

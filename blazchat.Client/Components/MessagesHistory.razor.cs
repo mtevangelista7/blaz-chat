@@ -10,7 +10,7 @@ public class MessagesHistoryBase : ComponentBase
     public Guid IdUser { get; set; } = Guid.Empty;
 
     [Inject]
-    IChatEndpoints chatEndpoints { get; set; }
+    protected IChatEndpoints chatEndpoints { get; set; }
 
     [Inject]
     NavigationManager NavigationManager { get; set; }

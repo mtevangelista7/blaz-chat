@@ -18,19 +18,19 @@ namespace blazchat.Endpoints.Chats
                 return Results.Ok(idChat);
             });
 
-            app.MapGet("/api/chat/validate/chatId={chatId:guid}/userId={userId:guid}",
-                async (Guid chatId, Guid userId, IChatService chatService)
+            app.MapPost("/api/chat/validate",
+                async (ValidateChatDto validateChat, IChatService chatService)
                     =>
                 {
-                    var isValid = await ValidateChat(chatId, userId, chatService);
+                    var isValid = await chatService.ValidateChat(validateChat.ChatId, validateChat.UserId);
 
                     if (!isValid)
-                        return Results.Unauthorized();
+                        return Results.Ok(false);
 
-                    return Results.Ok();
+                    return Results.Ok(true);
                 });
 
-            app.MapGet("/api/chat/getActiveChats/userId={userId:guid}", async (Guid userId, IChatService chatService) =>
+            app.MapGet("/api/chat/getActiveChats/{userId:guid}", async (Guid userId, IChatService chatService) =>
             {
                 var activeChats = await chatService.GetActiveChats(userId);
                 return Results.Ok(activeChats);

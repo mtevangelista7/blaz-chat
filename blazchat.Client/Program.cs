@@ -9,10 +9,14 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.Services.AddMudServices();
 
 builder.Services.AddRefitClient<IUserEndpoints>()
-    .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://localhost:44350"));
+    .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://localhost:7076"));
 
 builder.Services.AddRefitClient<IChatEndpoints>()
-    .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://localhost:44350"));
+    .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://localhost:7076"));
+
+builder.Services.AddRefitClient<IMessageEndpoints>()
+    .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://localhost:7076"));
+
 
 builder.Services
     .AddScoped(http => new HttpClient
@@ -20,7 +24,5 @@ builder.Services
         BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
     });
 
-
-APAGAR.CurrentUserId = Guid.NewGuid();
 
 await builder.Build().RunAsync();

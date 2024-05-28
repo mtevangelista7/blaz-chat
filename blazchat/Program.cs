@@ -1,5 +1,8 @@
 using blazchat.Client.Pages;
 using blazchat.Components;
+using blazchat.Endpoints.Chats;
+using blazchat.Endpoints.Messages;
+using blazchat.Endpoints.Users;
 using blazchat.Hubs;
 using blazchat.Infra.Context;
 using blazchat.Infra.Interfaces;
@@ -7,6 +10,7 @@ using blazchat.Infra.Repositories;
 using blazchat.Services;
 using blazchat.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
 using MudBlazor.Services;
 
@@ -31,13 +35,16 @@ builder.Services.AddScoped<IChatUsersRepository, ChatUsersRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
+builder.Services.AddScoped<IMessageService, MessageService>();
+builder.Services.AddScoped<IMessageRepository, MessageRepository>();
+
 builder.Services.AddDbContext<AplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 
 builder.Services.AddSingleton<IMongoClient, MongoClient>(sp =>
 {
-    const string connectionString = "";
+    var connectionString = "mongodb://sa:securepassword@localhost:27017/?authSource=admin";
     return new MongoClient(connectionString);
 });
 
@@ -62,7 +69,10 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseAntiforgery();
 
-app.MapControllers();
+app.MapChatEndpoints();
+app.MapUserEndpoints();
+app.MapMessageEndpoints();
+
 app.MapHub<ChatHub>("/chathub");
 
 app.MapRazorComponents<App>()

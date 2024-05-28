@@ -1,6 +1,5 @@
 ﻿using blazchat.Client.Dtos;
 using blazchat.Client.RefitInterfaceApi;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
 
@@ -53,7 +52,13 @@ public class OnlineChatBase : ComponentBase, IDisposable
 
     private async Task<bool> ValidateChat()
     {
-        return await ChatEndpoints.ValidateChat(ChatId, currentUser.Id);
+        ValidateChatDto validateChat = new()
+        {
+            ChatId = ChatId,
+            UserId = currentUser.Id
+        };
+
+        return await ChatEndpoints.ValidateChat(validateChat);
     }
 
     private async Task OpenConnection()

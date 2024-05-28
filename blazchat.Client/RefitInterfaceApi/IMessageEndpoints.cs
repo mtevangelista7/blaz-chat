@@ -5,6 +5,6 @@ namespace blazchat.Client.RefitInterfaceApi;
 
 public interface IMessageEndpoints
 {
-    [Get("/api/messages/{chatId:guid}")]
+    [Get("/api/messages/{chatId}")]
     Task<List<MessageDto>> GetMessages(Guid chatId);
 }

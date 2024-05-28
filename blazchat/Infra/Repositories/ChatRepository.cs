@@ -59,10 +59,13 @@ public class ChatRepository : IChatRepository
         return chat;
     }
 
-    public Task<List<Chat>> GetActiveChatsAsync(Guid userId)
+    public async Task<List<Chat>> GetActiveChatsAsync(Guid userId)
     {
-        return _context.ChatUsers
+        return await _context.ChatUsers
             .Where(x => x.UserId == userId)
+            .Include(x => x.Chat)  // Inclui o chat
+            .ThenInclude(c => c.ChatUsers)  // Inclui os usuários no chat
+            .ThenInclude(cu => cu.User)  // Inclui os detalhes do usuário
             .Select(x => x.Chat)
             .ToListAsync();
     }

@@ -20,10 +20,10 @@ namespace blazchat.Client.RefitInterfaceApi
         [Delete("/api/chat/deleteChat/{id}")]
         public Task DeleteChat(Guid id);
 
-        [Get("/api/chat/validate/chatId={chatId:guid}/userId={userId:guid}")]
-        public Task<bool> ValidateChat(Guid chatId, Guid userId);
+        [Post("/api/chat/validate")]
+        public Task<bool> ValidateChat(ValidateChatDto validateChat);
 
-        [Get("/api/chat/getActiveChats/userId={userId}")]
+        [Get("/api/chat/getActiveChats/{userId}")]
         public Task<List<ChatDto>> GetActiveChats(Guid userId);
     }
 }
