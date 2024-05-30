@@ -4,6 +4,12 @@
     background-position: center;
 }
 
+.online-chat-default-wallpaper {
+    background-image: url('/img/pexels-hngstrm-1939485.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
 .text-container {
     background: rgba(0, 0, 0, 0.5);
     padding: 20px;
@@ -80,6 +86,10 @@
 
 .right-animation {
     animation: fadeInSlideRight 1s ease-in-out;
+}
+
+.dialog-blur-backgroud {
+    backdrop-filter: blur(8px) !important;
 }
 
 

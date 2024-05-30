@@ -1,30 +1,43 @@
 ﻿@inherits StartNewChatDialogBase
 @rendermode @(new InteractiveWebAssemblyRenderMode(prerender:false))
 
-<MudDialog Style="max-height: 500px !important;">
+<MudDialog Class="logo-animation" Style="max-height: 500px !important;">
     <DialogContent>
-        <MudGrid Spacing="1">
+        <MudGrid Spacing="3">
             <MudItem xs="12">
-                <MudTextField T="string" Margin="Margin.Dense" Placeholder="Search contact" Variant="Variant.Outlined" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" />
+                <MudTextField T="string"
+                              Class="grey lighten-4 rounded-xl"
+                              Margin="Margin.Dense"
+                              Placeholder="Search contact"
+                              Variant="Variant.Outlined"
+                              Adornment="Adornment.Start"
+                              AdornmentColor="Color.Primary"
+                              AdornmentIcon="@Icons.Material.Filled.Search" />
             </MudItem>
 
             <MudItem xs="12">
-                <MudGrid Spacing="1">
+                <MudGrid Spacing="3">
                     @if (Users is { Count: > 0 })
                     {
                         @foreach (var user in Users)
                         {
                             <MudItem xs="12">
-                                <button @onclick="e=> StartChat(user)">
-                                    <MudPaper Elevation="6" Class="pa-3 rounded-lg">
-                                        <MudGrid>
-                                            <MudItem Class="d-flex align-center" xs="2">
-                                                <MudAvatar Color="Color.Primary">@user.Name[0]</MudAvatar>
+                                <button style="width:100%" @onclick="e => StartChat(user)">
+
+                                    <MudPaper Width="100%" Elevation="3" Class="pa-3 rounded-lg d-flex align-center justify-center">
+
+                                        <MudGrid Spacing="3" Style="width: 100%" Justify="Justify.Center">
+
+                                            <MudItem Class="d-flex align-center" xs="2" sm="2" md="2">
+                                                <MudAvatar Color="Color.Primary"><b>@user.Name[0]</b></MudAvatar>
                                             </MudItem>
-                                            <MudItem Class="d-flex align-center" xs="10">
-                                                <MudText Typo="Typo.body2">@user.Name</MudText>
+
+                                            <MudItem Class="d-flex align-center" xs="10" sm="10" md="10">
+                                                <MudText Class="black-text" Typo="Typo.h6" Align="Align.Start"><b>@user.Name</b></MudText>
                                             </MudItem>
+
                                         </MudGrid>
+
                                     </MudPaper>
                                 </button>
                             </MudItem>

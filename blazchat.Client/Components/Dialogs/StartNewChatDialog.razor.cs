@@ -18,6 +18,7 @@ public class StartNewChatDialogBase : ComponentBase
     protected override async Task OnInitializedAsync()
     {
         Users = await GetContactsAsync();
+        Users = [.. Users.OrderBy(u => u.Name)];
     }
     
     private async Task<List<UserDto>> GetContactsAsync()

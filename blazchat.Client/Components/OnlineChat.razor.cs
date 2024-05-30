@@ -2,6 +2,7 @@
 using blazchat.Client.RefitInterfaceApi;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
+using Microsoft.JSInterop;
 
 namespace blazchat.Client.Components;
 
@@ -18,6 +19,9 @@ public class OnlineChatBase : ComponentBase, IDisposable
 
     [Inject]
     public IUserEndpoints UserEndpoints { get; set; }
+
+    [Inject]
+    public IJSRuntime JSRuntime { get; set; }
 
     [Parameter]
     public Guid ChatId { get; set; }
@@ -42,6 +46,10 @@ public class OnlineChatBase : ComponentBase, IDisposable
 
         await OpenConnection();
         await LoadMessages();
+
+        StateHasChanged();
+
+        await JSRuntime.InvokeVoidAsync("scrollToBottom", "scrollablePaper");
     }
 
     protected async Task SendMessage()
