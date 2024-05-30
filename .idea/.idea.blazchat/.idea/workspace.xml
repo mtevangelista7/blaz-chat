@@ -11,27 +11,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ae3bebb3-4e80-4052-a01b-b6838a3843f4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.blaz-chat/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.blazchat/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.blazchat/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.blazchat/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.blazchat/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.blazchat/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/config/applicationhost.config" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Components/MessagesHistory.razor" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/Components/MessagesHistory.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Components/MessagesHistory.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/Components/MessagesHistory.razor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Components/OnlineChat.razor" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/Components/OnlineChat.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Components/OnlineChat.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/Components/OnlineChat.razor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Dtos/ChatDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/Dtos/ChatDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Dtos/MessageDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/Dtos/MessageDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.blazchat/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.blazchat/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blazchat.Client/Pages/HomePage.razor" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/Pages/HomePage.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Client/Pages/RegisterPage.razor" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/Pages/RegisterPage.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Client/Pages/RegisterPage.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/Pages/RegisterPage.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Client/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blazchat.Client/RefitInterfaceApi/IUserEndpoints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/RefitInterfaceApi/IUserEndpoints.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Components/App.razor" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat/Components/App.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Endpoints/Chats/ChatEndPoints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat/Endpoints/Chats/ChatEndPoints.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blazchat/Endpoints/Users/UserEndpoints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat/Endpoints/Users/UserEndpoints.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Entities/ChatUser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat/Entities/ChatUser.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Entities/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat/Entities/User.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Hubs/ChatHub.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat/Hubs/ChatHub.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Infra/Context/AplicationDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat/Infra/Context/AplicationDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat/wwwroot/client.css" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat/wwwroot/client.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +46,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/0c042cb1d9b4a593b187a4adc4d22b1e3e1ce1ca7ce6ff4241c1462ea051/Colors.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo"><![CDATA[{
   "customColor": "",
   "associatedIndex": 8
@@ -162,15 +150,27 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1717033133464</updated>
-      <workItem from="1717033135776" duration="2518000" />
+      <workItem from="1717033135776" duration="9809000" />
     </task>
+    <task id="LOCAL-00001" summary="finalizado primeira versão do front-end da tela home e ajustado código para funcionamento do chat">
+      <option name="closed" value="true" />
+      <created>1717035803811</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1717035803811</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="finalizado primeira versão do front-end da tela home e ajustado código para funcionamento do chat" />
+    <option name="LAST_COMMIT_MESSAGE" value="finalizado primeira versão do front-end da tela home e ajustado código para funcionamento do chat" />
   </component>
 </project>
