@@ -5,17 +5,25 @@
 @rendermode @(new InteractiveWebAssemblyRenderMode(prerender: false))
 
 <PageTitle>Messages</PageTitle>
+
 @* if we dont have a Id, show the active chats from the current user *@
 @if (Id == Guid.Empty)
 {
     <MudAppBar Elevation="0" Class="white" Fixed="true" Dense="true">
-        <MudTextField T="string" Margin="Margin.Dense" Placeholder="Search" Variant="Variant.Outlined" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search"/>
+        <MudTextField T="string"
+                      Class="grey lighten-4 rounded-xl"
+                      Margin="Margin.Dense"
+                      Placeholder="Search"
+                      Variant="Variant.Outlined"
+                      Adornment="Adornment.Start"
+                      AdornmentColor="Color.Primary"
+                      AdornmentIcon="@Icons.Material.Filled.Search" />
     </MudAppBar>
 
-    <MudPaper Elevation="0" Class="px-6 mt-15">
+    <MudPaper Elevation="0" Class="px-6 mt-15 logo-animation">
         <MessagesHistory IdUser="@APAGAR.CurrentUserId"></MessagesHistory>
     </MudPaper>
-    
+
     @*button to start a new chat with someone*@
     <NewMessageButton></NewMessageButton>
 }
@@ -24,3 +32,9 @@ else
 {
     <OnlineChat ChatId="@Id"></OnlineChat>
 }
+
+<style>
+    .mud-input-outlined-border {
+        border-radius: 24px !important;
+    }
+</style>

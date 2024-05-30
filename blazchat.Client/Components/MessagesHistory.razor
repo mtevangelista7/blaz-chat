@@ -1,30 +1,49 @@
 ﻿@inherits MessagesHistoryBase
 @rendermode @(new InteractiveWebAssemblyRenderMode(prerender:false))
 
-<MudGrid Spacing="1">
+<MudGrid Justify="Justify.Center" Spacing="3">
     @if (activeChats is { Count: > 0 })
     {
         @foreach (var chat in activeChats)
         {
-            <MudItem xs="12">
-                <button @onclick="e => OnClickChat(chat.Id)">
-                    <MudPaper Width="100%" Elevation="6" Class="pa-3 rounded-lg">
-                        <MudGrid>
-                            <MudItem Class="align-center justify-center" xs="2" sm="2" md="2">
-                                <MudAvatar Color="Color.Secondary">X</MudAvatar>
+            <MudItem xs="10">
+                <button style="width:100%" @onclick="e => OnClickChat(chat.Id)">
+
+                    <MudPaper Width="100%" Elevation="3" Class="pa-3 rounded-lg d-flex align-center justify-center">
+
+                        <MudGrid Spacing="3" Style="width: 100%" Justify="Justify.Center">
+
+                            <MudItem Class="d-flex align-center" xs="2" sm="2" md="1">
+                                <MudAvatar Color="Color.Primary"></MudAvatar>
                             </MudItem>
-                            <MudItem xs="10" sm="10" md="10">
-                                <MudStack AlignItems="AlignItems.Start" Justify="Justify.Center" Spacing="1" Row="false">
-                                    @foreach (var user in chat.ChatUsers)
-                                    {
-                                        <MudText Typo="Typo.body1">@user.UserId</MudText>
-                                    }
-                                </MudStack>
+
+                            <MudItem Class="d-flex align-center" xs="10" sm="10" md="11">
+                                <MudText Class="black-text" Typo="Typo.h6" Align="Align.Start"><b>matheus</b></MudText>
                             </MudItem>
+
                         </MudGrid>
+
                     </MudPaper>
                 </button>
             </MudItem>
         }
+    }
+    else
+    {
+        <MudItem xs="12">
+            <MudPaper Elevation="0" Width="100%" Height="calc(100dvh - 60px)" Class="d-flex align-center justify-center">
+                <MudStack AlignItems="AlignItems.Center" Justify="Justify.Center" Spacing="1" Row="false">
+                    <MudImage Fluid="true"
+                              Width="150"
+                              Elevation="0"
+                              Alt="Icons made by Ilham Fitrotul Hayat from www.flaticon.com'"
+                              Src="/img/comment.png">
+                    </MudImage>
+
+                    <MudText Align="Align.Center" Typo="Typo.h5"><b>No messages :/</b></MudText>
+                </MudStack>
+
+            </MudPaper>
+        </MudItem>
     }
 </MudGrid>

@@ -43,7 +43,16 @@ namespace blazchat.Endpoints.Users
                 };
 
                 var userLogged = (await userService.GetUsers()).Find(x => x.Name == user.Name);
-                return Results.Ok(userLogged);
+
+                if (userLogged is null)
+                {
+                    return Results.NotFound();
+                }
+
+                request.Id = userLogged.Id;
+                request.Name = userLogged.Name;
+
+                return Results.Ok(request);
             });
         }
     }
