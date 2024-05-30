@@ -32,6 +32,7 @@ public class OnlineChatBase : ComponentBase, IDisposable
 
     // APAGAR
     protected UserDto currentUser = new();
+    protected UserDto guesstUser = new();
 
     protected override async Task OnInitializedAsync()
     {
@@ -43,6 +44,9 @@ public class OnlineChatBase : ComponentBase, IDisposable
             NavigationManager.NavigateTo("/login");
             return;
         }
+
+        // get the guess user
+        guesstUser = await ChatEndpoints.GetGuessUserByChatId(ChatId, currentUser.Id);
 
         await OpenConnection();
         await LoadMessages();
@@ -81,7 +85,7 @@ public class OnlineChatBase : ComponentBase, IDisposable
 
         hubConnection.On<Guid, string, DateTime>("ReceiveMessage", (userId, text, timestamp) =>
         {
-            messages.Add(new MessageDto { User = userId, Text = text, Timestamp = timestamp });
+            messages.Add(new MessageDto { UserId = userId, Text = text, Timestamp = timestamp });
             StateHasChanged();
         });
 

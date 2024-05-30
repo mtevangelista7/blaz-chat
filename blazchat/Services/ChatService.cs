@@ -36,4 +36,9 @@ public class ChatService : IChatService
     {
         return await _chatRepository.GetActiveChatsAsync(userId);
     }
+
+    public Task<Guid> GetGuessUserByChatId(Guid chatId, Guid currentUser)
+    {
+        return _chatUsersRepository.GetGuessUserByChatId(chatId, currentUser);
+    }
 }

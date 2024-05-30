@@ -16,6 +16,12 @@ namespace blazchat.Infra.Repositories
             _dbSet = context.Set<ChatUser>();
         }
 
+        public async Task<Guid> GetGuessUserByChatId(Guid chatId, Guid currentUser)
+        {
+            var chatUser = await _dbSet.FirstOrDefaultAsync(cu => cu.ChatId == chatId && cu.UserId != currentUser);
+            return chatUser?.UserId ?? Guid.Empty;
+        }
+
         public async Task<bool> ValidateChatAsync(Guid chatId, Guid userId)
         {
             return await _dbSet.AnyAsync(cu => cu.UserId == userId && cu.ChatId == chatId);

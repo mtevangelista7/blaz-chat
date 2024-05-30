@@ -25,5 +25,8 @@ namespace blazchat.Client.RefitInterfaceApi
 
         [Get("/api/chat/getActiveChats/{userId}")]
         public Task<List<ChatDto>> GetActiveChats(Guid userId);
+
+        [Get("/api/chat/getGuessUserByChatId/{chatId}/{currentUser}")]
+        public Task<UserDto> GetGuessUserByChatId(Guid chatId, Guid currentUser);
     }
 }

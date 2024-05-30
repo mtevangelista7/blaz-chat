@@ -18,7 +18,12 @@
                             </MudItem>
 
                             <MudItem Class="d-flex align-center" xs="10" sm="10" md="11">
-                                <MudText Class="black-text" Typo="Typo.h6" Align="Align.Start"><b>matheus</b></MudText>
+                                <MudText Class="black-text" Typo="Typo.h6" Align="Align.Start">
+                                    @if (chat.GuessUser != null)
+                                    {
+                                        <b>@chat.GuessUser.Name</b>
+                                    }
+                                </MudText>
                             </MudItem>
 
                         </MudGrid>

@@ -13,15 +13,21 @@ public class MessagesHistoryBase : ComponentBase
     protected IChatEndpoints chatEndpoints { get; set; }
 
     [Inject]
+    protected IUserEndpoints userEndpoints { get; set; }
+
+    [Inject]
     NavigationManager NavigationManager { get; set; }
 
     protected List<ChatDto> activeChats = [];
+    protected UserDto guesstUser = new();
 
     protected override async Task OnInitializedAsync()
     {
         try
         {
             activeChats = await GetMessageHistory();
+
+            StateHasChanged();
         }
         catch (Exception err)
         {
@@ -29,12 +35,25 @@ public class MessagesHistoryBase : ComponentBase
         }
     }
 
-
     private async Task<List<ChatDto>> GetMessageHistory()
     {
         try
         {
-            return await chatEndpoints.GetActiveChats(IdUser);
+            var chats = await chatEndpoints.GetActiveChats(IdUser);
+
+            var tasks = chats.Select(async chat =>
+            {
+                var guessUser = chat.ChatUsers.FirstOrDefault(x => x.UserId != IdUser);
+
+                if (guessUser != null)
+                {
+                    chat.GuessUser = await userEndpoints.GetUser(guessUser.UserId);
+                }
+            }).ToArray();
+
+            await Task.WhenAll(tasks);
+
+            return chats;
         }
         catch (Exception err)
         {

@@ -43,6 +43,20 @@ namespace blazchat.Endpoints.Chats
                     throw new Exception(err.Message);
                 }
             });
+
+            app.MapGet("/api/chat/getGuessUserByChatId/{chatId:guid}/{currentUser:guid}", async (Guid chatId, Guid currentUser, IChatService chatService, IUserService userService) =>
+            {
+                var guessUserId = await chatService.GetGuessUserByChatId(chatId, currentUser);
+
+                if (guessUserId.Equals(Guid.Empty))
+                {
+                    return Results.NotFound();
+                }
+
+                var guessUser = await userService.GetUser(guessUserId);
+
+                return Results.Ok(guessUser);
+            });
         }
 
         private static async Task<Guid> CreateChat(CreateChatDto request, IChatService chatService) =>

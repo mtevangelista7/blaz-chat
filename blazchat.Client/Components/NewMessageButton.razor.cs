@@ -20,8 +20,11 @@ public class NewMessageButtonBase : ComponentBase
     protected async Task OnClickStartNewChat()
     {
         var options = new DialogOptions
-            { CloseOnEscapeKey = true, ClassBackground = "dialog-blur-backgroud", CloseButton = true };
-        var dialogReference = await dialogService.ShowAsync<StartNewChatDialog>("Start new chat", options);
+        { CloseOnEscapeKey = true, ClassBackground = "dialog-blur-backgroud", CloseButton = true };
+
+        var parameters = new DialogParameters() { { "CurrentUserId", APAGAR.CurrentUserId } };
+
+        var dialogReference = await dialogService.ShowAsync<StartNewChatDialog>("Start new chat", parameters, options);
 
         var result = await dialogReference.Result;
 

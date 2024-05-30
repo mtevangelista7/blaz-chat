@@ -11,23 +11,23 @@
             <MudIcon Icon="@Icons.Material.Filled.Person" Size="Size.Medium" />
         </MudAvatar>
 
-        <MudText Color="Color.Dark" Typo="Typo.h6">@currentUser.Name</MudText>
+        <MudText Color="Color.Dark" Typo="Typo.h6">@guesstUser.Name</MudText>
     </MudStack>
 </MudAppBar>
 
-<MudPaper id="scrollablePaper" Elevation="0" Class="online-chat-default-wallpaper" Width="100%" Style="overflow-x:hidden; overflow-y:auto;" Height="calc(100dvh - 48px)">
+<MudPaper id="scrollablePaper" Elevation="0" Class="online-chat-default-wallpaper d-flex flex-column-reverse" Width="100%" Style="overflow-x:hidden; overflow-y:auto;" Height="calc(100dvh - 48px)">
     <MudPaper Elevation="0" Class="d-flex align-end" Style="background-color: transparent; margin-bottom: 60px;" Width="100%">
         <MudContainer MaxWidth="MaxWidth.Large">
-            <MudGrid Spacing="0">
+            <MudGrid Class="align-end" Spacing="0">
 
                 @*outside user*@
                 <MudItem xs="6">
                     <MudStack Style="height: 100%" Justify="Justify.FlexStart" Row="false" Reverse="false">
-                        @foreach (var message in messages.Where(x => x.User != currentUser.Id).Reverse())
+                        @foreach (var message in messages.Where(x => !(x.UserId.Equals(currentUser.Id))))
                         {
                             <MudPaper Style="background-color: transparent;" Elevation="0" Class="mr-4 d-flex justify-start">
-                                <MudPaper Class="rounded-lg pa-2 white" Elevation="4" Style="width: min-content; max-width: 100%;">
-                                    <MudText Align="Align.Start" Typo="Typo.subtitle1" Style="word-wrap: break-word; overflow-wrap: break-word;">
+                                <MudPaper Class="rounded-lg pa-2 white" Elevation="4" Style="max-width: 100%;">
+                                    <MudText Align="Align.Start" Typo="Typo.subtitle1">
                                         @message.Text
                                     </MudText>
                                 </MudPaper>
@@ -39,11 +39,11 @@
                 @*user*@
                 <MudItem xs="6">
                     <MudStack Style="height: 100%" Justify="Justify.FlexEnd" Row="false" Reverse="false">
-                        @foreach (var message in messages.Where(x => x.User == currentUser.Id).Reverse())
+                        @foreach (var message in messages.Where(x => x.UserId.Equals(currentUser.Id)))
                         {
                             <MudPaper Style="background-color: transparent;" Elevation="0" Class="mr-4 d-flex justify-end">
-                                <MudPaper Class="rounded-lg pa-2 white" Elevation="4" Style="width: min-content; max-width: 100%;">
-                                    <MudText Align="Align.Start" Typo="Typo.subtitle1" Style="word-wrap: break-word; overflow-wrap: break-word;">
+                                <MudPaper Class="rounded-lg pa-2 mud-theme-primary" Elevation="4" Style="max-width: 100%;">
+                                    <MudText Align="Align.Start" Typo="Typo.subtitle1">
                                         @message.Text
                                     </MudText>
                                 </MudPaper>
