@@ -27,6 +27,8 @@ builder.Services.AddSignalR();
 builder.Services.AddMudServices();
 builder.Services.AddHttpClient();
 
+//builder.WebHost.UseStaticWebAssets();
+
 builder.Services.AddScoped<IChatService, ChatService>();
 builder.Services.AddScoped<IChatRepository, ChatRepository>();
 

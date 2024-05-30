@@ -2,7 +2,6 @@
 
 public class ChatDto
 {
-    public Guid ChatId { get; set; }
-    public UserDto User { get; set; }
-    public List<MessageDto> Messages { get; set; }
+    public Guid Id { get; set; }
+    public ICollection<ChatUserDto> ChatUsers { get; set; }
 }

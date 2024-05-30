@@ -5,17 +5,17 @@
 <PageTitle>Home</PageTitle>
 
 <MudAppBar Elevation="0" Class="white" Fixed="false" Dense="true">
-    <MudText Color="Color.Primary" Typo="Typo.h6">blazchat</MudText>
+    <MudText Color="Color.Primary" Typo="Typo.h4" Class="font-logo logo-animation">Blazchat</MudText>
     <MudSpacer/>
-    <MudButton OnClick="OnClickSignUp" Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.Send" Color="Color.Primary">sign-up</MudButton>
+    <MudButton Size="Size.Large" Class="logo-animation" OnClick="OnClickSignUp" Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.Send" Color="Color.Primary">sign-up</MudButton>
 </MudAppBar>
 
-<MudContainer Class="mt-5 rounded-lg" MaxWidth="MaxWidth.Large">
-    <MudPaper Height="600px" Width="100%" Class="mud-theme-primary">
+<MudContainer Class="mt-5 rounded-lg custom-container container-animation " MaxWidth="MaxWidth.Large">
+    <MudPaper Elevation="0" Height="750px" Width="100%" Style="background: transparent" Class="d-flex align-center justify-center text-container">
         <MudGrid Spacing="0">
             <MudItem xs="12">
-                <MudText Align="Align.Center">
-                    um texto legal
+                <MudText Typo="Typo.h3" Class="white-text" Align="Align.Center">
+                    Blazchat is a simple <b>chat application</b> built with Blazor WebAssembly.
                 </MudText>
             </MudItem>
         </MudGrid>

@@ -19,13 +19,27 @@ public class MessagesHistoryBase : ComponentBase
 
     protected override async Task OnInitializedAsync()
     {
-        activeChats = await GetMessageHistory();
+        try
+        {
+            activeChats = await GetMessageHistory();
+        }
+        catch (Exception err)
+        {
+            throw new Exception(err.Message);
+        }
     }
 
 
     private async Task<List<ChatDto>> GetMessageHistory()
     {
-        return await chatEndpoints.GetActiveChats(IdUser);
+        try
+        {
+            return await chatEndpoints.GetActiveChats(IdUser);
+        }
+        catch (Exception err)
+        {
+            throw new Exception(err.Message);
+        }
     }
 
     protected void OnClickChat(Guid idChat)

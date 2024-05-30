@@ -7,26 +7,31 @@ namespace blazchat.Client.Components;
 
 public class OnlineChatBase : ComponentBase, IDisposable
 {
-    [Inject] public NavigationManager NavigationManager { get; set; }
-    [Inject] public IChatEndpoints ChatEndpoints { get; set; }
-    [Inject] public IMessageEndpoints MessageEndpoints { get; set; }
-    [Parameter] public Guid ChatId { get; set; }
+    [Inject]
+    public NavigationManager NavigationManager { get; set; }
+
+    [Inject]
+    public IChatEndpoints ChatEndpoints { get; set; }
+
+    [Inject]
+    public IMessageEndpoints MessageEndpoints { get; set; }
+
+    [Inject]
+    public IUserEndpoints UserEndpoints { get; set; }
+
+    [Parameter]
+    public Guid ChatId { get; set; }
 
     private HubConnection hubConnection;
     protected List<MessageDto> messages = [];
     protected string messageInput;
 
     // APAGAR
-    protected UserDto currentUser;
+    protected UserDto currentUser = new();
 
     protected override async Task OnInitializedAsync()
     {
-        // APAGAR
-        currentUser = new UserDto
-        {
-            Id = APAGAR.CurrentUserId,
-            Name = "Matheus"
-        };
+        currentUser = await UserEndpoints.GetUser(APAGAR.CurrentUserId);
 
         // if the chat is not valid, redirect to the login page
         if (!await ValidateChat())
@@ -36,7 +41,6 @@ public class OnlineChatBase : ComponentBase, IDisposable
         }
 
         await OpenConnection();
-
         await LoadMessages();
     }
 
@@ -67,12 +71,12 @@ public class OnlineChatBase : ComponentBase, IDisposable
             .WithUrl(NavigationManager.ToAbsoluteUri("/chatHub"))
             .Build();
 
-        hubConnection.On<UserDto, string, DateTime>("ReceiveMessage", (user, text, timestamp) =>
+        hubConnection.On<Guid, string, DateTime>("ReceiveMessage", (userId, text, timestamp) =>
         {
-            messages.Add(new MessageDto { User = user, Text = text, Timestamp = timestamp });
+            messages.Add(new MessageDto { User = userId, Text = text, Timestamp = timestamp });
             StateHasChanged();
         });
-        
+
         await hubConnection.StartAsync();
         await hubConnection.SendAsync("JoinChat", ChatId, currentUser);
     }
@@ -86,5 +90,10 @@ public class OnlineChatBase : ComponentBase, IDisposable
     {
         messages = await MessageEndpoints.GetMessages(ChatId);
         StateHasChanged();
+    }
+
+    protected void OnClickBack()
+    {
+        NavigationManager.NavigateTo("/messages");
     }
 }

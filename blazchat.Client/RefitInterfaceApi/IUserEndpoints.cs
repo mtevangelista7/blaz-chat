@@ -8,7 +8,7 @@ public interface IUserEndpoints
     [Post("/api/user/create")]
     public Task<UserDto> CreateUser(UserDto user);
     
-    [Get("/api/user/getUser/{id}")]
+    [Get("/api/user/getUser/{id:guid}")]
     public Task<UserDto> GetUser(Guid id);
     
     [Get("/api/user/getUsers")]

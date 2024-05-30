@@ -7,15 +7,18 @@
         @foreach (var chat in activeChats)
         {
             <MudItem xs="12">
-                <button @onclick="e => OnClickChat(chat.ChatId)">
-                    <MudPaper Elevation="6" Class="pa-3 rounded-lg">
+                <button @onclick="e => OnClickChat(chat.Id)">
+                    <MudPaper Width="100%" Elevation="6" Class="pa-3 rounded-lg">
                         <MudGrid>
-                            <MudItem Class="align-center justify-center" xs="2" sm="1" md="1">
-                                <MudAvatar Color="Color.Primary">@chat.User.Name[0]</MudAvatar>
+                            <MudItem Class="align-center justify-center" xs="2" sm="2" md="2">
+                                <MudAvatar Color="Color.Secondary">X</MudAvatar>
                             </MudItem>
-                            <MudItem xs="10" sm="11" md="11">
+                            <MudItem xs="10" sm="10" md="10">
                                 <MudStack AlignItems="AlignItems.Start" Justify="Justify.Center" Spacing="1" Row="false">
-                                    <MudText Typo="Typo.body1">@chat.User.Name</MudText>
+                                    @foreach (var user in chat.ChatUsers)
+                                    {
+                                        <MudText Typo="Typo.body1">@user.UserId</MudText>
+                                    }
                                 </MudStack>
                             </MudItem>
                         </MudGrid>

@@ -3,11 +3,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace blazchat.Infra.Context;
 
-public class AplicationDbContext(DbContextOptions<AplicationDbContext> options) : DbContext(options)
+public class AplicationDbContext : DbContext
 {
+    public AplicationDbContext(DbContextOptions<AplicationDbContext> options) : base(options)
+    {
+        
+    }
+
     public DbSet<Chat> Chats { get; set; }
     public DbSet<User> Users { get; set; }
-    // public DbSet<Message> Messages { get; set; }
     public DbSet<ChatUser> ChatUsers { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -24,11 +28,6 @@ public class AplicationDbContext(DbContextOptions<AplicationDbContext> options) 
                 .WithOne(cu => cu.Chat)
                 .HasForeignKey(cu => cu.ChatId)
                 .OnDelete(DeleteBehavior.Cascade);
-
-            // entity.HasMany(c => c.Messages)
-            //     .WithOne(m => m.Chat)
-            //     .HasForeignKey(m => m.ChatId)
-            //     .OnDelete(DeleteBehavior.Cascade);
         });
 
         // Configuração da entidade User
@@ -47,33 +46,7 @@ public class AplicationDbContext(DbContextOptions<AplicationDbContext> options) 
                 .WithOne(cu => cu.User)
                 .HasForeignKey(cu => cu.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
-
-            // entity.HasMany(u => u.Messages)
-            //     .WithOne(m => m.User)
-            //     .HasForeignKey(m => m.UserId)
-            //     .OnDelete(DeleteBehavior.Cascade);
         });
-
-        // Configuração da entidade Message
-        // modelBuilder.Entity<Message>(entity =>
-        // {
-        //     entity.HasKey(e => new { e.ChatId, e.Timestamp });
-        //
-        //     entity.Property(e => e.Text)
-        //         .HasColumnType("nvarchar")
-        //         .HasMaxLength(500);
-        //
-        //     entity.Property(e => e.Timestamp)
-        //         .HasColumnType("datetime2");
-        //
-        //     entity.HasOne(m => m.User)
-        //         .WithMany(u => u.Messages)
-        //         .HasForeignKey(m => m.UserId);
-        //
-        //     entity.HasOne(m => m.Chat)
-        //         .WithMany(c => c.Messages)
-        //         .HasForeignKey(m => m.ChatId);
-        // });
 
         // Configuração da entidade ChatUser
         modelBuilder.Entity<ChatUser>(entity =>

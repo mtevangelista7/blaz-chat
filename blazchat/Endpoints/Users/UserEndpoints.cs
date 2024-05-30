@@ -20,9 +20,9 @@ namespace blazchat.Endpoints.Users
                 return Results.Ok(userId);
             });
 
-            app.MapGet("/api/user/get/userId={userId:guid}", async (Guid userId, IUserService userService) =>
+            app.MapGet("/api/user/get/{id:guid}", async (Guid id, IUserService userService) =>
             {
-                var user = await userService.GetUser(userId);
+                var user = await userService.GetUser(id);
                 return Results.Ok(user);
             });
 

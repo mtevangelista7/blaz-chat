@@ -1,4 +1,5 @@
 ﻿using blazchat.Client.Dtos;
+using blazchat.Client.RefitInterfaceApi;
 using blazchat.Entities;
 using blazchat.Services.Interfaces;
 
@@ -32,15 +33,19 @@ namespace blazchat.Endpoints.Chats
 
             app.MapGet("/api/chat/getActiveChats/{userId:guid}", async (Guid userId, IChatService chatService) =>
             {
-                var activeChats = await chatService.GetActiveChats(userId);
-                return Results.Ok(activeChats);
+                try
+                {
+                    var activeChats = await chatService.GetActiveChats(userId);
+                    return Results.Ok(activeChats);
+                }
+                catch (Exception err)
+                {
+                    throw new Exception(err.Message);
+                }
             });
         }
 
         private static async Task<Guid> CreateChat(CreateChatDto request, IChatService chatService) =>
             await chatService.CreateNewChat(request.User1Id, request.User2Id);
-
-        private static async Task<bool> ValidateChat(Guid chatId, Guid userId, IChatService chatService) =>
-            await chatService.ValidateChat(chatId, userId);
     }
 }
