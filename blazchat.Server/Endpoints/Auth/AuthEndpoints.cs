@@ -1,7 +1,7 @@
 ﻿using blazchat.Application.Interfaces.Services;
 using blazchat.Client.Dtos;
 
-namespace blazchat.WebAPI.Endpoints.Auth;
+namespace blazchat.Server.Endpoints.Auth;
 
 public static class AuthEndpoints
 {

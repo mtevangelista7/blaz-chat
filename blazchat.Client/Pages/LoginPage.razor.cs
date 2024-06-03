@@ -20,12 +20,12 @@ public class LoginPageBase : ComponentBase
     protected async Task OnClickLogin(EditContext context)
     {
         var userLogged = await userEndpoints.Login(user);
-        
+
         if (userLogged is null)
         {
             return;
         }
-        
+
         // APAGAR
         APAGAR.CurrentUserId = userLogged.Id;
 
@@ -53,5 +53,4 @@ public class LoginPageBase : ComponentBase
             PasswordInput = InputType.Text;
         }
     }
-
 }

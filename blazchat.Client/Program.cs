@@ -1,6 +1,6 @@
+using blazchat.Client;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using blazchat_frontend;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 

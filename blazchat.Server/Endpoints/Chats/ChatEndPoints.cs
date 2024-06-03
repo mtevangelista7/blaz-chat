@@ -2,7 +2,7 @@
 using blazchat.Application.Interfaces.Services;
 using blazchat.Client.Dtos;
 
-namespace blazchat.WebAPI.Endpoints.Chats
+namespace blazchat.Server.Endpoints.Chats
 {
     public static class ChatEndPoints
     {

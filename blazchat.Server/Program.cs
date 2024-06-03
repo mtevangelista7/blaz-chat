@@ -1,3 +1,5 @@
+using blazchat.Server.Hubs;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -23,5 +25,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseHttpsRedirection();
+app.MapHub<ChatHub>("/chathub");
 
 app.Run();

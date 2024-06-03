@@ -1,7 +1,7 @@
 ﻿using blazchat.Application.Interfaces.Services;
 using blazchat.Client.Dtos;
 
-namespace blazchat.WebAPI.Endpoints.Users
+namespace blazchat.Server.Endpoints.Users
 {
     public static class UserEndpoints
     {

@@ -1,6 +1,6 @@
 ﻿using blazchat.Application.Interfaces.Services;
 
-namespace blazchat.WebAPI.Endpoints.Messages;
+namespace blazchat.Server.Endpoints.Messages;
 
 public static class MessageEndpoints
 {

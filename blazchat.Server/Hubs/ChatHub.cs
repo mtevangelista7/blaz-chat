@@ -1,9 +1,9 @@
-﻿using blazchat.Client.Dtos;
-using blazchat.Entities;
-using blazchat.Services.Interfaces;
+﻿using blazchat.Application.Interfaces.Services;
+using blazchat.Client.Dtos;
+using blazchat.Domain.Entities;
 using Microsoft.AspNetCore.SignalR;
 
-namespace blazchat.Hubs;
+namespace blazchat.Server.Hubs;
 
 public class ChatHub(IChatService chatService, IMessageService messageService) : Hub
 {
