@@ -1,22 +1,26 @@
-﻿namespace blazchat.WebAPI.Endpoints.Auth;
+﻿using blazchat.Application.Interfaces.Services;
+using blazchat.Client.Dtos;
+
+namespace blazchat.WebAPI.Endpoints.Auth;
 
 public static class AuthEndpoints
 {
     public static void MapAuthEndpoints(this WebApplication app)
     {
-        app.MapPost("/api/auth/generateToken", async (UserDto request, IAuthenticationService authenticationService) =>
-        {
-            try
+        app.MapPost("/api/auth/generateToken",
+            async (CreateUserDto request, IAuthenticationService authenticationService) =>
             {
-                var accessToken =
-                    await authenticationService.GenerateAccessToken(request.Name, request.Password);
+                try
+                {
+                    var accessToken =
+                        await authenticationService.GenerateAccessToken(request.username, request.password);
 
-                return accessToken is null ? Results.BadRequest() : Results.Ok(accessToken);
-            }
-            catch (Exception ex)
-            {
-                return Results.BadRequest(ex.Message);
-            }
-        });
+                    return accessToken is null ? Results.BadRequest() : Results.Ok(accessToken);
+                }
+                catch (Exception ex)
+                {
+                    return Results.BadRequest(ex.Message);
+                }
+            });
     }
 }

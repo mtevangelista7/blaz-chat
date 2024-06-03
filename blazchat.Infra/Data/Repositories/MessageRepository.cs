@@ -1,4 +1,8 @@
-﻿namespace blazchat.Infra.Data.Repositories;
+﻿using blazchat.Domain.Entities;
+using blazchat.Infra.Data.Interfaces;
+using MongoDB.Driver;
+
+namespace blazchat.Infra.Data.Repositories;
 
 public class MessageRepository : IMessageRepository
 {

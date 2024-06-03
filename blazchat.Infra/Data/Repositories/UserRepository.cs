@@ -1,16 +1,12 @@
-﻿namespace blazchat.Infra.Data.Repositories
+﻿using blazchat.Domain.Entities;
+using blazchat.Infra.Data.Context;
+using blazchat.Infra.Data.Interfaces;
+using Microsoft.EntityFrameworkCore;
+
+namespace blazchat.Infra.Data.Repositories
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository(AplicationDbContext context) : EFRepository<User>(context), IUserRepository
     {
-        protected AplicationDbContext _context;
-        protected DbSet<User> _dbSet;
-
-        public UserRepository(AplicationDbContext context)
-        {
-            _context = context;
-            _dbSet = _context.Set<User>();
-        }
-
         public async Task<User> CreateUser(User user)
         {
             if (user.Id == Guid.Empty)
@@ -18,24 +14,24 @@
                 user.Id = Guid.NewGuid();
             }
 
-            _dbSet.Add(user);
-            await _context.SaveChangesAsync();
+            context.Users.Add(user);
+            await context.SaveChangesAsync();
             return user;
         }
 
         public async Task<User> GetUser(Guid userId)
         {
-            return await _dbSet.FirstOrDefaultAsync(x => x.Id == userId);
+            return (await context.Users.FirstOrDefaultAsync(x => x.Id == userId))!;
         }
 
         public Task<List<User>> GetUsers()
         {
-            return _dbSet.ToListAsync();
+            return context.Users.ToListAsync();
         }
 
         public async Task<User> GetByUsername(string username)
         {
-            return await _dbSet.FirstOrDefaultAsync(x => x.Name == username);
+            return (await context.Users.FirstOrDefaultAsync(x => x.Name == username))!;
         }
     }
 }

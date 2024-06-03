@@ -1,4 +1,8 @@
-﻿namespace blazchat.WebAPI.Endpoints.Chats
+﻿using blazchat.Application.DTOs;
+using blazchat.Application.Interfaces.Services;
+using blazchat.Client.Dtos;
+
+namespace blazchat.WebAPI.Endpoints.Chats
 {
     public static class ChatEndPoints
     {
@@ -6,24 +10,30 @@
         {
             app.MapPost("/api/chat/create", async (CreateChatDto request, IChatService chatService) =>
             {
-                var idChat = await CreateChat(request, chatService);
-
-                if (idChat == Guid.Empty)
-                    return Results.NotFound();
-
-                return Results.Ok(idChat);
+                try
+                {
+                    var idChat = await chatService.CreateNewChat(request.User1Id, request.User2Id);
+                    return idChat == Guid.Empty ? Results.NotFound() : Results.Ok(idChat);
+                }
+                catch (Exception e)
+                {
+                    return Results.BadRequest(e.Message);
+                }
             });
 
             app.MapPost("/api/chat/validate",
                 async (ValidateChatDto validateChat, IChatService chatService)
                     =>
                 {
-                    var isValid = await chatService.ValidateChat(validateChat.ChatId, validateChat.UserId);
-
-                    if (!isValid)
-                        return Results.Ok(false);
-
-                    return Results.Ok(true);
+                    try
+                    {
+                        var isValid = await chatService.ValidateChat(validateChat.ChatId, validateChat.UserId);
+                        return Results.Ok(isValid);
+                    }
+                    catch (Exception e)
+                    {
+                        return Results.BadRequest(e.Message);
+                    }
                 });
 
             app.MapGet("/api/chat/getActiveChats/{userId:guid}", async (Guid userId, IChatService chatService) =>
@@ -33,28 +43,33 @@
                     var activeChats = await chatService.GetActiveChats(userId);
                     return Results.Ok(activeChats);
                 }
-                catch (Exception err)
+                catch (Exception e)
                 {
-                    throw new Exception(err.Message);
+                    return Results.BadRequest(e.Message);
                 }
             });
 
-            app.MapGet("/api/chat/getGuessUserByChatId/{chatId:guid}/{currentUser:guid}", async (Guid chatId, Guid currentUser, IChatService chatService, IUserService userService) =>
+            app.MapGet("/api/chat/getGuessUserByChatId/{chatId:guid}/{currentUser:guid}", async (Guid chatId,
+                Guid currentUser, IChatService chatService, IUserService userService) =>
             {
-                var guessUserId = await chatService.GetGuessUserByChatId(chatId, currentUser);
-
-                if (guessUserId.Equals(Guid.Empty))
+                try
                 {
-                    return Results.NotFound();
+                    var guessUserId = await chatService.GetGuessUserByChatId(chatId, currentUser);
+
+                    if (guessUserId.Equals(Guid.Empty))
+                    {
+                        return Results.NotFound();
+                    }
+
+                    var guessUser = await userService.GetUser(guessUserId);
+
+                    return guessUser is null ? Results.NotFound() : Results.Ok(guessUser);
                 }
-
-                var guessUser = await userService.GetUser(guessUserId);
-
-                return Results.Ok(guessUser);
+                catch (Exception e)
+                {
+                    return Results.BadRequest(e.Message);
+                }
             });
         }
-
-        private static async Task<Guid> CreateChat(CreateChatDto request, IChatService chatService) =>
-            await chatService.CreateNewChat(request.User1Id, request.User2Id);
     }
 }

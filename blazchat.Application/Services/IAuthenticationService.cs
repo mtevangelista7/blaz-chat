@@ -1,27 +1,22 @@
-﻿using System.Security.Claims;
+﻿using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using blazchat.Application.Interfaces.Services;
+using blazchat.Domain.Entities;
+using blazchat.Infra.Data.Interfaces;
+using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 
 namespace blazchat.Application.Services;
 
-public class AuthenticationService : IAuthenticationService
+public class AuthenticationService(
+    IUserRepository userRepository,
+    IMemoryCache memoryCache,
+    IConfiguration configuration)
+    : IAuthenticationService
 {
-    private readonly IUserRepository userRepository;
-    private readonly IMemoryCache memoryCache;
-    private readonly IConfiguration configuration;
-
-    public AuthenticationService(
-        IUserRepository userRepository,
-        IMemoryCache memoryCache,
-        IConfiguration configuration)
-    {
-        this.userRepository = userRepository;
-        this.memoryCache = memoryCache;
-        this.configuration = configuration;
-    }
-
-
     public async Task<string> GenerateAccessToken(string username, string password)
     {
         User? user = await userRepository.GetByUsername(username);

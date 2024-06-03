@@ -16,100 +16,39 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ae3bebb3-4e80-4052-a01b-b6838a3843f4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/blazchat.Application/Services/UserService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blazchat.Domain/Entities/User.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blazchat.Frontend/blazchat.Frontend.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blazchat.WebAPI/Endpoints/Users/UserEndpoints.cs" afterDir="false" />
+    <list default="true" id="ae3bebb3-4e80-4052-a01b-b6838a3843f4" name="Changes" comment="iniciando a refatoração, removi os dois projetos antigos server e client, quebrei na estrutura em projetos distintos pois estava muito confuso, e ajustei os namespace.">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.blazchat/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.blazchat/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/APAGAR.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Components/Dialogs/StartNewChatDialog.razor" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Frontend/Components/Dialogs/StartNewChatDialog.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Components/Dialogs/StartNewChatDialog.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Frontend/Components/Dialogs/StartNewChatDialog.razor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Components/MessagesHistory.razor" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Frontend/Components/MessagesHistory.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Components/MessagesHistory.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Frontend/Components/MessagesHistory.razor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Components/NewMessageButton.razor" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Frontend/Components/NewMessageButton.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Components/NewMessageButton.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Frontend/Components/NewMessageButton.razor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Components/NewMessageButton.razor.css" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Frontend/Components/NewMessageButton.razor.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Components/OnlineChat.razor" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Frontend/Components/OnlineChat.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Components/OnlineChat.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Frontend/Components/OnlineChat.razor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Components/OnlineChat.razor.css" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Frontend/Components/OnlineChat.razor.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Dtos/ChatDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Application/DTOs/ChatDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Dtos/ChatUserDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Application/DTOs/ChatUserDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Dtos/CreateChatDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Application/DTOs/CreateChatDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Dtos/MessageDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Application/DTOs/MessageDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Dtos/UserDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Application/DTOs/UserDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Dtos/ValidateChatDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Application/DTOs/ValidateChatDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Pages/Delete.razor" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Frontend/Pages/Delete.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Pages/HomePage.razor" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Frontend/Pages/HomePage.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Pages/LoginPage.razor" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Frontend/Pages/LoginPage.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Pages/LoginPage.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Frontend/Pages/LoginPage.razor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Pages/MessagesPage.razor" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Frontend/Pages/MessagesPage.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Pages/MessagesPage.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Frontend/Pages/MessagesPage.razor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Pages/RegisterPage.razor" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Frontend/Pages/RegisterPage.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Pages/RegisterPage.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Frontend/Pages/RegisterPage.razor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Program.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/RefitInterfaceApi/IChatEndpoints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Frontend/RefitInterfaceApi/IChatEndpoints.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/RefitInterfaceApi/IMessageEndpoints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Frontend/RefitInterfaceApi/IMessageEndpoints.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/RefitInterfaceApi/IUserEndpoints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Frontend/RefitInterfaceApi/IUserEndpoints.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/_Imports.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/blazchat.Client.csproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/wwwroot/appsettings.Development.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/wwwroot/appsettings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.sln" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Components/App.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Components/Layout/MainLayout.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Components/Layout/MainLayout.razor.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Components/Routes.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Components/_Imports.razor" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Endpoints/Chats/ChatEndPoints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.WebAPI/Endpoints/Chats/ChatEndPoints.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Endpoints/Messages/MessageEndpoints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.WebAPI/Endpoints/Messages/MessageEndpoints.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Endpoints/Users/UserEndpoints.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Entities/Chat.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Domain/Entities/Chat.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Entities/ChatUser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Domain/Entities/ChatUser.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Entities/Message.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Domain/Entities/Message.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Entities/User.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Hubs/ChatHub.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Frontend/Hubs/ChatHub.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Infra/Context/AplicationDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Infra/Data/Context/AplicationDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Infra/Interfaces/IChatRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Infra/Data/Interfaces/IChatRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Infra/Interfaces/IChatUsersRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Infra/Data/Interfaces/IChatUsersRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Infra/Interfaces/IMessageRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Infra/Data/Interfaces/IMessageRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Infra/Interfaces/IUserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Infra/Data/Interfaces/IUserRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Infra/Migrations/20240526221547_CreateTablesAAAAAAA.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Infra/Migrations/20240526221547_CreateTablesAAAAAAA.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Infra/Migrations/20240527144124_changeNameTable.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Infra/Migrations/20240527144124_changeNameTable.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Infra/Migrations/20240527231110_RemoveMessageTable.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Infra/Migrations/20240527231110_RemoveMessageTable.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Infra/Migrations/AplicationDbContextModelSnapshot.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Infra/Repositories/ChatRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Infra/Data/Repositories/ChatRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Infra/Repositories/ChatUsersRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Infra/Data/Repositories/ChatUsersRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Infra/Repositories/MessageRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Infra/Data/Repositories/MessageRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Infra/Repositories/UserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Infra/Data/Repositories/UserRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Program.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Properties/launchSettings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Services/ChatService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Application/Services/ChatService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Services/Interfaces/IChatService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Application/Interfaces/Services/IChatService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Services/Interfaces/IMessageService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Application/Interfaces/Services/IMessageService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Services/Interfaces/IUserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Application/Interfaces/Services/IUserService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Services/MessageService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Application/Services/MessageService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/Services/UserService.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/appsettings.Development.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/appsettings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/blazchat.csproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/wwwroot/app.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/wwwroot/client.css" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Frontend/wwwroot/css/client.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/wwwroot/favicon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/wwwroot/icon-192.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/wwwroot/icon-512.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/wwwroot/img/comment.png" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Frontend/wwwroot/img/comment.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/wwwroot/img/mayur-arvind-W8a8p-d8hZU-unsplash.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Frontend/wwwroot/img/mayur-arvind-W8a8p-d8hZU-unsplash.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/wwwroot/img/pexels-hngstrm-1939485.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Frontend/wwwroot/img/pexels-hngstrm-1939485.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/wwwroot/img/pexels-jeremy-bishop-1260133-2397652.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Frontend/wwwroot/img/pexels-jeremy-bishop-1260133-2397652.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/wwwroot/img/pexels-mehmet-karakose-2145065-11642617.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Frontend/wwwroot/img/pexels-mehmet-karakose-2145065-11642617.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/wwwroot/manifest.webmanifest" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/wwwroot/scrollToBottom.js" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Frontend/wwwroot/js/scrollToBottom.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/wwwroot/service-worker.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat/wwwroot/service-worker.published.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Application/DTOs/ValidateChatDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Application/DTOs/ValidateChatDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Application/Interfaces/Services/IChatService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Application/Interfaces/Services/IChatService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Application/Interfaces/Services/IMessageService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Application/Interfaces/Services/IMessageService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Application/Interfaces/Services/IUserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Application/Interfaces/Services/IUserService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Application/Services/ChatService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Application/Services/ChatService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Application/Services/IAuthenticationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Application/Services/IAuthenticationService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Application/Services/MessageService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Application/Services/MessageService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Application/Services/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Application/Services/UserService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Application/blazchat.Application.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Application/blazchat.Application.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Domain/Entities/Chat.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Domain/Entities/Chat.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Domain/Entities/ChatUser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Domain/Entities/ChatUser.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Domain/Entities/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Domain/Entities/User.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Infra/Data/Configurations/ChatConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Infra/Data/Configurations/ChatConfiguration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Infra/Data/Configurations/ChatUserConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Infra/Data/Configurations/ChatUserConfiguration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Infra/Data/Configurations/UserConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Infra/Data/Configurations/UserConfiguration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Infra/Data/Context/AplicationDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Infra/Data/Context/AplicationDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Infra/Data/Interfaces/IChatRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Infra/Data/Interfaces/IChatRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Infra/Data/Interfaces/IChatUsersRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Infra/Data/Interfaces/IChatUsersRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Infra/Data/Interfaces/IMessageRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Infra/Data/Interfaces/IMessageRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Infra/Data/Interfaces/IUserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Infra/Data/Interfaces/IUserRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Infra/Data/Repositories/ChatRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Infra/Data/Repositories/ChatRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Infra/Data/Repositories/ChatUsersRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Infra/Data/Repositories/ChatUsersRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Infra/Data/Repositories/MessageRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Infra/Data/Repositories/MessageRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Infra/Data/Repositories/UserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Infra/Data/Repositories/UserRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Infra/blazchat.Infra.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Infra/blazchat.Infra.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.WebAPI/Endpoints/Auth/AuthEndpoints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.WebAPI/Endpoints/Auth/AuthEndpoints.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.WebAPI/Endpoints/Chats/ChatEndPoints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.WebAPI/Endpoints/Chats/ChatEndPoints.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.WebAPI/Endpoints/Messages/MessageEndpoints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.WebAPI/Endpoints/Messages/MessageEndpoints.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.WebAPI/Endpoints/Users/UserEndpoints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.WebAPI/Endpoints/Users/UserEndpoints.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.WebAPI/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.WebAPI/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.WebAPI/blazchat.WebAPI.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.WebAPI/blazchat.WebAPI.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -337,7 +276,7 @@
       <option name="presentableId" value="Default" />
       <updated>1717033133464</updated>
       <workItem from="1717033135776" duration="9809000" />
-      <workItem from="1717420186018" duration="7348000" />
+      <workItem from="1717420186018" duration="11610000" />
     </task>
     <task id="LOCAL-00001" summary="finalizado primeira versão do front-end da tela home e ajustado código para funcionamento do chat">
       <option name="closed" value="true" />
@@ -347,7 +286,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717035803811</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="iniciando a refatoração, removi os dois projetos antigos server e client, quebrei na estrutura em projetos distintos pois estava muito confuso, e ajustei os namespace.">
+      <option name="closed" value="true" />
+      <created>1717433379549</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1717433379549</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -369,6 +316,7 @@
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="finalizado primeira versão do front-end da tela home e ajustado código para funcionamento do chat" />
-    <option name="LAST_COMMIT_MESSAGE" value="finalizado primeira versão do front-end da tela home e ajustado código para funcionamento do chat" />
+    <MESSAGE value="iniciando a refatoração, removi os dois projetos antigos server e client, quebrei na estrutura em projetos distintos pois estava muito confuso, e ajustei os namespace." />
+    <option name="LAST_COMMIT_MESSAGE" value="iniciando a refatoração, removi os dois projetos antigos server e client, quebrei na estrutura em projetos distintos pois estava muito confuso, e ajustei os namespace." />
   </component>
 </project>

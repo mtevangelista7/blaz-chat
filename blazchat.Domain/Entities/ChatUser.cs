@@ -2,7 +2,7 @@
 
 namespace blazchat.Domain.Entities
 {
-    public class ChatUser
+    public class ChatUser : EntityBase
     {
         public Guid ChatId { get; set; }
         public Guid UserId { get; set; }

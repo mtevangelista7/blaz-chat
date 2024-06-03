@@ -1,4 +1,6 @@
-﻿namespace blazchat.WebAPI.Endpoints.Messages;
+﻿using blazchat.Application.Interfaces.Services;
+
+namespace blazchat.WebAPI.Endpoints.Messages;
 
 public static class MessageEndpoints
 {
@@ -6,8 +8,15 @@ public static class MessageEndpoints
     {
         app.MapGet("/api/messages/{chatId:guid}", async (Guid chatId, IMessageService messageService) =>
         {
-            var messages = await messageService.GetMessagesByChatIdAsync(chatId);
-            return Results.Ok(messages);
-        });
+            try
+            {
+                var messages = await messageService.GetMessagesByChatIdAsync(chatId);
+                return Results.Ok(messages);
+            }
+            catch (Exception e)
+            {
+                return Results.BadRequest(e.Message);
+            }
+        }).RequireAuthorization();
     }
 }

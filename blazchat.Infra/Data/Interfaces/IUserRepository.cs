@@ -1,10 +1,9 @@
-﻿namespace blazchat.Infra.Data.Interfaces
+﻿using blazchat.Domain.Entities;
+
+namespace blazchat.Infra.Data.Interfaces
 {
-    public interface IUserRepository
+    public interface IUserRepository : IRepository<User>
     {
-        Task<User> GetUser(Guid userId);
-        Task<User> CreateUser(User user);
-        Task<List<User>> GetUsers();
-        Task<User> GetByUsername(string email);
+        Task<User> GetByUsername(string username);
     }
 }

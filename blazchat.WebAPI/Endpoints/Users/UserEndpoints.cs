@@ -1,26 +1,52 @@
-﻿namespace blazchat.WebAPI.Endpoints.Users
+﻿using blazchat.Application.Interfaces.Services;
+using blazchat.Client.Dtos;
+
+namespace blazchat.WebAPI.Endpoints.Users
 {
     public static class UserEndpoints
     {
         public static void MapUserEndpoints(this WebApplication app)
         {
-            app.MapPost("/api/user/create", async (UserDto request, IUserService userService) =>
+            app.MapPost("/api/user/create", async (CreateUserDto request, IUserService userService) =>
             {
-                var userId = await userService.CreateUser(request);
-                return Results.Ok(userId);
+                try
+                {
+                    var generatedToken = await userService.CreateUser(request);
+
+                    return generatedToken is null ? Results.BadRequest("") : Results.Ok(generatedToken);
+                }
+                catch (Exception ex)
+                {
+                    return Results.BadRequest(ex.Message);
+                }
             });
 
-            app.MapGet("/api/user/getUser/{id:guid}", async (Guid id, IUserService userService) =>
+            app.MapGet("/api/user/getUser/{userId:guid}", async (Guid userId, IUserService userService) =>
             {
-                var user = await userService.GetUser(id);
-                return Results.Ok(user);
-            });
+                try
+                {
+                    var user = await userService.GetUser(userId);
+
+                    return user is null ? Results.NotFound() : Results.Ok(user);
+                }
+                catch (Exception ex)
+                {
+                    return Results.BadRequest(ex.Message);
+                }
+            }).RequireAuthorization();
 
             app.MapGet("/api/user/getUsers", async (IUserService userService) =>
             {
-                var users = await userService.GetUsers();
-                return Results.Ok(users);
-            });
+                try
+                {
+                    var users = await userService.GetUsers();
+                    return Results.Ok(users);
+                }
+                catch (Exception ex)
+                {
+                    return Results.BadRequest(ex.Message);
+                }
+            }).RequireAuthorization();
         }
     }
 }

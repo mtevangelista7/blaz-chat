@@ -15,4 +15,8 @@
       <Folder Include="Endpoints\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\blazchat.Application\blazchat.Application.csproj" />
+    </ItemGroup>
+
 </Project>

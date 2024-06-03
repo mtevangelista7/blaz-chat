@@ -11,4 +11,8 @@
       <Folder Include="Helper\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\blazchat.Infra\blazchat.Infra.csproj" />
+    </ItemGroup>
+
 </Project>

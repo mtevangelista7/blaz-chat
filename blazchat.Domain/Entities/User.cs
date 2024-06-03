@@ -2,9 +2,8 @@
 
 namespace blazchat.Domain.Entities;
 
-public class User
+public class User : EntityBase
 {
-    public Guid Id { get; set; }
     public string Name { get; set; } // TODO: change to username
     public byte[] PasswordHash { get; set; }
     public byte[] PasswordSalt { get; set; }

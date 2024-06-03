@@ -1,50 +1,50 @@
-﻿namespace blazchat.Application.Services
+﻿using System.Security.Cryptography;
+using blazchat.Application.Interfaces.Services;
+using blazchat.Client.Dtos;
+using blazchat.Domain.Entities;
+using blazchat.Infra.Data.Interfaces;
+
+namespace blazchat.Application.Services
 {
-    public class UserService : IUserService
+    public class UserService(IUserRepository userRepository, IAuthenticationService authenticationService)
+        : IUserService
     {
-        private readonly IUserRepository _userRepository;
-        private readonly IAuthenticationService _authenticationService;
-
-        public UserService(IUserRepository userRepository, IAuthenticationService authenticationService)
+        public async Task<string> CreateUser(CreateUserDto userRequest)
         {
-            _userRepository = userRepository;
-            _authenticationService = authenticationService;
-        }
+            string password = userRequest.password;
 
-        public async Task<User> CreateUser(UserDto userRequest)
-        {
-            string password = userRequest.Password;
-            
             // create hash and salt
             CreatePasswordHash(password, out byte[] passwordHash, out byte[] passwordSalt);
-            
+
+            // create user
             var user = new User
             {
-                Name = userRequest.Name,
+                Name = userRequest.username,
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt
             };
-            
-            await _userRepository.CreateUser(user);
+
+            // add user to database
+            await userRepository.Add(user);
 
             // generate token
-            string userToken = await _authenticationService.GenerateAccessToken(user.Name, password);
+            string userToken = await authenticationService.GenerateAccessToken(user.Name, password);
+            authenticationService.StoresJwtCache(user.Id, userToken);
 
-            _authenticationService.StoresJwtCache(user.Id, userToken);
-            
-            return user;
+            // return token
+            return userToken;
         }
 
         public Task<User> GetUser(Guid userId)
         {
-            return _userRepository.GetUser(userId);
+            return userRepository.GetById(userId);
         }
-        
+
         public Task<List<User>> GetUsers()
         {
-            return _userRepository.GetUsers();
+            return userRepository.GetAll();
         }
-        
+
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
             using HMACSHA512 hmac = new();

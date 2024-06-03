@@ -1,4 +1,6 @@
-﻿namespace blazchat.Application.Interfaces.Services;
+﻿using blazchat.Domain.Entities;
+
+namespace blazchat.Application.Interfaces.Services;
 
 public interface IMessageService
 {

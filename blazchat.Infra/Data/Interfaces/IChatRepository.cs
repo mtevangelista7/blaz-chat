@@ -1,8 +1,8 @@
-﻿namespace blazchat.Infra.Data.Interfaces;
+﻿using blazchat.Domain.Entities;
 
-public interface IChatRepository
+namespace blazchat.Infra.Data.Interfaces;
+
+public interface IChatRepository : IRepository<Chat>
 {
-    Task<Chat> GetChatAsync(Guid chatId);
-    Task<Chat> CreateChatAsync(Guid user1Id, Guid user2Id);
     Task<List<Chat>> GetActiveChatsAsync(Guid userId);
 }

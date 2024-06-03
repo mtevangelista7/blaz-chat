@@ -1,4 +1,6 @@
-﻿namespace blazchat.Infra.Data.Interfaces;
+﻿using blazchat.Domain.Entities;
+
+namespace blazchat.Infra.Data.Interfaces;
 
 public interface IMessageRepository
 {

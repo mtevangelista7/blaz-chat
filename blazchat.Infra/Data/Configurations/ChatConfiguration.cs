@@ -1,20 +1,23 @@
-﻿namespace blazchat.Infra.Data.Configurations;
+﻿using blazchat.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace blazchat.Infra.Data.Configurations;
 
 public class ChatConfiguration : IEntityTypeConfiguration<Chat>
 {
     public void Configure(EntityTypeBuilder<Chat> builder)
     {
-        builder.Entity<Chat>(entity =>
-        {
-            entity.HasKey(e => e.Id);
+        builder.ToTable("Chats");
+        
+        builder.HasKey(e => e.Id);
 
-            entity.Property(e => e.Id)
-                .HasColumnType("uniqueidentifier");
+        builder.Property(e => e.Id)
+            .HasColumnType("uniqueidentifier");
 
-            entity.HasMany(c => c.ChatUsers)
-                .WithOne(cu => cu.Chat)
-                .HasForeignKey(cu => cu.ChatId)
-                .OnDelete(DeleteBehavior.Cascade);
-        });
+        builder.HasMany(c => c.ChatUsers)
+            .WithOne(cu => cu.Chat)
+            .HasForeignKey(cu => cu.ChatId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

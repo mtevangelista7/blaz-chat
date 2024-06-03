@@ -1,4 +1,4 @@
-﻿namespace blazchat.Client.Dtos
+﻿namespace blazchat.Application.DTOs
 {
     public class ValidateChatDto
     {
