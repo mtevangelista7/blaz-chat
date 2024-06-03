@@ -26,7 +26,8 @@ public class RegisterPageBase : ComponentBase
     protected async Task OnClickRegister(EditContext editContext)
     {
         // Validate the form
-
+        if (!editContext.Validate()) return;
+        
         // Call the API to register the user
         var userCreated = await userEndpoints.CreateUser(user);
         var userId = userCreated.Id;

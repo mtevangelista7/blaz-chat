@@ -21,7 +21,7 @@ public interface IUserEndpoints
     public Task DeleteUser(Guid id);
 
     [Post("/api/auth/generateToken")]
-    public Task<User> Login(User user);
+    public Task<string> Login(User user);
 
     [Get("/api/chat/getGuessUserByChatId/{chatId}/{currentUser}")]
     public Task<User> GetGuessUserByChatId(Guid chatId, Guid currentUser);
