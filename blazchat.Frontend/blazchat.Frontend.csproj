@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
+        <RootNamespace>blazchat-frontend</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.4"/>
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.4" PrivateAssets="all"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\css\bootstrap\bootstrap.min.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\bootstrap\bootstrap.min.css.map" />
+      <_ContentIncludedByDefault Remove="Components\Dialogs\StartNewChatDialog.razor" />
+      <_ContentIncludedByDefault Remove="Components\MessagesHistory.razor" />
+      <_ContentIncludedByDefault Remove="Components\NewMessageButton.razor" />
+      <_ContentIncludedByDefault Remove="Components\OnlineChat.razor" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="Components\Dialogs\StartNewChatDialog.razor" />
+      <AdditionalFiles Include="Components\MessagesHistory.razor" />
+      <AdditionalFiles Include="Components\NewMessageButton.razor" />
+      <AdditionalFiles Include="Components\OnlineChat.razor" />
+    </ItemGroup>
+
+</Project>
