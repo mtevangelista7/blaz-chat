@@ -17,11 +17,11 @@
                       Variant="Variant.Outlined"
                       Adornment="Adornment.Start"
                       AdornmentColor="Color.Primary"
-                      AdornmentIcon="@Icons.Material.Filled.Search" />
+                      AdornmentIcon="@Icons.Material.Filled.Search"/>
     </MudAppBar>
 
     <MudPaper Elevation="0" Class="px-6 mt-15 logo-animation">
-        <MessagesHistory IdUser=""></MessagesHistory>
+        <MessagesHistory IdUser="@currentUserId"></MessagesHistory>
     </MudPaper>
 
     @*button to start a new chat with someone*@
@@ -30,7 +30,7 @@
 @*if we have a chat id, open the chat real time*@
 else
 {
-    <OnlineChat ChatId="@Id"></OnlineChat>
+    <OnlineChat ChatIdParam="@Id"></OnlineChat>
 }
 
 <style>

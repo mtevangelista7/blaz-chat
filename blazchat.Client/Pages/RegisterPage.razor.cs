@@ -1,6 +1,5 @@
 ﻿using System.Net.Http.Json;
 using blazchat.Application.DTOs;
-using blazchat.Client.Dtos;
 using blazchat.Client.RefitInterfaceApi;
 using blazchat.Client.Services.Interfaces;
 using blazchat.Client.States;

@@ -5,37 +5,31 @@ using Microsoft.AspNetCore.Components.Authorization;
 
 namespace blazchat.Client.States;
 
-public class CustomAuthenticationStateProvider : AuthenticationStateProvider
+public class CustomAuthenticationStateProvider(ILocalStorageService localStorage) : AuthenticationStateProvider
 {
     private const string LocalStorageKey = "authToken";
 
-    private readonly ILocalStorageService localStorageService;
-    private readonly ClaimsPrincipal anonymousUser = new ClaimsPrincipal(new ClaimsIdentity());
-
-    public CustomAuthenticationStateProvider(ILocalStorageService localStorage)
-    {
-        this.localStorageService = localStorage;
-    }
+    private readonly ClaimsPrincipal _anonymousUser = new(new ClaimsIdentity());
 
     public override async Task<AuthenticationState> GetAuthenticationStateAsync()
     {
-        var token = await localStorageService.GetItemAsync<string>(LocalStorageKey);
+        var token = await localStorage.GetItemAsync<string>(LocalStorageKey);
 
         if (string.IsNullOrWhiteSpace(token))
         {
-            return new AuthenticationState(anonymousUser);
+            return new AuthenticationState(_anonymousUser);
         }
 
         var (id, username) = GetClaims(token);
 
         if (string.IsNullOrWhiteSpace(id) || string.IsNullOrWhiteSpace(username))
         {
-            return new AuthenticationState(anonymousUser);
+            return new AuthenticationState(_anonymousUser);
         }
 
         var claims = SetClaimsPrincipal(id, username);
 
-        return claims is null ? new AuthenticationState(anonymousUser) : new AuthenticationState(claims);
+        return claims is null ? new AuthenticationState(_anonymousUser) : new AuthenticationState(claims);
     }
 
     public static ClaimsPrincipal SetClaimsPrincipal(string id, string username)
@@ -64,7 +58,7 @@ public class CustomAuthenticationStateProvider : AuthenticationStateProvider
 
         if (string.IsNullOrWhiteSpace(token))
         {
-            await localStorageService.RemoveItemAsync(LocalStorageKey);
+            await localStorage.RemoveItemAsync(LocalStorageKey);
         }
         else
         {
@@ -82,7 +76,7 @@ public class CustomAuthenticationStateProvider : AuthenticationStateProvider
                 return;
             }
 
-            await localStorageService.SetItemAsync(LocalStorageKey, token);
+            await localStorage.SetItemAsync(LocalStorageKey, token);
         }
 
         NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(claims)));

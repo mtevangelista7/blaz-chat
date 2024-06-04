@@ -1,5 +1,5 @@
 ﻿@inherits StartNewChatDialogBase
-@rendermode @(new InteractiveWebAssemblyRenderMode(prerender:false))
+@rendermode @(new InteractiveWebAssemblyRenderMode(prerender: false))
 
 <MudDialog Class="logo-animation" Style="max-height: 500px !important;">
     <DialogContent>
@@ -12,7 +12,7 @@
                               Variant="Variant.Outlined"
                               Adornment="Adornment.Start"
                               AdornmentColor="Color.Primary"
-                              AdornmentIcon="@Icons.Material.Filled.Search" />
+                              AdornmentIcon="@Icons.Material.Filled.Search"/>
             </MudItem>
 
             <MudItem xs="12">
@@ -29,11 +29,15 @@
                                         <MudGrid Spacing="3" Style="width: 100%" Justify="Justify.Center">
 
                                             <MudItem Class="d-flex align-center" xs="2" sm="2" md="2">
-                                                <MudAvatar Color="Color.Primary"><b>@user.Name[0]</b></MudAvatar>
+                                                <MudAvatar Color="Color.Primary">
+                                                    <b>@user.Username[0]</b>
+                                                </MudAvatar>
                                             </MudItem>
 
                                             <MudItem Class="d-flex align-center" xs="10" sm="10" md="10">
-                                                <MudText Class="black-text" Typo="Typo.h6" Align="Align.Start"><b>@user.Name</b></MudText>
+                                                <MudText Class="black-text" Typo="Typo.h6" Align="Align.Start">
+                                                    <b>@user.Username</b>
+                                                </MudText>
                                             </MudItem>
 
                                         </MudGrid>

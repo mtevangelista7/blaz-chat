@@ -1,4 +1,5 @@
-﻿using blazchat.Client.Entities;
+﻿using blazchat.Application.DTOs;
+using blazchat.Client.Entities;
 using Refit;
 
 namespace blazchat.Client.RefitInterfaceApi;
@@ -6,5 +7,5 @@ namespace blazchat.Client.RefitInterfaceApi;
 public interface IMessageEndpoints
 {
     [Get("/api/messages/{chatId}")]
-    Task<List<Message>> GetMessages(Guid chatId);
+    Task<List<MessageDto>> GetMessages(Guid chatId);
 }

@@ -1,12 +1,12 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace blazchat.Client.Dtos;
+namespace blazchat.Application.DTOs;
 
-public class ChatDto
+public record ChatDto(Guid Id, ICollection<ChatUserDto> ChatUsers)
 {
-    public Guid Id { get; set; }
-    public ICollection<ChatUserDto> ChatUsers { get; set; }
+    public Guid Id { get; set; } = Id;
+    public ICollection<ChatUserDto> ChatUsers { get; set; } = ChatUsers;
 
-    [JsonIgnore]
-    public virtual UserDto GuessUser { get; set; }
+    // TODO: ta ruim isso procura outro jeito de fazer
+    [JsonIgnore] public GuessUserDto GuessUser { get; set; }
 }

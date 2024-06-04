@@ -1,4 +1,5 @@
-﻿using blazchat.Client.Entities;
+﻿using blazchat.Application.DTOs;
+using blazchat.Client.Entities;
 using Refit;
 
 namespace blazchat.Client.RefitInterfaceApi
@@ -6,24 +7,24 @@ namespace blazchat.Client.RefitInterfaceApi
     public interface IChatEndpoints
     {
         [Post("/api/chat/create")]
-        public Task<Guid> CreateChat(Chat createChatDto);
+        public Task<Guid> CreateChat(CreateChatDto createChatDto);
 
         [Get("/api/chat/getChat/{id}")]
-        public Task<Chat> GetChat(Guid id);
+        public Task<ChatDto> GetChat(Guid id);
 
         [Get("/api/chat/getChats")]
-        public Task<List<Chat>> GetChats();
+        public Task<List<ChatDto>> GetChats();
 
         [Put("/api/chat/updateChat")]
-        public Task UpdateChat(Chat chat);
+        public Task UpdateChat(ChatDto chat);
 
         [Delete("/api/chat/deleteChat/{id}")]
         public Task DeleteChat(Guid id);
 
         [Post("/api/chat/validate")]
-        public Task<bool> ValidateChat(ValidateChat validateChat);
+        public Task<bool> ValidateChat(ValidateChatDto validateChat);
 
         [Get("/api/chat/getActiveChats/{userId}")]
-        public Task<List<Chat>> GetActiveChats(Guid userId);
+        public Task<List<ChatDto>> GetActiveChats(Guid userId);
     }
 }

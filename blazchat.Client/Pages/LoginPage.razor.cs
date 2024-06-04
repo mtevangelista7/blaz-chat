@@ -1,5 +1,4 @@
 ﻿using blazchat.Application.DTOs;
-using blazchat.Client.Dtos;
 using blazchat.Client.RefitInterfaceApi;
 using blazchat.Client.Services;
 using blazchat.Client.Services.Interfaces;

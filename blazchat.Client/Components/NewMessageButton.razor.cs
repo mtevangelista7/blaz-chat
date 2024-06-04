@@ -1,50 +1,75 @@
 ﻿using System.Net.Http.Json;
+using blazchat.Application.DTOs;
 using blazchat.Client.Components.Dialogs;
-using blazchat.Client.Dtos;
 using blazchat.Client.RefitInterfaceApi;
+using blazchat.Domain.Entities;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using MudBlazor;
 
 namespace blazchat.Client.Components;
 
 public class NewMessageButtonBase : ComponentBase
 {
-    [Inject] IDialogService dialogService { get; set; }
-
-    [Inject] HttpClient HttpClient { get; set; }
-
+    [Inject] IDialogService DialogService { get; set; }
     [Inject] NavigationManager Navigation { get; set; }
+    [Inject] IChatEndpoints ChatEndpoints { get; set; }
+    [Inject] AuthenticationStateProvider AuthStateProvider { get; set; }
+    [Inject] NavigationManager NavigationManager { get; set; }
 
-    [Inject] protected IChatEndpoints chatEndpoints { get; set; }
+    private Task<AuthenticationState> _authenticationStateTask;
+    private Guid CurrentUserId;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _authenticationStateTask = AuthStateProvider.GetAuthenticationStateAsync();
+
+        var user = _authenticationStateTask.Result.User;
+
+        if (!user.Identity.IsAuthenticated)
+        {
+            NavigationManager.NavigateTo("/login");
+            return;
+        }
+
+        CurrentUserId = Guid.Parse(user.FindFirst("id").Value);
+    }
+
 
     protected async Task OnClickStartNewChat()
     {
+        // dialog options 
         var options = new DialogOptions
-        { CloseOnEscapeKey = true, ClassBackground = "dialog-blur-backgroud", CloseButton = true };
+            { CloseOnEscapeKey = true, ClassBackground = "dialog-blur-backgroud", CloseButton = true };
 
-        var parameters = new DialogParameters() { { "CurrentUserId", APAGAR.CurrentUserId } };
+        // dialog parameters
+        var parameters = new DialogParameters() { { "CurrentUserId", CurrentUserId } };
 
-        var dialogReference = await dialogService.ShowAsync<StartNewChatDialog>("Start new chat", parameters, options);
+        // show dialog
+        var dialogReference = await DialogService.ShowAsync<StartNewChatDialog>("Start new chat", parameters, options);
 
+        // get dialog result
         var result = await dialogReference.Result;
 
+        // check if dialog was canceled
         if (result.Canceled)
         {
             return;
         }
 
+        // start new chat with result from dialog
         await StartNewChat(result.Data as UserDto);
     }
 
     private async Task StartNewChat(UserDto? userDto)
     {
-        CreateChatDto createChatDto = new()
-        {
-            User1Id = APAGAR.CurrentUserId,
-            User2Id = userDto.Id
-        };
+        // create new chat with the current user and the selected guess user
+        CreateChatDto createChatDto = new(User1Id: CurrentUserId, User2Id: userDto.Id);
 
-        var newChatId = await chatEndpoints.CreateChat(createChatDto);
+        // create the chat with endpoint
+        var newChatId = await ChatEndpoints.CreateChat(createChatDto);
+
+        // navigate to the new chat
         Navigation.NavigateTo($"/messages/{newChatId}");
     }
 }

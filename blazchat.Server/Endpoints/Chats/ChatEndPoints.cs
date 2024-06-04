@@ -1,6 +1,5 @@
 ﻿using blazchat.Application.DTOs;
 using blazchat.Application.Interfaces.Services;
-using blazchat.Client.Dtos;
 
 namespace blazchat.Server.Endpoints.Chats
 {

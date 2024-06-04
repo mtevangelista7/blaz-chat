@@ -1,4 +1,4 @@
-﻿using blazchat.Client.Dtos;
+﻿using blazchat.Application.DTOs;
 using blazchat.Client.RefitInterfaceApi;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
@@ -7,14 +7,11 @@ namespace blazchat.Client.Components.Dialogs;
 
 public class StartNewChatDialogBase : ComponentBase
 {
-    [CascadingParameter]
-    MudDialogInstance MudDialog { get; set; }
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
 
-    [Inject]
-    protected IUserEndpoints userEndpoints { get; set; }
+    [Inject] IUserEndpoints UserEndpoints { get; set; }
 
-    [Parameter]
-    public Guid CurrentUserId { get; set; } = Guid.Empty;
+    [Parameter] public Guid CurrentUserId { get; set; } = Guid.Empty;
 
     protected List<UserDto> Users { get; set; } = [];
 
@@ -22,13 +19,13 @@ public class StartNewChatDialogBase : ComponentBase
     {
         Users = await GetContactsAsync();
         Users.Remove(Users.FirstOrDefault(u => u.Id.Equals(CurrentUserId)));
-        Users = [.. Users.OrderBy(u => u.Name)];
+        Users = [.. Users.OrderBy(u => u.Username)];
     }
 
     private async Task<List<UserDto>> GetContactsAsync()
     {
         // get contacts from API
-        return await userEndpoints.GetUsers();
+        return await UserEndpoints.GetUsers();
     }
 
     protected void StartChat(UserDto user)

@@ -3,25 +3,20 @@ using Blazored.LocalStorage;
 
 namespace blazchat.Client.HttpClientHandler;
 
-public class AuthenticatedHttpClientHandler : DelegatingHandler
+public class AuthenticatedHttpClientHandler(ILocalStorageService localStorageService) : DelegatingHandler
 {
     private const string TokenKey = "authToken";
-    private readonly ILocalStorageService _localStorageService;
-    
-    public AuthenticatedHttpClientHandler(ILocalStorageService localStorageService)
+
+    protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
+        CancellationToken cancellationToken)
     {
-        _localStorageService = localStorageService;
-    }
-    
-    protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
-    {
-        var token = await _localStorageService.GetItemAsync<string>(TokenKey);
-        
+        var token = await localStorageService.GetItemAsync<string>(TokenKey, cancellationToken);
+
         if (!string.IsNullOrWhiteSpace(token))
         {
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
         }
-        
+
         return await base.SendAsync(request, cancellationToken);
     }
 }

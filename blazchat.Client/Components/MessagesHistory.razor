@@ -1,5 +1,5 @@
 ﻿@inherits MessagesHistoryBase
-@rendermode @(new InteractiveWebAssemblyRenderMode(prerender:false))
+@rendermode @(new InteractiveWebAssemblyRenderMode(prerender: false))
 
 <MudGrid Justify="Justify.Center" Spacing="3">
     @if (activeChats is { Count: > 0 })
@@ -21,7 +21,7 @@
                                 <MudText Class="black-text" Typo="Typo.h6" Align="Align.Start">
                                     @if (chat.GuessUser != null)
                                     {
-                                        <b>@chat.GuessUser.Name</b>
+                                        <b>@chat.GuessUser.Username</b>
                                     }
                                 </MudText>
                             </MudItem>
@@ -45,7 +45,9 @@
                               Src="/img/comment.png">
                     </MudImage>
 
-                    <MudText Align="Align.Center" Typo="Typo.h5"><b>No messages :/</b></MudText>
+                    <MudText Align="Align.Center" Typo="Typo.h5">
+                        <b>No messages :/</b>
+                    </MudText>
                 </MudStack>
 
             </MudPaper>
