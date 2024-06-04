@@ -3,7 +3,6 @@ using blazchat.Client.Entities;
 using blazchat.Client.RefitInterfaceApi;
 using blazchat.Client.Services.Interfaces;
 using Blazored.LocalStorage;
-using Microsoft.JSInterop;
 
 namespace blazchat.Client.Services;
 

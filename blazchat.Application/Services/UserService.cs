@@ -19,7 +19,7 @@ namespace blazchat.Application.Services
             // create user
             var user = new User
             {
-                Name = userRequest.Username,
+                Username = userRequest.Username,
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt
             };
@@ -28,7 +28,9 @@ namespace blazchat.Application.Services
             await userRepository.Add(user);
 
             // generate token
-            string userToken = await authenticationService.GenerateAccessToken(user.Name, password);
+            string userToken = await authenticationService.GenerateAccessToken(user.Username, password);
+
+            // TODO: ta fazendo a mesma coisa que o método acima já faz, verificar onde deixar
             authenticationService.StoresJwtCache(user.Id, userToken);
 
             // return token

@@ -4,7 +4,7 @@ namespace blazchat.Domain.Entities;
 
 public class User : EntityBase
 {
-    public string Name { get; set; } // TODO: change to username
+    public string Username { get; set; }
     public byte[] PasswordHash { get; set; }
     public byte[] PasswordSalt { get; set; }
     

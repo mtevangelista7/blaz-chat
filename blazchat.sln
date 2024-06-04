@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "blazchat.Client", "blazchat.Client\blazchat.Client.csproj", "{0349E20A-9140-4861-853D-4E3365604C72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "blazchat.Domain", "blazchat.Domain\blazchat.Domain.csproj", "{B6F22568-CB01-4BE7-931A-B6E373B50198}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "blazchat.Domain", "blazchat.Domain\blazchat.Domain.csproj", "{B6F22568-CB01-4BE7-931A-B6E373B50198}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "blazchat.Infra", "blazchat.Infra\blazchat.Infra.csproj", "{445284DE-E06A-48AD-BAE4-58A55D809521}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "blazchat.Infra", "blazchat.Infra\blazchat.Infra.csproj", "{445284DE-E06A-48AD-BAE4-58A55D809521}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "blazchat.Application", "blazchat.Application\blazchat.Application.csproj", "{6193D3A4-5721-4897-986C-277FA471FD06}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "blazchat.Application", "blazchat.Application\blazchat.Application.csproj", "{6193D3A4-5721-4897-986C-277FA471FD06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "blazchat.Server", "blazchat.Server\blazchat.Server.csproj", "{6BBA7B7D-2F43-4E1D-93F7-AAE86DE8715D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "blazchat.Server", "blazchat.Server\blazchat.Server.csproj", "{66378C8D-9610-4BBE-9BF8-E2333C119BA3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "blazchat.Client", "blazchat.Client\blazchat.Client.csproj", "{A2D7CEBA-2153-4324-A88F-5FB581E9D9C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0349E20A-9140-4861-853D-4E3365604C72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0349E20A-9140-4861-853D-4E3365604C72}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0349E20A-9140-4861-853D-4E3365604C72}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0349E20A-9140-4861-853D-4E3365604C72}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B6F22568-CB01-4BE7-931A-B6E373B50198}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B6F22568-CB01-4BE7-931A-B6E373B50198}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6F22568-CB01-4BE7-931A-B6E373B50198}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -35,10 +31,14 @@ Global
 		{6193D3A4-5721-4897-986C-277FA471FD06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6193D3A4-5721-4897-986C-277FA471FD06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6193D3A4-5721-4897-986C-277FA471FD06}.Release|Any CPU.Build.0 = Release|Any CPU
-		{66378C8D-9610-4BBE-9BF8-E2333C119BA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{66378C8D-9610-4BBE-9BF8-E2333C119BA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{66378C8D-9610-4BBE-9BF8-E2333C119BA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{66378C8D-9610-4BBE-9BF8-E2333C119BA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BBA7B7D-2F43-4E1D-93F7-AAE86DE8715D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BBA7B7D-2F43-4E1D-93F7-AAE86DE8715D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BBA7B7D-2F43-4E1D-93F7-AAE86DE8715D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BBA7B7D-2F43-4E1D-93F7-AAE86DE8715D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2D7CEBA-2153-4324-A88F-5FB581E9D9C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2D7CEBA-2153-4324-A88F-5FB581E9D9C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2D7CEBA-2153-4324-A88F-5FB581E9D9C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2D7CEBA-2153-4324-A88F-5FB581E9D9C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

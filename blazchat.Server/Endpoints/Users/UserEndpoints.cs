@@ -1,5 +1,6 @@
 ﻿using blazchat.Application.DTOs;
 using blazchat.Application.Interfaces.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace blazchat.Server.Endpoints.Users
 {
@@ -35,7 +36,7 @@ namespace blazchat.Server.Endpoints.Users
                 }
             }).RequireAuthorization();
 
-            app.MapGet("/api/user/getUsers", async (IUserService userService) =>
+            app.MapGet("/api/user/getUsers", async ([FromServices] IUserService userService) =>
             {
                 try
                 {

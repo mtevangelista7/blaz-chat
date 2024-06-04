@@ -31,7 +31,7 @@ namespace blazchat.Infra.Data.Repositories
 
         public async Task<User> GetByUsername(string username)
         {
-            return (await context.Users.FirstOrDefaultAsync(x => x.Name == username))!;
+            return (await context.Users.FirstOrDefaultAsync(x => x.Username == username))!;
         }
     }
 }

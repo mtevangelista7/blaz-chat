@@ -17,7 +17,7 @@ public class RegisterPageBase : ComponentBase
     [Inject] public IAuthService AuthService { get; set; }
     [Inject] public AuthenticationStateProvider AuthStateProvider { get; set; }
 
-    protected CreateUserDto user;
+    protected CreateUserDto user = new(Username: "", Password: "");
     private bool _isShow;
     protected InputType PasswordInput = InputType.Password;
     protected string PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
