@@ -1,4 +1,5 @@
-﻿using blazchat.Client.Dtos;
+﻿using blazchat.Application.DTOs;
+using blazchat.Client.Dtos;
 using blazchat.Domain.Entities;
 
 namespace blazchat.Application.Interfaces.Services

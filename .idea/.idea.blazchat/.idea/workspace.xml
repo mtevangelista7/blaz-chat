@@ -18,6 +18,26 @@
   <component name="ChangeListManager">
     <list default="true" id="ae3bebb3-4e80-4052-a01b-b6838a3843f4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.blazchat/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.blazchat/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Application/DTOs/CreateChatDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Application/DTOs/CreateChatDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Application/DTOs/CreateUserDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Application/DTOs/CreateUserDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Application/DTOs/MessageDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Application/DTOs/MessageDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Application/DTOs/UserDto.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Application/DTOs/ValidateChatDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Application/DTOs/ValidateChatDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Application/Interfaces/Services/IUserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Application/Interfaces/Services/IUserService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Application/Services/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Application/Services/UserService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Client/Entities/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/Entities/User.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Client/Pages/LoginPage.razor" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/Pages/LoginPage.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Client/Pages/LoginPage.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/Pages/LoginPage.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Client/Pages/MessagesPage.razor" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/Pages/MessagesPage.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Client/Pages/MessagesPage.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/Pages/MessagesPage.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Client/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Client/Services/AuthService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/Services/AuthService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Client/_Imports.razor" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/_Imports.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Client/blazchat.Client.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/blazchat.Client.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Server/Endpoints/Auth/AuthEndpoints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Server/Endpoints/Auth/AuthEndpoints.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Server/Endpoints/Users/UserEndpoints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Server/Endpoints/Users/UserEndpoints.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Server/Hubs/ChatHub.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Server/Hubs/ChatHub.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Server/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Server/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,14 +61,14 @@
     &quot;assignee&quot;: &quot;mtevangelista7&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/mtevangelista7/blaz-chat.git",
-    "accountId": "82ddba73-1f63-481f-b400-ec6c36bcb1ad"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/mtevangelista7/blaz-chat.git&quot;,
+    &quot;accountId&quot;: &quot;dbd35eab-3733-4620-9f40-d1a8f5d4fe2b&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock://C:/Users/p-mesantos/blaz-chat/blazchat.Infra/Data/Context/AplicationDbContext.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/blazchat/Components/Layout/MainLayout.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
@@ -66,27 +86,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Launch Settings Profile.blazchat: http.executor": "Run",
-    ".NET Launch Settings Profile.blazchat: https.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "break-projects-refactor",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.blazchat: http.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Launch Settings Profile.blazchat: https.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;break-projects-refactor&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "C:\\Users\\p-mesantos\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache",
-      "C:\\Users\\p-mesantos\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache",
-      "C:\\Users\\p-mesantos\\AppData\\Local\\Symbols\\src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\mathe\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\mathe\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\mathe\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.blazchat: http">
     <configuration name="blazchat.Client" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
@@ -252,6 +272,7 @@
       <updated>1717033133464</updated>
       <workItem from="1717033135776" duration="9809000" />
       <workItem from="1717420186018" duration="16351000" />
+      <workItem from="1717452796439" duration="7590000" />
     </task>
     <task id="LOCAL-00001" summary="finalizado primeira versão do front-end da tela home e ajustado código para funcionamento do chat">
       <option name="closed" value="true" />

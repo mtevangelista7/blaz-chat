@@ -1,4 +1,5 @@
 ﻿using System.Security.Cryptography;
+using blazchat.Application.DTOs;
 using blazchat.Application.Interfaces.Services;
 using blazchat.Client.Dtos;
 using blazchat.Domain.Entities;
@@ -11,7 +12,7 @@ namespace blazchat.Application.Services
     {
         public async Task<string> CreateUser(CreateUserDto userRequest)
         {
-            string password = userRequest.password;
+            string password = userRequest.Password;
 
             // create hash and salt
             CreatePasswordHash(password, out byte[] passwordHash, out byte[] passwordSalt);
@@ -19,7 +20,7 @@ namespace blazchat.Application.Services
             // create user
             var user = new User
             {
-                Name = userRequest.username,
+                Name = userRequest.Username,
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt
             };

@@ -1,7 +1,3 @@
-﻿namespace blazchat.Client.Dtos;
+﻿namespace blazchat.Application.DTOs;
 
-public class CreateChatDto
-{
-    public Guid User1Id { get; set; }
-    public Guid User2Id { get; set; }
-}
+public record CreateChatDto(Guid User1Id, Guid User2Id);

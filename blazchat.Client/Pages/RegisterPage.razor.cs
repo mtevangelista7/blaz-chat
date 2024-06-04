@@ -1,7 +1,11 @@
 ﻿using System.Net.Http.Json;
+using blazchat.Application.DTOs;
 using blazchat.Client.Dtos;
 using blazchat.Client.RefitInterfaceApi;
+using blazchat.Client.Services.Interfaces;
+using blazchat.Client.States;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Forms;
 using MudBlazor;
 
@@ -10,11 +14,12 @@ namespace blazchat.Client.Pages;
 public class RegisterPageBase : ComponentBase
 {
     [Inject] public NavigationManager NavigationManager { get; set; }
-    [Inject] public IUserEndpoints userEndpoints { get; set; }
     [Inject] public ISnackbar Snackbar { get; set; }
+    [Inject] public IAuthService AuthService { get; set; }
+    [Inject] public AuthenticationStateProvider AuthStateProvider { get; set; }
 
-    protected UserDto user = new();
-    protected bool isShow;
+    protected CreateUserDto user;
+    private bool _isShow;
     protected InputType PasswordInput = InputType.Password;
     protected string PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
 
@@ -27,32 +32,34 @@ public class RegisterPageBase : ComponentBase
     {
         // Validate the form
         if (!editContext.Validate()) return;
-        
+
         // Call the API to register the user
-        var userCreated = await userEndpoints.CreateUser(user);
-        var userId = userCreated.Id;
+        var result = await AuthService.Register(user.Username, user.Password);
 
-        // manter até montar o fluxo de login corretamente
-        APAGAR.CurrentUserId = userId;
+        if (!result.Flag)
+        {
+            Snackbar.Add("Invalid username or password", Severity.Error);
+            return;
+        }
 
-        // show a success message
+        var customAuthenticationStateProvider = (CustomAuthenticationStateProvider)AuthStateProvider;
+        await customAuthenticationStateProvider.UpdateAuthenticationStateAsync(result.Token);
         Snackbar.Add("Your account has been created", Severity.Success);
 
-        // Navigate to the messages page
-        NavigationManager.NavigateTo("/messages");
+        NavigationManager.NavigateTo($"/messages");
     }
 
     protected void ShowPassword()
     {
-        if (isShow)
+        if (_isShow)
         {
-            isShow = false;
+            _isShow = false;
             PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
             PasswordInput = InputType.Password;
         }
         else
         {
-            isShow = true;
+            _isShow = true;
             PasswordInputIcon = Icons.Material.Filled.Visibility;
             PasswordInput = InputType.Text;
         }

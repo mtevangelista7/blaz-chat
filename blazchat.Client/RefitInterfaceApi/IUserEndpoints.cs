@@ -6,7 +6,7 @@ namespace blazchat.Client.RefitInterfaceApi;
 public interface IUserEndpoints
 {
     [Post("/api/user/create")]
-    public Task<User> CreateUser(User user);
+    public Task<string> CreateUser(User user);
 
     [Get("/api/user/getUser/{id}")]
     public Task<User> GetUser(Guid id);

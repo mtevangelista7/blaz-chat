@@ -23,7 +23,7 @@
                         <EditForm Model="@user" OnValidSubmit="OnClickRegister">
                             <DataAnnotationsValidator></DataAnnotationsValidator>
                             <ValidationSummary></ValidationSummary>
-                            
+
                             <MudPaper Elevation="0" Class="d-flex rounded-lg align-center justify-center">
                                 <MudGrid Spacing="1">
                                     <MudItem xs="12">
@@ -34,7 +34,7 @@
                                         <MudStack Spacing="0" Row="false">
                                             <MudText>Username</MudText>
                                             <MudTextField
-                                                @bind-value="@user.Name"
+                                                @bind-value="@user.Username"
                                                 Margin="Margin.Dense"
                                                 T="string"
                                                 MaxLength="50"
@@ -46,18 +46,18 @@
                                     <MudItem xs="12">
                                         <MudStack Spacing="0" Row="false">
                                             <MudText>Password</MudText>
-                                            <MudTextField  
+                                            <MudTextField
                                                 T="string"
                                                 @bind-value="@user.Password"
                                                 Margin="Margin.Dense"
-                                                Variant="Variant.Outlined" 
-                                                InputType="@PasswordInput" 
-                                                Adornment="Adornment.End" 
-                                                AdornmentIcon="@PasswordInputIcon" 
-                                                OnAdornmentClick="ShowPassword" 
+                                                Variant="Variant.Outlined"
+                                                InputType="@PasswordInput"
+                                                Adornment="Adornment.End"
+                                                AdornmentIcon="@PasswordInputIcon"
+                                                OnAdornmentClick="ShowPassword"
                                                 MaxLength="50"
-                                                AdornmentColor="Color.Primary" 
-                                                AdornmentAriaLabel="Show Password" />
+                                                AdornmentColor="Color.Primary"
+                                                AdornmentAriaLabel="Show Password"/>
                                         </MudStack>
                                     </MudItem>
                                     <MudItem xs="12">
@@ -70,7 +70,7 @@
                                     </MudItem>
                                 </MudGrid>
                             </MudPaper>
-                            
+
                         </EditForm>
                     </MudPaper>
                 </MudItem>

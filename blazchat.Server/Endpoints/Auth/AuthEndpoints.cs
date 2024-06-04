@@ -1,4 +1,5 @@
-﻿using blazchat.Application.Interfaces.Services;
+﻿using blazchat.Application.DTOs;
+using blazchat.Application.Interfaces.Services;
 using blazchat.Client.Dtos;
 
 namespace blazchat.Server.Endpoints.Auth;
@@ -13,7 +14,7 @@ public static class AuthEndpoints
                 try
                 {
                     var accessToken =
-                        await authenticationService.GenerateAccessToken(request.username, request.password);
+                        await authenticationService.GenerateAccessToken(request.Username, request.Password);
 
                     return accessToken is null ? Results.BadRequest() : Results.Ok(accessToken);
                 }

@@ -8,11 +8,14 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Blazored.LocalStorage" Version="4.5.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="8.0.6" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.4"/>
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.4" PrivateAssets="all"/>
         <PackageReference Include="MudBlazor" Version="6.20.0" />
         <PackageReference Include="Refit" Version="7.0.0" />
         <PackageReference Include="Refit.HttpClientFactory" Version="7.0.0" />
+        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.35.0" />
     </ItemGroup>
 
     <ItemGroup>
@@ -33,6 +36,10 @@
       <AdditionalFiles Include="Components\MessagesHistory.razor" />
       <AdditionalFiles Include="Components\NewMessageButton.razor" />
       <AdditionalFiles Include="Components\OnlineChat.razor" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\blazchat.Application\blazchat.Application.csproj" />
     </ItemGroup>
 
 </Project>

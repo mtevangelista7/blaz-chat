@@ -1,12 +1,3 @@
-﻿namespace blazchat.Client.Dtos;
+﻿namespace blazchat.Application.DTOs;
 
-public class MessageDto
-{
-    public Guid ChatId { get; set; }
-
-    public Guid UserId { get; set; }
-
-    public string Text { get; set; }
-
-    public DateTime Timestamp { get; set; }
-}
+public record MessageDto(Guid ChatId, Guid UserId, string Text, DateTime Timestamp);
