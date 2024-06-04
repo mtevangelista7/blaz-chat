@@ -13,7 +13,8 @@ public class ChatConfiguration : IEntityTypeConfiguration<Chat>
         builder.HasKey(e => e.Id);
 
         builder.Property(e => e.Id)
-            .HasColumnType("uniqueidentifier");
+            .HasColumnType("uniqueidentifier")
+            .ValueGeneratedOnAdd();
 
         builder.HasMany(c => c.ChatUsers)
             .WithOne(cu => cu.Chat)
