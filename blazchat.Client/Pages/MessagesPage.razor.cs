@@ -23,7 +23,7 @@ namespace blazchat.Client.Pages
             if (user.Identity is not null && user.Identity.IsAuthenticated)
             {
                 _claims = user.Claims;
-                var nameIdent = user.FindFirst(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+                var nameIdent = user.FindFirst(c => c.Type == "id")?.Value;
 
                 currentUserId = Guid.Parse(nameIdent);
             }

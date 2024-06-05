@@ -66,29 +66,37 @@ public class AuthenticationService(
 
     private string CreateToken(User user)
     {
-        List<Claim> claims =
-        [
-            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new Claim(ClaimTypes.Name, user.Username),
-        ];
+        List<Claim> claims = new List<Claim>
+    {
+        new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+        new Claim(ClaimTypes.Name, user.Username)
+    };
 
-        SymmetricSecurityKey keySecretEncrypted = new(Encoding.ASCII
-            .GetBytes(configuration.GetSection("AppSettings:Token").Value!));
+        // Recupera a chave secreta e valida se não está nula ou vazia
+        var tokenKey = configuration.GetSection("AppSettings:Token").Value;
+        if (string.IsNullOrEmpty(tokenKey))
+        {
+            throw new ArgumentNullException("Token key is not configured in AppSettings.");
+        }
 
-        SigningCredentials creds = new(keySecretEncrypted, SecurityAlgorithms.HmacSha512Signature);
+        SymmetricSecurityKey keySecretEncrypted = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(tokenKey));
 
-        SecurityTokenDescriptor tokenPropriedades = new()
+        SigningCredentials creds = new SigningCredentials(keySecretEncrypted, SecurityAlgorithms.HmacSha256);
+
+        // Configura as propriedades do token
+        SecurityTokenDescriptor tokenPropriedades = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(claims),
-            Expires = DateTime.Now.AddDays(1),
+            Expires = DateTime.UtcNow.AddDays(1),
             SigningCredentials = creds
         };
 
-        JwtSecurityTokenHandler tokenHandler = new();
+        JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
         SecurityToken token = tokenHandler.CreateToken(tokenPropriedades);
 
         return tokenHandler.WriteToken(token);
     }
+
 
     public void StoresJwtCache(Guid id, string token)
     {

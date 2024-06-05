@@ -26,21 +26,22 @@ builder.Services.AddMudServices(config =>
 });
 
 // TODO: Ver se isso realmente é transient
-builder.Services.AddTransient<AuthenticatedHttpClientHandler>();
+builder.Services.AddScoped<AuthenticatedHttpClientHandler>();
 
 builder.Services.AddRefitClient<IUserEndpoints>()
-    .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://localhost:7076"))
+    .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://localhost:7047"))
     .AddHttpMessageHandler<AuthenticatedHttpClientHandler>();
 
 builder.Services.AddRefitClient<IChatEndpoints>()
-    .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://localhost:7076"))
+    .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://localhost:7047"))
     .AddHttpMessageHandler<AuthenticatedHttpClientHandler>();
 
 builder.Services.AddRefitClient<IMessageEndpoints>()
-    .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://localhost:7076"))
+    .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://localhost:7047"))
     .AddHttpMessageHandler<AuthenticatedHttpClientHandler>();
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddBlazoredLocalStorage();
 

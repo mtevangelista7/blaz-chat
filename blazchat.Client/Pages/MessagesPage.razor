@@ -6,31 +6,38 @@
 
 <PageTitle>Messages</PageTitle>
 
-@* if we dont have a Id, show the active chats from the current user *@
-@if (Id == Guid.Empty)
+@if (currentUserId.Equals(Guid.Empty))
 {
-    <MudAppBar Elevation="0" Class="white" Fixed="true" Dense="true">
-        <MudTextField T="string"
-                      Class="grey lighten-4 rounded-xl"
-                      Margin="Margin.Dense"
-                      Placeholder="Search"
-                      Variant="Variant.Outlined"
-                      Adornment="Adornment.Start"
-                      AdornmentColor="Color.Primary"
-                      AdornmentIcon="@Icons.Material.Filled.Search"/>
-    </MudAppBar>
 
-    <MudPaper Elevation="0" Class="px-6 mt-15 logo-animation">
-        <MessagesHistory IdUser="@currentUserId"></MessagesHistory>
-    </MudPaper>
-
-    @*button to start a new chat with someone*@
-    <NewMessageButton></NewMessageButton>
 }
-@*if we have a chat id, open the chat real time*@
 else
 {
-    <OnlineChat ChatIdParam="@Id"></OnlineChat>
+    @* if we dont have a Id, show the active chats from the current user *@
+    @if (Id.Equals(Guid.Empty))
+    {
+        <MudAppBar Elevation="0" Class="white" Fixed="true" Dense="true">
+            <MudTextField T="string"
+                          Class="grey lighten-4 rounded-xl"
+                          Margin="Margin.Dense"
+                          Placeholder="Search"
+                          Variant="Variant.Outlined"
+                          Adornment="Adornment.Start"
+                          AdornmentColor="Color.Primary"
+                          AdornmentIcon="@Icons.Material.Filled.Search" />
+        </MudAppBar>
+
+        <MudPaper Elevation="0" Class="px-6 mt-15 logo-animation">
+            <MessagesHistory IdUser="@currentUserId"></MessagesHistory>
+        </MudPaper>
+
+        @*button to start a new chat with someone*@
+        <NewMessageButton CurrentUserId="@currentUserId"></NewMessageButton>
+    }
+    @*if we have a chat id, open the chat real time*@
+    else
+    {
+        <OnlineChat ChatIdParam="@Id"></OnlineChat>
+    }
 }
 
 <style>

@@ -42,7 +42,9 @@ public class RegisterPageBase : ComponentBase
         }
 
         var customAuthenticationStateProvider = (CustomAuthenticationStateProvider)AuthStateProvider;
+
         await customAuthenticationStateProvider.UpdateAuthenticationStateAsync(result.Token);
+
         Snackbar.Add("Your account has been created", Severity.Success);
 
         NavigationManager.NavigateTo($"/messages");

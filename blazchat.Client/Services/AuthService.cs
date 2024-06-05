@@ -25,6 +25,7 @@ public class AuthService(ILocalStorageService localStorageService, IUserEndpoint
             return loginReponse;
         }
 
+        token = token.Replace("\u0022", "");
         await localStorageService.SetItemAsync(TokenKey, token);
         return loginReponse;
     }
@@ -36,13 +37,14 @@ public class AuthService(ILocalStorageService localStorageService, IUserEndpoint
         var token = await userEndpoints.CreateUser(new CreateUserDto(Username: username, Password: password));
 
         response.Flag = !string.IsNullOrWhiteSpace(token);
-        response.Token = token;
 
         if (!response.Flag)
         {
             return response;
         }
 
+        token = token.Replace("\u0022", "");
+        response.Token = token;
         await localStorageService.SetItemAsync(TokenKey, token);
         return response;
     }

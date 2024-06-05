@@ -14,33 +14,15 @@ public class NewMessageButtonBase : ComponentBase
     [Inject] IDialogService DialogService { get; set; }
     [Inject] NavigationManager Navigation { get; set; }
     [Inject] IChatEndpoints ChatEndpoints { get; set; }
-    [Inject] AuthenticationStateProvider AuthStateProvider { get; set; }
     [Inject] NavigationManager NavigationManager { get; set; }
 
-    private Task<AuthenticationState> _authenticationStateTask;
-    private Guid CurrentUserId;
-
-    protected override async Task OnInitializedAsync()
-    {
-        _authenticationStateTask = AuthStateProvider.GetAuthenticationStateAsync();
-
-        var user = _authenticationStateTask.Result.User;
-
-        if (!user.Identity.IsAuthenticated)
-        {
-            NavigationManager.NavigateTo("/login");
-            return;
-        }
-
-        CurrentUserId = Guid.Parse(user.FindFirst("id").Value);
-    }
-
+    [Parameter] public Guid CurrentUserId { get; set; } = Guid.Empty;
 
     protected async Task OnClickStartNewChat()
     {
         // dialog options 
         var options = new DialogOptions
-            { CloseOnEscapeKey = true, ClassBackground = "dialog-blur-backgroud", CloseButton = true };
+        { CloseOnEscapeKey = true, ClassBackground = "dialog-blur-backgroud", CloseButton = true };
 
         // dialog parameters
         var parameters = new DialogParameters() { { "CurrentUserId", CurrentUserId } };

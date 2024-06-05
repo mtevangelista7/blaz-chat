@@ -22,8 +22,10 @@ public class CustomAuthenticationStateProvider(ILocalStorageService localStorage
             return new AuthenticationState(_anonymousUser);
         }
 
+        var jwtSecurityToken = new JwtSecurityToken(token);
+
         // Get claims
-        var (id, username) = GetClaims(token);
+        var (id, username) = GetClaims(jwtSecurityToken);
 
         // If id or username is null or empty, return anonymous user
         if (string.IsNullOrWhiteSpace(id) || string.IsNullOrWhiteSpace(username))
@@ -45,52 +47,55 @@ public class CustomAuthenticationStateProvider(ILocalStorageService localStorage
         return new ClaimsPrincipal(identity);
     }
 
-    private static (string, string) GetClaims(string token)
+    private static (string, string) GetClaims(JwtSecurityToken token)
     {
         // If token is null or empty, return null
-        if (string.IsNullOrWhiteSpace(token)) return (null!, null!);
+        if (token is null)
+        {
+            return (null, null);
+        }
 
         // Get claims from token
-        var handler = new JwtSecurityTokenHandler();
-        var jsonToken = handler.ReadToken(token) as JwtSecurityToken;
+        var jsonToken = token;
 
         // get id and username from claims
-        var id = jsonToken?.Claims.First(claim => claim.Type == "id").Value;
-        var username = jsonToken?.Claims.First(claim => claim.Type == "username").Value;
+        var id = jsonToken?.Claims.First(claim => claim.Type == "nameid").Value;
+        var username = jsonToken?.Claims.First(claim => claim.Type == "unique_name").Value;
 
         return (id, username)!;
     }
 
-    public async Task UpdateAuthenticationStateAsync(string token)
+    public async Task UpdateAuthenticationStateAsync(string tokenString)
     {
         var claims = new ClaimsPrincipal();
+        var handler = new JwtSecurityTokenHandler();
 
-        // If token is null or empty, remove token from local storage
-        if (string.IsNullOrWhiteSpace(token))
+        if (!handler.CanReadToken(tokenString))
         {
             await localStorage.RemoveItemAsync(LocalStorageKey);
+            return;
         }
-        // else set token in local storage
-        else
+
+        var jwtToken = handler.ReadJwtToken(tokenString);
+
+        // Get claims
+        var (id, username) = GetClaims(jwtToken);
+
+        // If id and username is null or empty, return
+        if (string.IsNullOrWhiteSpace(id) && string.IsNullOrWhiteSpace(username))
         {
-            // Get claims
-            var (id, username) = GetClaims(token);
-
-            // If id and username is null or empty, return
-            if (string.IsNullOrWhiteSpace(id) && string.IsNullOrWhiteSpace(username))
-            {
-                return;
-            }
-
-            var setClaims = SetClaimsPrincipal(id, username);
-
-            if (setClaims is null)
-            {
-                return;
-            }
-
-            await localStorage.SetItemAsync(LocalStorageKey, token);
+            return;
         }
+
+        var setClaims = SetClaimsPrincipal(id, username);
+
+        if (setClaims is null)
+        {
+            return;
+        }
+
+        // Store the token string in local storage
+        await localStorage.SetItemAsync(LocalStorageKey, tokenString);
 
         // Notify authentication state changed
         NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(claims)));
