@@ -34,7 +34,7 @@ public class LoginPageBase : ComponentBase
             NavigationManager.NavigateTo("/messages");
         }
     }
-    
+
     protected async Task OnClickLogin(EditContext context)
     {
         if (!context.Validate()) return;

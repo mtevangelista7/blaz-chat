@@ -13,7 +13,7 @@ namespace blazchat.Client.Pages
         [Inject] public NavigationManager NavigationManager { get; set; }
 
         protected Guid currentUserId = Guid.Empty;
-        private IEnumerable<Claim> _claims = Enumerable.Empty<Claim>();
+        protected string UserName = string.Empty;
 
         protected override async Task OnInitializedAsync()
         {
@@ -24,10 +24,11 @@ namespace blazchat.Client.Pages
 
             if (user.Identity is not null && user.Identity.IsAuthenticated)
             {
-                _claims = user.Claims;
-                var nameIdent = user.FindFirst(c => c.Type == "id")?.Value;
+                var id = user.FindFirst(c => c.Type == "id")?.Value;
+                var nameIdent = user.FindFirst(c => c.Type == "username")?.Value;
 
-                currentUserId = Guid.Parse(nameIdent);
+                currentUserId = Guid.Parse(id);
+                UserName = nameIdent;
             }
             else
             {

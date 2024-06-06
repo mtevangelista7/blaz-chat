@@ -9,12 +9,10 @@ public class ChatRepository(AplicationDbContext context) : EFRepository<Chat>(co
 {
     public async Task<List<Chat>> GetActiveChatsAsync(Guid userId)
     {
-        return await context.ChatUsers
-            .Where(x => x.UserId == userId)
-            .Include(x => x.Chat) // Inclui o chat
-            .ThenInclude(c => c.ChatUsers) // Inclui os usuários no chat
-            .ThenInclude(cu => cu.User) // Inclui os detalhes do usuário
-            .Select(x => x.Chat)
+        return await context.Chats
+            .Where(chat => chat.ChatUsers.Any(cu => cu.UserId == userId))
+            .Include(chat => chat.ChatUsers)
+            .ThenInclude(cu => cu.User)
             .ToListAsync();
     }
 }

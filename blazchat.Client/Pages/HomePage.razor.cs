@@ -19,9 +19,5 @@ public class HomePageBase : ComponentBase
         {
             NavigationManager.NavigateTo("/messages");
         }
-        else
-        {
-            NavigationManager.NavigateTo("/login");
-        }
     }
 }

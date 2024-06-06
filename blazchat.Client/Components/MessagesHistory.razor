@@ -19,9 +19,9 @@
 
                             <MudItem Class="d-flex align-center" xs="10" sm="10" md="11">
                                 <MudText Class="black-text" Typo="Typo.h6" Align="Align.Start">
-                                    @if (chat.GuessUser != null)
+                                    @if (chat.ChatUsers.FirstOrDefault(u => u.UserId != IdUser) != null)
                                     {
-                                        <b>@chat.GuessUser.Username</b>
+                                        <b>@chat.ChatUsers.FirstOrDefault(u => u.UserId != IdUser).User.Username</b>
                                     }
                                 </MudText>
                             </MudItem>

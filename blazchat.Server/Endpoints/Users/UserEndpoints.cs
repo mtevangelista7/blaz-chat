@@ -50,7 +50,7 @@ namespace blazchat.Server.Endpoints.Users
             }).RequireAuthorization();
 
             app.MapGet("/api/user/getGuessUserByChatId/{chatId:guid}/{currentUser:guid}", async (Guid chatId,
-    Guid currentUser, IChatService chatService, IUserService userService) =>
+                Guid currentUser, IChatService chatService, IUserService userService) =>
             {
                 try
                 {

@@ -49,7 +49,8 @@ public class ChatService(
 
     public async Task<List<Chat>> GetActiveChats(Guid userId)
     {
-        return await chatRepository.GetActiveChatsAsync(userId);
+        var chats = await chatRepository.GetActiveChatsAsync(userId);
+        return chats;
     }
 
     public Task<Guid> GetGuessUserByChatId(Guid chatId, Guid currentUser)

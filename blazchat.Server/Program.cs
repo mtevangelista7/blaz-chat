@@ -63,9 +63,9 @@ if (app.Environment.IsDevelopment())
 {
     app.UseWebAssemblyDebugging();
     app.UseCors(builder => builder
-           .AllowAnyOrigin()
-                  .AllowAnyMethod()
-                         .AllowAnyHeader());
+        .AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader());
 }
 else
 {

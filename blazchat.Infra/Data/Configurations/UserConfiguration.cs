@@ -10,7 +10,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
     {
         builder.ToTable("Users");
         builder.HasKey(e => e.Id);
-        
+
         builder.Property(e => e.Id)
             .HasColumnType("uniqueidentifier")
             .ValueGeneratedOnAdd();
@@ -18,7 +18,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(e => e.Username)
             .HasColumnType("nvarchar")
             .HasMaxLength(100);
-        
+
         builder.Property(c => c.PasswordHash)
             .HasColumnName("PasswordHash")
             .HasColumnType("VARBINARY(MAX)")
@@ -28,7 +28,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .HasColumnName("PasswordSalt")
             .HasColumnType("VARBINARY(MAX)")
             .IsRequired();
-        
+
         builder.HasMany(u => u.ChatUsers)
             .WithOne(cu => cu.User)
             .HasForeignKey(cu => cu.UserId)

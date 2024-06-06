@@ -39,8 +39,24 @@ namespace blazchat.Server.Endpoints.Chats
             {
                 try
                 {
-                    var activeChats = await chatService.GetActiveChats(userId);
-                    return Results.Ok(activeChats);
+                    List<Domain.Entities.Chat> activeChats = await chatService.GetActiveChats(userId);
+
+                    List<ChatDto> result = new List<ChatDto>();
+                    foreach (var chat in activeChats)
+                    {
+                        var chatDto = new ChatDto(
+                            Id: chat.Id,
+                            ChatUsers: chat.ChatUsers.Select(x => new ChatUserDto
+                            {
+                                UserId = x.UserId,
+                                ChatId = x.ChatId,
+                                User = new CreateUserDto(Username: x.User.Username, Password: null)
+                            }).ToList());
+
+                        result.Add(chatDto);
+                    }
+
+                    return Results.Ok(result);
                 }
                 catch (Exception e)
                 {

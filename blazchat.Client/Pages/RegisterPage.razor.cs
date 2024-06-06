@@ -34,7 +34,7 @@ public class RegisterPageBase : ComponentBase
             NavigationManager.NavigateTo("/messages");
         }
     }
-    
+
     protected void OnClickLogin()
     {
         NavigationManager.NavigateTo("/login");

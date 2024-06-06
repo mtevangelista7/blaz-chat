@@ -1,27 +1,46 @@
 ﻿using blazchat.Application.DTOs;
 using blazchat.Client.RefitInterfaceApi;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 
 namespace blazchat.Client.Components;
 
 public class MessagesHistoryBase : ComponentBase
 {
-    [Parameter] public Guid IdUser { get; set; } = Guid.Empty;
-
     [Inject] protected IChatEndpoints ChatEndpoints { get; set; }
 
     [Inject] protected IUserEndpoints UserEndpoints { get; set; }
 
     [Inject] NavigationManager NavigationManager { get; set; }
 
+    [Inject] public AuthenticationStateProvider AuthStateProvider { get; set; }
+
     protected List<ChatDto> activeChats = [];
+    protected Guid IdUser;
 
     protected override async Task OnInitializedAsync()
     {
         try
         {
-            activeChats = await GetMessageHistory();
+            var authState = await AuthStateProvider
+    .GetAuthenticationStateAsync();
 
+            var user = authState.User;
+
+            if (user.Identity is not null && user.Identity.IsAuthenticated)
+            {
+                var id = user.FindFirst(c => c.Type == "id")?.Value;
+                var nameIdent = user.FindFirst(c => c.Type == "username")?.Value;
+
+                IdUser = Guid.Parse(id);
+            }
+            else
+            {
+                NavigationManager.NavigateTo("/login");
+            }
+
+
+            activeChats = await GetMessageHistory();
             StateHasChanged();
         }
         catch (Exception err)
@@ -35,20 +54,6 @@ public class MessagesHistoryBase : ComponentBase
         try
         {
             var chats = await ChatEndpoints.GetActiveChats(IdUser);
-
-            // TODO: isso aqui não ta legal, tenta puxar todos os dados de uma vez e se não der certo, muda a lógica
-            var tasks = chats.Select(async chat =>
-            {
-                var guessUserId = chat.ChatUsers.FirstOrDefault(x => x.UserId != IdUser).UserId;
-
-                if (!guessUserId.Equals(Guid.Empty))
-                {
-                    chat.GuessUser = await UserEndpoints.GetGuessUserByChatId(chat.Id, guessUserId);
-                }
-            }).ToArray();
-
-            await Task.WhenAll(tasks);
-
             return chats;
         }
         catch (Exception err)
