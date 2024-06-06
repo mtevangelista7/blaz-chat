@@ -12,15 +12,22 @@
   <component name="ChangeListManager">
     <list default="true" id="38ceb02f-a94c-486e-a627-a9ccbe673f03" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.blazchat/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.blazchat/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Application/Services/IAuthenticationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Application/Services/IAuthenticationService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Client/Components/MessagesHistory.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/Components/MessagesHistory.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Client/Components/OnlineChat.razor" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/Components/OnlineChat.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Client/Components/OnlineChat.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/Components/OnlineChat.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Client/Pages/HomePage.razor" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/Pages/HomePage.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Client/Pages/LoginPage.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/Pages/LoginPage.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Client/Pages/MessagesPage.razor" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/Pages/MessagesPage.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Client/Pages/MessagesPage.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/Pages/MessagesPage.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Client/Pages/RegisterPage.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/Pages/RegisterPage.razor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Client/RefitInterfaceApi/IUserEndpoints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/RefitInterfaceApi/IUserEndpoints.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blazchat.Client/Services/AuthService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/Services/AuthService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/States/CustomAuthenticationStateProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/States/CustomAuthenticationStateProvider.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Infra/Data/Configurations/ChatConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Infra/Data/Configurations/ChatConfiguration.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Infra/Data/Context/AplicationDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Infra/Data/Context/AplicationDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Infra/Data/Configurations/ChatUserConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Infra/Data/Configurations/ChatUserConfiguration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Infra/Migrations/AplicationDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Infra/Migrations/AplicationDbContextModelSnapshot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Server/Endpoints/Chats/ChatEndPoints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Server/Endpoints/Chats/ChatEndPoints.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Server/Endpoints/Users/UserEndpoints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Server/Endpoints/Users/UserEndpoints.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blazchat.Server/Hubs/ChatHub.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Server/Hubs/ChatHub.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blazchat.Server/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Server/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Server/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Server/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Server/blazchat.Server.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Server/blazchat.Server.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,17 +46,19 @@
     &quot;assignee&quot;: &quot;mtevangelista7&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/mtevangelista7/blaz-chat.git",
-    "accountId": "dbd35eab-3733-4620-9f40-d1a8f5d4fe2b"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/mtevangelista7/blaz-chat.git&quot;,
+    &quot;accountId&quot;: &quot;dbd35eab-3733-4620-9f40-d1a8f5d4fe2b&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/aspnetcore/b8139c5ee58f1708b0e3368a1b241400edd6cbc4/src/Components/Components/src/ComponentBase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/3b8b000a0e115700b18265d8ec8c6307056dc94d/src/libraries/System.Private.CoreLib/src/System/Runtime/CompilerServices/AsyncTaskMethodBuilderT.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/3b8b000a0e115700b18265d8ec8c6307056dc94d/src/libraries/System.Private.CoreLib/src/System/Threading/ExecutionContext.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/3b8b000a0e115700b18265d8ec8c6307056dc94d/src/libraries/System.Private.CoreLib/src/System/Threading/ExecutionContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/3b8b000a0e115700b18265d8ec8c6307056dc94d/src/libraries/System.Private.CoreLib/src/System/Threading/Tasks/Task.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/runtime/3b8b000a0e115700b18265d8ec8c6307056dc94d/src/libraries/System.Private.CoreLib/src/System/Threading/Tasks/TaskContinuation.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2e9cda094f2549d1b29a5c587f060d6912e20/00/cdc3efb6/JwtSecurityToken.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -57,13 +66,16 @@
   &quot;associatedIndex&quot;: 8
 }</component>
   <component name="ProjectId" id="2hQW9hp0MYVXXPfteMxr3ojcoeO" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    ".NET Launch Settings Profile.blazchat.Server: https.executor": "Debug",
+    ".NET Launch Settings Profile.blazchat.Server: https.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "break-projects-refactor",
     "node.js.detected.package.eslint": "true",
@@ -156,6 +168,7 @@
       <updated>1717526633149</updated>
       <workItem from="1717526637904" duration="1889000" />
       <workItem from="1717542395593" duration="1646000" />
+      <workItem from="1717635325075" duration="2284000" />
     </task>
     <task id="LOCAL-00001" summary="ta rodando, agora falta testar o JWT mais tarde faço">
       <option name="closed" value="true" />
@@ -182,82 +195,45 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/blazchat.Client/States/CustomAuthenticationStateProvider.cs</url>
-          <line>58</line>
-          <properties documentPath="F:\temp\blaz-chat\blazchat.Client\States\CustomAuthenticationStateProvider.cs" containingFunctionPresentation="Method 'GetClaims'">
+          <url>file://$PROJECT_DIR$/blazchat.Client/Components/OnlineChat.razor.cs</url>
+          <line>106</line>
+          <properties documentPath="F:\temp\blaz-chat\blazchat.Client\Components\OnlineChat.razor.cs" containingFunctionPresentation="Lambda expression inside Method 'OpenConnection'">
             <startOffsets>
-              <option value="2029" />
+              <option value="3523" />
             </startOffsets>
             <endOffsets>
-              <option value="2051" />
+              <option value="3602" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="1" />
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/blazchat.Client/States/CustomAuthenticationStateProvider.cs</url>
-          <line>71</line>
-          <properties documentPath="F:\temp\blaz-chat\blazchat.Client\States\CustomAuthenticationStateProvider.cs" containingFunctionPresentation="Method 'UpdateAuthenticationStateAsync'">
+          <url>file://$PROJECT_DIR$/blazchat.Client/Components/OnlineChat.razor</url>
+          <line>30</line>
+          <properties documentPath="F:\temp\blaz-chat\blazchat.Client\Components\OnlineChat.razor" isMultiMethodBreakpoint="true">
+            <option name="multiMethodBreakpoint" value="true" />
             <startOffsets>
-              <option value="2442" />
+              <option value="-1" />
             </startOffsets>
             <endOffsets>
-              <option value="2486" />
+              <option value="-1" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="4" />
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/blazchat.Application/Services/IAuthenticationService.cs</url>
-          <line>22</line>
-          <properties documentPath="F:\temp\blaz-chat\blazchat.Application\Services\IAuthenticationService.cs" containingFunctionPresentation="Method 'GenerateAccessToken'">
+          <url>file://$PROJECT_DIR$/blazchat.Client/Components/OnlineChat.razor</url>
+          <line>24</line>
+          <properties documentPath="F:\temp\blaz-chat\blazchat.Client\Components\OnlineChat.razor" isMultiMethodBreakpoint="true">
+            <option name="multiMethodBreakpoint" value="true" />
             <startOffsets>
-              <option value="709" />
+              <option value="-1" />
             </startOffsets>
             <endOffsets>
-              <option value="767" />
+              <option value="-1" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/blazchat.Application/Services/IAuthenticationService.cs</url>
-          <line>68</line>
-          <properties documentPath="F:\temp\blaz-chat\blazchat.Application\Services\IAuthenticationService.cs" containingFunctionPresentation="Method 'CreateToken'">
-            <startOffsets>
-              <option value="2186" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2352" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/blazchat.Application/Services/IAuthenticationService.cs</url>
-          <line>86</line>
-          <properties documentPath="F:\temp\blaz-chat\blazchat.Application\Services\IAuthenticationService.cs" containingFunctionPresentation="Method 'CreateToken'">
-            <startOffsets>
-              <option value="2818" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2863" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/blazchat.Client/States/CustomAuthenticationStateProvider.cs</url>
-          <line>82</line>
-          <properties documentPath="F:\temp\blaz-chat\blazchat.Client\States\CustomAuthenticationStateProvider.cs" containingFunctionPresentation="Method 'UpdateAuthenticationStateAsync'">
-            <startOffsets>
-              <option value="2731" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2772" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="8" />
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

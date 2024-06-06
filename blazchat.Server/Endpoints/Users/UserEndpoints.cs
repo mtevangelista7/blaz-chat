@@ -48,6 +48,28 @@ namespace blazchat.Server.Endpoints.Users
                     return Results.BadRequest(ex.Message);
                 }
             }).RequireAuthorization();
+
+            app.MapGet("/api/user/getGuessUserByChatId/{chatId:guid}/{currentUser:guid}", async (Guid chatId,
+    Guid currentUser, IChatService chatService, IUserService userService) =>
+            {
+                try
+                {
+                    var guessUserId = await chatService.GetGuessUserByChatId(chatId, currentUser);
+
+                    if (guessUserId.Equals(Guid.Empty))
+                    {
+                        return Results.NotFound();
+                    }
+
+                    var guessUser = await userService.GetUser(guessUserId);
+
+                    return guessUser is null ? Results.NotFound() : Results.Ok(guessUser);
+                }
+                catch (Exception e)
+                {
+                    return Results.BadRequest(e.Message);
+                }
+            }).RequireAuthorization();
         }
     }
 }

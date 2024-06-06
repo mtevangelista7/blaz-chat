@@ -43,7 +43,7 @@ public class MessagesHistoryBase : ComponentBase
 
                 if (!guessUserId.Equals(Guid.Empty))
                 {
-                    chat.GuessUser = await UserEndpoints.GetGuessUserById(guessUserId);
+                    chat.GuessUser = await UserEndpoints.GetGuessUserByChatId(chat.Id, guessUserId);
                 }
             }).ToArray();
 

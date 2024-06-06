@@ -22,6 +22,19 @@ public class LoginPageBase : ComponentBase
     protected InputType PasswordInput = InputType.Password;
     protected string PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
 
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthStateProvider
+            .GetAuthenticationStateAsync();
+
+        var user = authState.User;
+
+        if (user.Identity is not null && user.Identity.IsAuthenticated)
+        {
+            NavigationManager.NavigateTo("/messages");
+        }
+    }
+    
     protected async Task OnClickLogin(EditContext context)
     {
         if (!context.Validate()) return;
@@ -35,7 +48,9 @@ public class LoginPageBase : ComponentBase
         }
 
         var customAuthenticationStateProvider = (CustomAuthenticationStateProvider)AuthStateProvider;
+
         await customAuthenticationStateProvider.UpdateAuthenticationStateAsync(result.Token);
+
         Snackbar.Add("You are logged in", Severity.Success);
 
         NavigationManager.NavigateTo($"/messages");

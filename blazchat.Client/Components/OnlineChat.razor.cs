@@ -29,10 +29,10 @@ public class OnlineChatBase : ComponentBase, IDisposable
 
     protected override async Task OnInitializedAsync()
     {
-        _authenticationStateTask = AuthStateProvider.GetAuthenticationStateAsync();
+        var authState = await AuthStateProvider
+            .GetAuthenticationStateAsync();
 
-        // get the current user
-        var user = _authenticationStateTask.Result.User;
+        var user = authState.User;
 
         // if the user is not authenticated, redirect to the login page
         if (!user.Identity.IsAuthenticated)
@@ -42,7 +42,7 @@ public class OnlineChatBase : ComponentBase, IDisposable
         }
 
         // get the current user object
-        currentUser = await UserEndpoints.GetUser(Guid.Parse(user.FindFirst("id").Value));
+        currentUser = await UserEndpoints.GetUser(Guid.Parse(user.FindFirst(c => c.Type == "id")?.Value));
 
         // if the current user is null, redirect to the login page
         if (currentUser is null)
@@ -60,6 +60,12 @@ public class OnlineChatBase : ComponentBase, IDisposable
 
         // get the guess user
         guesstUser = await UserEndpoints.GetGuessUserByChatId(ChatIdParam, currentUser.Id);
+
+        if (guesstUser is null)
+        {
+            NavigationManager.NavigateTo("/messages");
+            return;
+        }
 
         // connect to the hub and load the messages
         await OpenConnection();

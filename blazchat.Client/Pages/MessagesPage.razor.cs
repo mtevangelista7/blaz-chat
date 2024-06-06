@@ -1,4 +1,5 @@
 ﻿using System.Security.Claims;
+using blazchat.Client.States;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 
@@ -18,6 +19,7 @@ namespace blazchat.Client.Pages
         {
             var authState = await AuthStateProvider
                 .GetAuthenticationStateAsync();
+
             var user = authState.User;
 
             if (user.Identity is not null && user.Identity.IsAuthenticated)

@@ -8,7 +8,6 @@
 
 @if (currentUserId.Equals(Guid.Empty))
 {
-
 }
 else
 {
@@ -16,14 +15,23 @@ else
     @if (Id.Equals(Guid.Empty))
     {
         <MudAppBar Elevation="0" Class="white" Fixed="true" Dense="true">
-            <MudTextField T="string"
-                          Class="grey lighten-4 rounded-xl"
-                          Margin="Margin.Dense"
-                          Placeholder="Search"
-                          Variant="Variant.Outlined"
-                          Adornment="Adornment.Start"
-                          AdornmentColor="Color.Primary"
-                          AdornmentIcon="@Icons.Material.Filled.Search" />
+            <MudGrid Spacing="2">
+                <MudItem xs="9">
+                    <MudTextField T="string"
+                                  Class="grey lighten-4 rounded-xl"
+                                  Margin="Margin.Dense"
+                                  Placeholder="Search"
+                                  Variant="Variant.Outlined"
+                                  Adornment="Adornment.Start"
+                                  AdornmentColor="Color.Primary"
+                                  AdornmentIcon="@Icons.Material.Filled.Search"/>
+                </MudItem>
+                
+                <MudItem xs="3">
+                    <MudText Color="Color.Primary">@currentUserId.ToString()</MudText>
+                </MudItem>
+            </MudGrid>
+            
         </MudAppBar>
 
         <MudPaper Elevation="0" Class="px-6 mt-15 logo-animation">

@@ -1,6 +1,7 @@
 using blazchat.Infra.Data.Context;
 using blazchat.Server.Components;
 using blazchat.Server.DependencyInjection;
+using blazchat.Server.Endpoints.Auth;
 using blazchat.Server.Endpoints.Chats;
 using blazchat.Server.Endpoints.Messages;
 using blazchat.Server.Endpoints.Users;
@@ -77,6 +78,7 @@ else
 app.MapChatEndpoints();
 app.MapUserEndpoints();
 app.MapMessageEndpoints();
+app.MapAuthEndpoints();
 
 app.MapHub<ChatHub>("/chathub");
 

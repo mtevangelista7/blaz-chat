@@ -24,9 +24,7 @@ public interface IUserEndpoints
     [Post("/api/auth/generateToken")]
     public Task<string> Login(CreateUserDto user);
 
-    [Get("/api/chat/getGuessUserByChatId/{chatId}/{currentUser}")]
+    [Get("/api/user/getGuessUserByChatId/{chatId}/{currentUser}")]
     public Task<GuessUserDto> GetGuessUserByChatId(Guid chatId, Guid currentUser);
 
-    [Get("/api/user/getGuessUserById/{id}")]
-    public Task<GuessUserDto> GetGuessUserById(Guid id);
 }

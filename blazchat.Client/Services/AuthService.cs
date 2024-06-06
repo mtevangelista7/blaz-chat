@@ -1,4 +1,5 @@
-﻿using blazchat.Application.DTOs;
+﻿using Azure;
+using blazchat.Application.DTOs;
 using blazchat.Client.Entities;
 using blazchat.Client.RefitInterfaceApi;
 using blazchat.Client.Services.Interfaces;
@@ -18,7 +19,6 @@ public class AuthService(ILocalStorageService localStorageService, IUserEndpoint
         var token = await userEndpoints.Login(new CreateUserDto(Username: username, Password: password));
 
         loginReponse.Flag = !string.IsNullOrWhiteSpace(token);
-        loginReponse.Token = token;
 
         if (!loginReponse.Flag)
         {
@@ -26,6 +26,7 @@ public class AuthService(ILocalStorageService localStorageService, IUserEndpoint
         }
 
         token = token.Replace("\u0022", "");
+        loginReponse.Token = token;
         await localStorageService.SetItemAsync(TokenKey, token);
         return loginReponse;
     }

@@ -30,7 +30,7 @@ public class ChatHub(IChatService chatService, IMessageService messageService) :
         };
 
         await messageService.AddMessageAsync(msg);
-        await Clients.Group(sendMessageDto.ChatId.ToString()).SendAsync("ReceiveMessage", sendMessageDto.ChatId,
+        await Clients.Group(sendMessageDto.ChatId.ToString()).SendAsync("ReceiveMessage", sendMessageDto.UserId,
             sendMessageDto.Message, msg.Timestamp);
     }
 }

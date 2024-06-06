@@ -9,7 +9,7 @@ public class ChatUserConfiguration : IEntityTypeConfiguration<ChatUser>
     public void Configure(EntityTypeBuilder<ChatUser> builder)
     {
         builder.ToTable("ChatUsers");
-        
+
         builder.HasKey(cu => new { cu.ChatId, cu.UserId });
 
         builder.HasOne(cu => cu.Chat)
@@ -19,5 +19,7 @@ public class ChatUserConfiguration : IEntityTypeConfiguration<ChatUser>
         builder.HasOne(cu => cu.User)
             .WithMany(u => u.ChatUsers)
             .HasForeignKey(cu => cu.UserId);
+
+        builder.Ignore(cu => cu.Id);
     }
 }

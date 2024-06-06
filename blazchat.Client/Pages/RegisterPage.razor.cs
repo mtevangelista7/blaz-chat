@@ -22,6 +22,19 @@ public class RegisterPageBase : ComponentBase
     protected InputType PasswordInput = InputType.Password;
     protected string PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
 
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthStateProvider
+            .GetAuthenticationStateAsync();
+
+        var user = authState.User;
+
+        if (user.Identity is not null && user.Identity.IsAuthenticated)
+        {
+            NavigationManager.NavigateTo("/messages");
+        }
+    }
+    
     protected void OnClickLogin()
     {
         NavigationManager.NavigateTo("/login");
