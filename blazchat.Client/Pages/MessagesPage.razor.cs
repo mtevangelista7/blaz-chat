@@ -12,7 +12,6 @@ namespace blazchat.Client.Pages
         [Parameter] public Guid Id { get; set; } = Guid.Empty;
 
         protected Guid CurrentUserId = Guid.Empty;
-        protected string UserName = string.Empty;
 
         protected override async Task OnInitializedAsync()
         {
@@ -26,10 +25,7 @@ namespace blazchat.Client.Pages
                 if (user.Identity is not null && user.Identity.IsAuthenticated)
                 {
                     var id = user.FindFirst(c => c.Type == "id")?.Value;
-                    var nameIdent = user.FindFirst(c => c.Type == "username")?.Value;
-
                     CurrentUserId = Guid.Parse(id);
-                    UserName = nameIdent;
                 }
                 else
                 {

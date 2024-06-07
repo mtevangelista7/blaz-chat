@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using blazchat.Client.Services.Interfaces;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.JSInterop;
 using MudBlazor;
@@ -11,4 +12,5 @@ public class ComponentBaseExtends : ComponentBase
     [Inject] public NavigationManager NavigationManager { get; set; }
     [Inject] public AuthenticationStateProvider AuthStateProvider { get; set; }
     [Inject] public IJSRuntime JSRuntime { get; set; }
+    [Inject] public ISpinnerService SpinnerService { get; set; }
 }

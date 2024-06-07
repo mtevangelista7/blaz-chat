@@ -10,24 +10,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="38ceb02f-a94c-486e-a627-a9ccbe673f03" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.blazchat/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.blazchat/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Components/Dialogs/StartNewChatDialog.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/Components/Dialogs/StartNewChatDialog.razor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Components/MessagesHistory.razor" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/Components/MessagesHistory.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Components/MessagesHistory.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/Components/MessagesHistory.razor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Components/NewMessageButton.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/Components/NewMessageButton.razor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Components/OnlineChat.razor" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/Components/OnlineChat.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Components/OnlineChat.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/Components/OnlineChat.razor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/HttpClientHandler/AuthenticatedHttpClientHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/HttpClientHandler/AuthenticatedHttpClientHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Pages/HomePage.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/Pages/HomePage.razor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Pages/LoginPage.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/Pages/LoginPage.razor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Pages/MessagesPage.razor" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/Pages/MessagesPage.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Pages/MessagesPage.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/Pages/MessagesPage.razor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Pages/RegisterPage.razor" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/Pages/RegisterPage.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Pages/RegisterPage.razor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/Pages/RegisterPage.razor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blazchat.Client/Services/AuthService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/blazchat.Client/Services/AuthService.cs" afterDir="false" />
-    </list>
+    <list default="true" id="38ceb02f-a94c-486e-a627-a9ccbe673f03" name="Changes" comment="Tratamento de erro adicionado ao projeto client e dialogs genéricos para mensagens" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -53,6 +36,8 @@
 }]]></component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/../AppData/Local/Symbols/src/dotnet/aspnetcore/b8139c5ee58f1708b0e3368a1b241400edd6cbc4/src/Components/Components/src/ComponentBase.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/p-mesantos/blaz-chat/blazchat.Server/appsettings.Development.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/p-mesantos/blaz-chat/blazchat.Server/appsettings.Development.json" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -163,7 +148,7 @@
       <workItem from="1717526637904" duration="1889000" />
       <workItem from="1717542395593" duration="1646000" />
       <workItem from="1717635325075" duration="2458000" />
-      <workItem from="1717762339797" duration="9018000" />
+      <workItem from="1717762339797" duration="10167000" />
     </task>
     <task id="LOCAL-00001" summary="ta rodando, agora falta testar o JWT mais tarde faço">
       <option name="closed" value="true" />
@@ -181,7 +166,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717637806139</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Tratamento de erro adicionado ao projeto client e dialogs genéricos para mensagens">
+      <option name="closed" value="true" />
+      <created>1717772913647</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1717772913647</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -193,7 +186,8 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="ta rodando, agora falta testar o JWT mais tarde faço" />
     <MESSAGE value="Gerei a migration para ajustar a tabela chat users, estava com um id sem uso, ajustei alguns endpoints, o chat está funcionando corretamente assim com a autentificação, porém a tela MessagesHistory não está carregando o nome dos guests corretamente..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Gerei a migration para ajustar a tabela chat users, estava com um id sem uso, ajustei alguns endpoints, o chat está funcionando corretamente assim com a autentificação, porém a tela MessagesHistory não está carregando o nome dos guests corretamente..." />
+    <MESSAGE value="Tratamento de erro adicionado ao projeto client e dialogs genéricos para mensagens" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tratamento de erro adicionado ao projeto client e dialogs genéricos para mensagens" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

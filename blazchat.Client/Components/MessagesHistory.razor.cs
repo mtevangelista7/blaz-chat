@@ -2,6 +2,7 @@
 using blazchat.Client.CustomComponentBase;
 using blazchat.Client.Helper;
 using blazchat.Client.RefitInterfaceApi;
+using blazchat.Client.Services.Interfaces;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 
@@ -9,12 +10,15 @@ namespace blazchat.Client.Components;
 
 public class MessagesHistoryBase : ComponentBaseExtends
 {
-    [Inject] protected IChatEndpoints ChatEndpoints { get; set; }
+    [Inject] private IChatEndpoints ChatEndpoints { get; set; }
 
-    [Inject] protected IUserEndpoints UserEndpoints { get; set; }
+    [Inject] private IUserEndpoints UserEndpoints { get; set; }
+
+    [Inject] private IAuthService AuthService { get; set; }
 
     protected List<ChatDto> ActiveChats = [];
     protected Guid IdUser;
+    protected string UserName = string.Empty;
 
     protected override async Task OnInitializedAsync()
     {
@@ -31,6 +35,7 @@ public class MessagesHistoryBase : ComponentBaseExtends
                 var nameIdent = user.FindFirst(c => c.Type == "username")?.Value;
 
                 IdUser = Guid.Parse(id);
+                UserName = nameIdent;
             }
             else
             {
@@ -73,6 +78,41 @@ public class MessagesHistoryBase : ComponentBaseExtends
             }
 
             NavigationManager.NavigateTo($"/messages/{idChat}");
+        }
+        catch (Exception ex)
+        {
+            await Help.HandleError(DialogService, ex, this);
+        }
+    }
+
+    protected async Task OnTextChange(string param)
+    {
+        try
+        {
+            var text = param;
+
+            if (!string.IsNullOrWhiteSpace(text))
+            {
+                ActiveChats = ActiveChats
+                    .Where(c => c.ChatUsers.FirstOrDefault(u => u.UserId != IdUser).User.Username
+                        .Contains(text, StringComparison.OrdinalIgnoreCase))
+                    .ToList();
+            }
+
+            StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            await Help.HandleError(DialogService, ex, this);
+        }
+    }
+
+    protected async Task OnClickLogout()
+    {
+        try
+        {
+            await AuthService.Logout();
+            NavigationManager.NavigateTo("/login");
         }
         catch (Exception ex)
         {

@@ -1,0 +1,30 @@
+﻿@using blazchat.Client.Services
+@inject SpinnerService SpinnerService
+
+@if (IsVisible)
+{
+    <MudProgressCircular StrokeWidth="6" Color="Color.Primary" Size="Size.Medium" Indeterminate="true"/>
+}
+
+@code {
+    private bool IsVisible { get; set; }
+
+    protected override void OnInitialized()
+    {
+        SpinnerService.OnShow += ShowSpinner;
+        SpinnerService.OnHide += HideSpinner;
+    }
+
+    private void ShowSpinner()
+    {
+        IsVisible = true;
+        StateHasChanged();
+    }
+
+    private void HideSpinner()
+    {
+        IsVisible = false;
+        StateHasChanged();
+    }
+
+}

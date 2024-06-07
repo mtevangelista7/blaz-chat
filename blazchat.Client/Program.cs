@@ -25,6 +25,8 @@ builder.Services.AddMudServices(config =>
     config.SnackbarConfiguration.SnackbarVariant = Variant.Filled;
 });
 
+builder.Services.AddScoped<ISpinnerService, SpinnerService>();
+
 builder.Services.AddScoped<AuthenticatedHttpClientHandler>();
 
 builder.Services.AddRefitClient<IUserEndpoints>()

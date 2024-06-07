@@ -1,10 +1,12 @@
 ﻿using System.Net.Http.Headers;
 using blazchat.Client.Helper;
+using blazchat.Client.Services.Interfaces;
 using Blazored.LocalStorage;
 
 namespace blazchat.Client.HttpClientHandler;
 
-public class AuthenticatedHttpClientHandler(ILocalStorageService localStorageService) : DelegatingHandler
+public class AuthenticatedHttpClientHandler(ILocalStorageService localStorageService, ISpinnerService spinnerService)
+    : DelegatingHandler
 {
     private const string TokenKey = "authToken";
 
@@ -13,6 +15,8 @@ public class AuthenticatedHttpClientHandler(ILocalStorageService localStorageSer
     {
         try
         {
+            spinnerService.Show();
+
             // Get the token from local storage
             var token = await localStorageService.GetItemAsync<string>(TokenKey, cancellationToken);
 
@@ -21,13 +25,18 @@ public class AuthenticatedHttpClientHandler(ILocalStorageService localStorageSer
             {
                 request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
             }
+
+            // Continue sending the request, without the tokens
+            return await base.SendAsync(request, cancellationToken);
         }
         catch (Exception ex)
         {
             await Help.HandleError(ex);
+            throw;
         }
-
-        // Continue sending the request, without the tokens
-        return await base.SendAsync(request, cancellationToken);
+        finally
+        {
+            spinnerService.Hide();
+        }
     }
 }

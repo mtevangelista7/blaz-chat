@@ -1,6 +1,30 @@
 ﻿@inherits MessagesHistoryBase
 @rendermode @(new InteractiveWebAssemblyRenderMode(prerender: false))
 
+
+<MudAppBar Elevation="0" Class="white" Fixed="true" Dense="true">
+    <MudGrid>
+        <MudItem xs="9">
+            <MudTextField T="string"
+                          ValueChanged="e => OnTextChange(e)"
+                          Class="grey lighten-4 rounded-xl"
+                          Margin="Margin.Dense"
+                          Placeholder="Search"
+                          Variant="Variant.Outlined"
+                          Adornment="Adornment.Start"
+                          AdornmentColor="Color.Primary"
+                          AdornmentIcon="@Icons.Material.Filled.Search"/>
+        </MudItem>
+
+        <MudItem Class="d-flex align-center justify-end" xs="3">
+            <MudStack Row="true">
+                <MudText Align="Align.End" Color="Color.Primary">@UserName</MudText>
+                <MudIconButton OnClick="OnClickLogout" Icon="@Icons.Material.Filled.Logout" Color="Color.Primary"></MudIconButton>
+            </MudStack>
+        </MudItem>
+    </MudGrid>
+</MudAppBar>
+
 <MudGrid Justify="Justify.Center" Spacing="3">
     @if (ActiveChats is { Count: > 0 })
     {
