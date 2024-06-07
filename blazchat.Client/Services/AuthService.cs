@@ -52,7 +52,7 @@ public class AuthService(ILocalStorageService localStorageService, IUserEndpoint
 
     public async Task<string> GetToken()
     {
-        return await localStorageService.GetItemAsync<string>(TokenKey);
+        return await localStorageService.GetItemAsync<string>(TokenKey) ?? throw new InvalidOperationException();
     }
 
     public async Task Logout()

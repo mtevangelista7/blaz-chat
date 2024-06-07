@@ -11,7 +11,7 @@
             <MudIcon Icon="@Icons.Material.Filled.Person" Size="Size.Medium" />
         </MudAvatar>
 
-        <MudText Color="Color.Dark" Typo="Typo.h6">@(guesstUser.Username ?? "")</MudText>
+        <MudText Color="Color.Dark" Typo="Typo.h6">@(GuesstUser.Username ?? "")</MudText>
     </MudStack>
 </MudAppBar>
 
@@ -23,7 +23,7 @@
                 @*outside user*@
                 <MudItem xs="6">
                     <MudStack Style="height: 100%" Justify="Justify.FlexStart" Row="false" Reverse="false">
-                        @foreach (var message in messages.Where(x => !(x.UserId.Equals(currentUser.Id))))
+                        @foreach (var message in Messages.Where(x => !(x.UserId.Equals(CurrentUser.Id))))
                         {
                             <MudPaper Style="background-color: transparent;" Elevation="0" Class="mr-4 d-flex justify-start">
                                 <MudPaper Class="rounded-lg pa-2 white" Elevation="4" Style="max-width: 100%;">
@@ -39,7 +39,7 @@
                 @*user*@
                 <MudItem xs="6">
                     <MudStack Style="height: 100%" Justify="Justify.FlexEnd" Row="false" Reverse="false">
-                        @foreach (var message in messages.Where(x => x.UserId.Equals(currentUser.Id)))
+                        @foreach (var message in Messages.Where(x => x.UserId.Equals(CurrentUser.Id)))
                         {
                             <MudPaper Style="background-color: transparent;" Elevation="0" Class="mr-4 d-flex justify-end">
                                 <MudPaper Class="rounded-lg pa-2 mud-theme-primary" Elevation="4" Style="max-width: 100%;">
@@ -62,7 +62,7 @@
             <MudItem xs="10">
 
                 <MudTextField T="string"
-                              @bind-Value="messageInput"
+                              @bind-Value="MessageInput"
                               Class="grey lighten-4 rounded-xl"
                               Margin="Margin.Dense"
                               Placeholder="Search"

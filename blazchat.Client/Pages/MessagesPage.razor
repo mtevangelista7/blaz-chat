@@ -6,7 +6,7 @@
 
 <PageTitle>Messages</PageTitle>
 
-@if (currentUserId.Equals(Guid.Empty))
+@if (CurrentUserId.Equals(Guid.Empty))
 {
 }
 else
@@ -39,7 +39,7 @@ else
         </MudPaper>
 
         @*button to start a new chat with someone*@
-        <NewMessageButton CurrentUserId="@currentUserId"></NewMessageButton>
+        <NewMessageButton CurrentUserId="@CurrentUserId"></NewMessageButton>
     }
     @*if we have a chat id, open the chat real time*@
     else

@@ -1,4 +1,6 @@
 ﻿using blazchat.Application.DTOs;
+using blazchat.Client.CustomComponentBase;
+using blazchat.Client.Helper;
 using blazchat.Client.RefitInterfaceApi;
 using blazchat.Client.Services;
 using blazchat.Client.Services.Interfaces;
@@ -10,12 +12,10 @@ using MudBlazor;
 
 namespace blazchat.Client.Pages;
 
-public class LoginPageBase : ComponentBase
+public class LoginPageBase : ComponentBaseExtends
 {
-    [Inject] public NavigationManager NavigationManager { get; set; }
     [Inject] public IAuthService AuthService { get; set; }
     [Inject] public ISnackbar Snackbar { get; set; }
-    [Inject] public AuthenticationStateProvider AuthStateProvider { get; set; }
 
     protected CreateUserDto user = new(Username: "", Password: "");
     private bool _isShow;
@@ -24,36 +24,50 @@ public class LoginPageBase : ComponentBase
 
     protected override async Task OnInitializedAsync()
     {
-        var authState = await AuthStateProvider
-            .GetAuthenticationStateAsync();
-
-        var user = authState.User;
-
-        if (user.Identity is not null && user.Identity.IsAuthenticated)
+        try
         {
-            NavigationManager.NavigateTo("/messages");
+            var authState = await AuthStateProvider
+                .GetAuthenticationStateAsync();
+
+            var user = authState.User;
+
+            if (user.Identity is not null && user.Identity.IsAuthenticated)
+            {
+                NavigationManager.NavigateTo("/messages");
+            }
+        }
+        catch (Exception ex)
+        {
+            await Help.HandleError(DialogService, ex, this);
         }
     }
 
     protected async Task OnClickLogin(EditContext context)
     {
-        if (!context.Validate()) return;
-
-        var result = await AuthService.Login(user.Username, user.Password);
-
-        if (!result.Flag)
+        try
         {
-            Snackbar.Add("Invalid username or password", Severity.Error);
-            return;
+            if (!context.Validate()) return;
+
+            var result = await AuthService.Login(user.Username, user.Password);
+
+            if (!result.Flag)
+            {
+                Snackbar.Add("Invalid username or password", Severity.Error);
+                return;
+            }
+
+            var customAuthenticationStateProvider = (CustomAuthenticationStateProvider)AuthStateProvider;
+
+            await customAuthenticationStateProvider.UpdateAuthenticationStateAsync(result.Token);
+
+            Snackbar.Add("You are logged in", Severity.Success);
+
+            NavigationManager.NavigateTo($"/messages");
         }
-
-        var customAuthenticationStateProvider = (CustomAuthenticationStateProvider)AuthStateProvider;
-
-        await customAuthenticationStateProvider.UpdateAuthenticationStateAsync(result.Token);
-
-        Snackbar.Add("You are logged in", Severity.Success);
-
-        NavigationManager.NavigateTo($"/messages");
+        catch (Exception ex)
+        {
+            await Help.HandleError(DialogService, ex, this);
+        }
     }
 
     protected void OnClickRegister()

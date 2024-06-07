@@ -20,7 +20,7 @@
 
                 <MudItem Class="right-animation" xs="6">
                     <MudPaper Elevation="0" Class="white d-flex align-center justify-center pl-7" Height="calc(100dvh - 28px - 28px)" Width="100%">
-                        <EditForm Model="@user" OnValidSubmit="OnClickRegister">
+                        <EditForm Model="@User" OnValidSubmit="OnClickRegister">
                             <DataAnnotationsValidator></DataAnnotationsValidator>
                             <ValidationSummary></ValidationSummary>
 
@@ -34,7 +34,7 @@
                                         <MudStack Spacing="0" Row="false">
                                             <MudText>Username</MudText>
                                             <MudTextField
-                                                @bind-value="@user.Username"
+                                                @bind-value="@User.Username"
                                                 Margin="Margin.Dense"
                                                 T="string"
                                                 MaxLength="50"
@@ -48,7 +48,7 @@
                                             <MudText>Password</MudText>
                                             <MudTextField
                                                 T="string"
-                                                @bind-value="@user.Password"
+                                                @bind-value="@User.Password"
                                                 Margin="Margin.Dense"
                                                 Variant="Variant.Outlined"
                                                 InputType="@PasswordInput"

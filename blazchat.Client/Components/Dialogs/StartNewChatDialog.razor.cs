@@ -1,11 +1,13 @@
 ﻿using blazchat.Application.DTOs;
+using blazchat.Client.CustomComponentBase;
+using blazchat.Client.Helper;
 using blazchat.Client.RefitInterfaceApi;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
 
 namespace blazchat.Client.Components.Dialogs;
 
-public class StartNewChatDialogBase : ComponentBase
+public class StartNewChatDialogBase : ComponentBaseExtends
 {
     [CascadingParameter] MudDialogInstance MudDialog { get; set; }
 
@@ -17,9 +19,17 @@ public class StartNewChatDialogBase : ComponentBase
 
     protected override async Task OnInitializedAsync()
     {
-        Users = await GetContactsAsync();
-        Users.Remove(Users.FirstOrDefault(u => u.Id.Equals(CurrentUserId)));
-        Users = [.. Users.OrderBy(u => u.Username)];
+        try
+        {
+            Users = await GetContactsAsync();
+            Users.Remove(Users.FirstOrDefault(u => u.Id.Equals(CurrentUserId)) ??
+                         throw new InvalidOperationException());
+            Users = [.. Users.OrderBy(u => u.Username)];
+        }
+        catch (Exception ex)
+        {
+            await Help.HandleError(DialogService, ex, this);
+        }
     }
 
     private async Task<List<UserDto>> GetContactsAsync()

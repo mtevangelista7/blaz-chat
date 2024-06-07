@@ -2,9 +2,9 @@
 @rendermode @(new InteractiveWebAssemblyRenderMode(prerender: false))
 
 <MudGrid Justify="Justify.Center" Spacing="3">
-    @if (activeChats is { Count: > 0 })
+    @if (ActiveChats is { Count: > 0 })
     {
-        @foreach (var chat in activeChats)
+        @foreach (var chat in ActiveChats)
         {
             <MudItem xs="10">
                 <button style="width:100%" @onclick="e => OnClickChat(chat.Id)">

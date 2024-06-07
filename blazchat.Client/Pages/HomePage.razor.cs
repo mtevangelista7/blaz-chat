@@ -1,23 +1,29 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using blazchat.Client.CustomComponentBase;
+using blazchat.Client.Helper;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 
 namespace blazchat.Client.Pages;
 
-public class HomePageBase : ComponentBase
+public class HomePageBase : ComponentBaseExtends
 {
-    [Inject] public AuthenticationStateProvider AuthStateProvider { get; set; }
-    [Inject] public NavigationManager NavigationManager { get; set; }
-
     protected override async Task OnInitializedAsync()
     {
-        var authState = await AuthStateProvider
-            .GetAuthenticationStateAsync();
-
-        var user = authState.User;
-
-        if (user.Identity is not null && user.Identity.IsAuthenticated)
+        try
         {
-            NavigationManager.NavigateTo("/messages");
+            var authState = await AuthStateProvider
+                .GetAuthenticationStateAsync();
+
+            var user = authState.User;
+
+            if (user.Identity is not null && user.Identity.IsAuthenticated)
+            {
+                NavigationManager.NavigateTo("/messages");
+            }
+        }
+        catch (Exception ex)
+        {
+            await Help.HandleError(DialogService, ex, this);
         }
     }
 }

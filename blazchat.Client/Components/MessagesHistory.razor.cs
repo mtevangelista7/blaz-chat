@@ -1,21 +1,19 @@
 ﻿using blazchat.Application.DTOs;
+using blazchat.Client.CustomComponentBase;
+using blazchat.Client.Helper;
 using blazchat.Client.RefitInterfaceApi;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 
 namespace blazchat.Client.Components;
 
-public class MessagesHistoryBase : ComponentBase
+public class MessagesHistoryBase : ComponentBaseExtends
 {
     [Inject] protected IChatEndpoints ChatEndpoints { get; set; }
 
     [Inject] protected IUserEndpoints UserEndpoints { get; set; }
 
-    [Inject] NavigationManager NavigationManager { get; set; }
-
-    [Inject] public AuthenticationStateProvider AuthStateProvider { get; set; }
-
-    protected List<ChatDto> activeChats = [];
+    protected List<ChatDto> ActiveChats = [];
     protected Guid IdUser;
 
     protected override async Task OnInitializedAsync()
@@ -23,7 +21,7 @@ public class MessagesHistoryBase : ComponentBase
         try
         {
             var authState = await AuthStateProvider
-    .GetAuthenticationStateAsync();
+                .GetAuthenticationStateAsync();
 
             var user = authState.User;
 
@@ -39,36 +37,46 @@ public class MessagesHistoryBase : ComponentBase
                 NavigationManager.NavigateTo("/login");
             }
 
-
-            activeChats = await GetMessageHistory();
+            ActiveChats = await GetMessageHistory();
             StateHasChanged();
         }
-        catch (Exception err)
+        catch (Exception ex)
         {
-            throw new Exception(err.Message);
+            await Help.HandleError(DialogService, ex, this);
         }
     }
 
     private async Task<List<ChatDto>> GetMessageHistory()
     {
+        List<ChatDto> chats = [];
+
         try
         {
-            var chats = await ChatEndpoints.GetActiveChats(IdUser);
-            return chats;
+            chats = await ChatEndpoints.GetActiveChats(IdUser);
         }
-        catch (Exception err)
+        catch (Exception ex)
         {
-            throw new Exception(err.Message);
+            await Help.HandleError(DialogService, ex, this);
         }
+
+        return chats;
     }
 
-    protected void OnClickChat(Guid idChat)
+    protected async Task OnClickChat(Guid idChat)
     {
-        if (idChat == Guid.Empty)
+        try
         {
-            return;
-        }
+            if (idChat == Guid.Empty)
+            {
+                await Help.ShowAlertDialog(DialogService, "Error selecting chat, chat is null");
+                return;
+            }
 
-        NavigationManager.NavigateTo($"/messages/{idChat}");
+            NavigationManager.NavigateTo($"/messages/{idChat}");
+        }
+        catch (Exception ex)
+        {
+            await Help.HandleError(DialogService, ex, this);
+        }
     }
 }

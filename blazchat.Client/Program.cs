@@ -25,7 +25,6 @@ builder.Services.AddMudServices(config =>
     config.SnackbarConfiguration.SnackbarVariant = Variant.Filled;
 });
 
-// TODO: Ver se isso realmente é transient
 builder.Services.AddScoped<AuthenticatedHttpClientHandler>();
 
 builder.Services.AddRefitClient<IUserEndpoints>()

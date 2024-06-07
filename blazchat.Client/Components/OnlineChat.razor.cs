@@ -1,4 +1,6 @@
 ﻿using blazchat.Application.DTOs;
+using blazchat.Client.CustomComponentBase;
+using blazchat.Client.Helper;
 using blazchat.Client.RefitInterfaceApi;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -7,122 +9,133 @@ using Microsoft.JSInterop;
 
 namespace blazchat.Client.Components;
 
-public class OnlineChatBase : ComponentBase, IDisposable
+public class OnlineChatBase : ComponentBaseExtends, IDisposable
 {
-    [Inject] public NavigationManager NavigationManager { get; set; }
-    [Inject] public IChatEndpoints ChatEndpoints { get; set; }
-    [Inject] public IMessageEndpoints MessageEndpoints { get; set; }
-    [Inject] public IUserEndpoints UserEndpoints { get; set; }
-    [Inject] public IJSRuntime JSRuntime { get; set; }
-    [Inject] public AuthenticationStateProvider AuthStateProvider { get; set; }
+    [Inject] private IChatEndpoints ChatEndpoints { get; set; }
+    [Inject] private IMessageEndpoints MessageEndpoints { get; set; }
+    [Inject] private IUserEndpoints UserEndpoints { get; set; }
 
     [Parameter] public Guid ChatIdParam { get; set; }
 
     private Task<AuthenticationState> _authenticationStateTask;
 
-    protected UserDto currentUser;
-    protected GuessUserDto guesstUser;
+    protected UserDto CurrentUser;
+    protected GuessUserDto GuesstUser;
 
-    private HubConnection hubConnection;
-    protected List<MessageDto> messages = [];
-    protected string messageInput;
+    private HubConnection _hubConnection;
+    protected List<MessageDto> Messages = [];
+    protected string MessageInput;
 
     protected override async Task OnInitializedAsync()
     {
-        var authState = await AuthStateProvider
-            .GetAuthenticationStateAsync();
-
-        var user = authState.User;
-
-        // if the user is not authenticated, redirect to the login page
-        if (!user.Identity.IsAuthenticated)
+        try
         {
-            NavigationManager.NavigateTo("/login");
-            return;
+            var authState = await AuthStateProvider
+                .GetAuthenticationStateAsync();
+
+            var user = authState.User;
+
+            // if the user is not authenticated, redirect to the login page
+            if (!user.Identity.IsAuthenticated)
+            {
+                NavigationManager.NavigateTo("/login");
+                return;
+            }
+
+            // get the current user object
+            CurrentUser = await UserEndpoints.GetUser(Guid.Parse(user.FindFirst(c => c.Type == "id")?.Value));
+
+            // if the current user is null, redirect to the login page
+            if (CurrentUser is null)
+            {
+                NavigationManager.NavigateTo("/login");
+                return;
+            }
+
+            // if the chat is not valid, redirect to the login page
+            if (!await ValidateChat())
+            {
+                NavigationManager.NavigateTo("/messages");
+                return;
+            }
+
+            // get the guess user
+            GuesstUser = await UserEndpoints.GetGuessUserByChatId(ChatIdParam, CurrentUser.Id);
+
+            if (GuesstUser is null)
+            {
+                NavigationManager.NavigateTo("/messages");
+                return;
+            }
+
+            // connect to the hub and load the messages
+            await OpenConnection();
+            await LoadMessages();
+
+            // scroll to the bottom of the chat
+            StateHasChanged();
+            await JSRuntime.InvokeVoidAsync("scrollToBottom", "scrollablePaper");
         }
-
-        // get the current user object
-        currentUser = await UserEndpoints.GetUser(Guid.Parse(user.FindFirst(c => c.Type == "id")?.Value));
-
-        // if the current user is null, redirect to the login page
-        if (currentUser is null)
+        catch (Exception ex)
         {
-            NavigationManager.NavigateTo("/login");
-            return;
+            await Help.HandleError(DialogService, ex, this);
         }
-
-        // if the chat is not valid, redirect to the login page
-        if (!await ValidateChat())
-        {
-            NavigationManager.NavigateTo("/messages");
-            return;
-        }
-
-        // get the guess user
-        guesstUser = await UserEndpoints.GetGuessUserByChatId(ChatIdParam, currentUser.Id);
-
-        if (guesstUser is null)
-        {
-            NavigationManager.NavigateTo("/messages");
-            return;
-        }
-
-        // connect to the hub and load the messages
-        await OpenConnection();
-        await LoadMessages();
-
-        // scroll to the bottom of the chat
-        StateHasChanged();
-        await JSRuntime.InvokeVoidAsync("scrollToBottom", "scrollablePaper");
     }
 
     protected async Task SendMessage()
     {
-        // send the message to the hub
-        if (!string.IsNullOrEmpty(messageInput))
+        try
         {
-            SendMessageDto sendMessageDto = new(ChatId: ChatIdParam, UserId: currentUser.Id, Message: messageInput);
+            // send the message to the hub
+            if (!string.IsNullOrEmpty(MessageInput))
+            {
+                SendMessageDto sendMessageDto = new(ChatId: ChatIdParam, UserId: CurrentUser.Id, Message: MessageInput);
 
-            await hubConnection.SendAsync("SendMessage", sendMessageDto);
-            messageInput = string.Empty;
+                await _hubConnection.SendAsync("SendMessage", sendMessageDto);
+                MessageInput = string.Empty;
+            }
+        }
+        catch (Exception ex)
+        {
+            await Help.HandleError(DialogService, ex, this);
         }
     }
 
     private async Task<bool> ValidateChat()
     {
-        // create a new valitdate object and call the endpoint
-        ValidateChatDto validateChat = new(ChatId: ChatIdParam, UserId: currentUser.Id);
+        // create a new validate object and call the endpoint
+        ValidateChatDto validateChat = new(ChatId: ChatIdParam, UserId: CurrentUser.Id);
         return await ChatEndpoints.ValidateChat(validateChat);
     }
 
     private async Task OpenConnection()
     {
-        hubConnection = new HubConnectionBuilder()
+        _hubConnection = new HubConnectionBuilder()
             .WithUrl(NavigationManager.ToAbsoluteUri("/chatHub"))
             .Build();
 
         // receive the message from the hub
-        hubConnection.On<Guid, string, DateTime>("ReceiveMessage", (userId, text, timestamp) =>
+        _hubConnection.On<Guid, string, DateTime>("ReceiveMessage", (userId, text, timestamp) =>
         {
-            messages.Add(new MessageDto(UserId: userId, Text: text, Timestamp: timestamp));
+            Messages.Add(new MessageDto(UserId: userId, Text: text, Timestamp: timestamp));
             StateHasChanged();
         });
 
         // create a new object to join the chat
-        UserJoinChatDto userJoinChatDto = new(ChatId: ChatIdParam, UserId: currentUser.Id);
+        UserJoinChatDto userJoinChatDto = new(ChatId: ChatIdParam, UserId: CurrentUser.Id);
 
-        await hubConnection.StartAsync();
-        await hubConnection.SendAsync("JoinChat", userJoinChatDto);
+        await _hubConnection.StartAsync();
+        await _hubConnection.SendAsync("JoinChat", userJoinChatDto);
     }
 
     public async void Dispose()
     {
-        await hubConnection.DisposeAsync();
+        await _hubConnection.DisposeAsync();
     }
 
     private async Task LoadMessages()
     {
-        messages = await MessageEndpoints.GetMessages(ChatIdParam);
+        Messages = await MessageEndpoints.GetMessages(ChatIdParam);
         StateHasChanged();
     }
 
